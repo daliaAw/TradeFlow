@@ -2,6 +2,8 @@
 
 Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
 
+**NEED TO RUN npm install**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
