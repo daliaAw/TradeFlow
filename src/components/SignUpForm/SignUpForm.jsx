@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { signUp } from "../../utilities/users-service";
 
 export default class SignUpForm extends Component {
@@ -7,12 +7,17 @@ export default class SignUpForm extends Component {
     email: "",
     password: "",
     confirm: "",
+    isBusiness: false,
+    businessName: "",
+    businessPhone: "",
+    businessAddress: "",
     error: "",
   };
 
   handleChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
     this.setState({
-      [evt.target.name]: evt.target.value,
+      [name]: type === "checkbox" ? checked : value,
       error: "",
     });
   };
@@ -20,23 +25,54 @@ export default class SignUpForm extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const { name, email, password } = this.state;
-      const formData = { name, email, password };
-      // The promise returned by the signUp service
-      // method will resolve to the user object included
-      // in the payload of the JSON Web Token (JWT)
+      const { name, email, password, isBusiness, businessName, businessPhone, businessAddress } = this.state;
+      const formData = { name, email, password, isBusiness, businessName, businessPhone, businessAddress };
       const user = await signUp(formData);
       this.props.setUser(user);
       // IFF USER IS FALSE GO TO MAIN PAGE ELSE GO TO BUSINESS DETAILS PAGE
     } catch {
-      // An error occurred
-      // Probably due to a duplicate email
       this.setState({ error: "Sign Up Failed - Try Again" });
+    }
+  };
+
+  renderBusinessFields = () => {
+    const { isBusiness } = this.state;
+    if (isBusiness) {
+      return (
+        <>
+          <label>Business Name</label>
+          <input
+            type="text"
+            name="businessName"
+            value={this.state.businessName}
+            onChange={this.handleChange}
+            required
+          />
+          <label>Business Phone</label>
+          <input
+            type="tel"
+            name="businessPhone"
+            value={this.state.businessPhone}
+            onChange={this.handleChange}
+            required
+          />
+          <label>Business Address</label>
+          <input
+            type="text"
+            name="businessAddress"
+            value={this.state.businessAddress}
+            onChange={this.handleChange}
+            required
+          />
+        </>
+      );
     }
   };
 
   render() {
     const disable = this.state.password !== this.state.confirm;
+    const buttonText = this.state.isBusiness ? "Create Business Account" : "SIGN UP";
+
     return (
       <div>
         <div className="form-container">
@@ -73,9 +109,19 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
-            {/* ADD BOOLEAN INPUT FOR BUSINESS */}
+            <br/>
+            <div>
+              <input
+                type="checkbox"
+                name="isBusiness"
+                checked={this.state.isBusiness}
+                onChange={this.handleChange}
+              />
+              <label>Sign up as a business?</label>
+            </div>
+            {this.renderBusinessFields()}
             <button type="submit" disabled={disable}>
-              SIGN UP
+              {buttonText}
             </button>
           </form>
         </div>
