@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const itemSchema = require('./itemSchema');
 
 const SALT_ROUNDS = 6;
+
+const favoriteSchema = new Schema({
+  item: {type: Schema.Types.ObjectId, ref: 'Item'}
+})
 
 const userSchema = new Schema(
   {
@@ -19,11 +22,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    favorites: [itemSchema],
-    businessAcct: {
+    favorites: [favoriteSchema],
+    isBusiness: {
       type: Boolean,
       required: true
-    }
+    },
   },
   {
     timestamps: true,
