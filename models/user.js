@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const itemSchema = require('./itemSchema');
+const itemSchema = require("./item");
 
 const SALT_ROUNDS = 6;
 
@@ -22,8 +22,8 @@ const userSchema = new Schema(
     favorites: [itemSchema],
     businessAcct: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   {
     timestamps: true,

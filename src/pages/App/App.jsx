@@ -21,19 +21,25 @@ export default function App() {
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} />
-      <Routes>
-        {/* Route components in here */}
-        <Route path="/categories/${template literal}" element={<Category />} />
-        <Route path="/orders" element={<OrderHistoryPage />} />
-      </Routes>
+      <nav>
+        <ul>
+          {categories.map((category) => (
+            <li key={category.path}>
+              <Link to={category.path}>{category.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-      {user ? (
-        <></>
-      ) : (
-        <>
-          <AuthPage setUser={setUser} />
-        </>
-      )}
+      <Switch>
+        {categories.map((category) => (
+          <Route key={category.path} path={category.path}>
+            <SingleCategory categoryName={category.name} />
+          </Route>
+        ))}
+      </Switch>
+
+      <AuthPage />
     </main>
   );
 }
