@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+const itemSchema = require('./itemSchema');
 
 const SALT_ROUNDS = 6;
 
@@ -17,9 +18,12 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-
-      // ADD TRUE/FALSE BOOLEAN ATTRIBUTE FOR BUSINESS ACCOUT
     },
+    favorites: [itemSchema],
+    businessAcct: {
+      type: Boolean,
+      required: true
+    }
   },
   {
     timestamps: true,
