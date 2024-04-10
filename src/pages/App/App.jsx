@@ -14,6 +14,7 @@ import CreateItemPage from '../CreateItemPage/CreateItemPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [category, setCategory] = useState()
 
   return (
     <main className="App">
