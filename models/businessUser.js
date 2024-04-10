@@ -11,11 +11,11 @@ const businessUserSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
+    businessAddress: {
         type: String,
         required: true
     },
-    phoneNum: {
+    businessPhone: {
         type: String,
         required: true
     }, 

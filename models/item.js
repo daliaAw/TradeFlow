@@ -27,8 +27,12 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     },
-    minOrderQty: {
+    minQuantity: {
         type: Number,
+        required: true
+    },
+    delivery: {
+        type: String,
         required: true
     },
     reviews: [reviewSchema]
