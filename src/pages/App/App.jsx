@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
@@ -16,17 +16,21 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 export default function App() {
   const [user, setUser] = useState(getUser());
 
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   return (
     <>
       <>
         <main className="App">
           <NavBar user={user} setUser={setUser} />
           {user ? (
-            console.log("User Logged In")
-          ) : (
             <>
-              <AuthPage />
+              console.log("User Logged In")
+              <h1>Home Page</h1>
             </>
+          ) : (
+            <>{isRootPath && <AuthPage setUser={setUser} />}</>
           )}
         </main>
       </>

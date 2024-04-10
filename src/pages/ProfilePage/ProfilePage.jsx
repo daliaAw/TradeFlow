@@ -4,7 +4,7 @@ function ProfilePage({ user }) {
   return (
     <>
       <h1>{user.name}'s Profile</h1>
-      {user.business ? (
+      {user.isBusiness ? (
         <>
           <h1>This is the business page</h1>
         </>
