@@ -48,12 +48,14 @@ export default function NavBar({ user, setUser }) {
               Log Out
             </Link>
             &nbsp; &nbsp;&nbsp; &nbsp;
-            <span>Welcome, {user.name}</span>
+            <span>
+              Welcome,
+              <Link to="/profile">{user.name}</Link>
+            </span>
           </>
         ) : (
           <>
             <Link to="/">Login/Sign Up</Link>
-            {isRootPath && <AuthPage setUser={setUser} />}
           </>
         )}
       </div>

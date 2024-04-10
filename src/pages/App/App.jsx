@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
@@ -24,7 +24,7 @@ export default function App() {
             console.log("User Logged In")
           ) : (
             <>
-
+              <AuthPage />
             </>
           )}
         </main>
@@ -32,5 +32,3 @@ export default function App() {
     </>
   );
 }
-
-
