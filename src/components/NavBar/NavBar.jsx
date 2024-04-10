@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 
@@ -6,6 +7,17 @@ export default function NavBar({ user, setUser }) {
     userService.logOut();
     setUser(null);
   }
+
+  const [categories, setCategories] = useState([
+    { name: "Consumer Goods", path: "categories/consumergoods" },
+    {
+      name: "Technology and Electronics",
+      path: "categories/technologyelectronics",
+    },
+    { name: "Fashion and Apparel", path: "categories/fashionapparel" },
+    { name: "Home and Garden", path: "categories/homegarden" },
+    { name: "Health and Wellness", path: "categories/healthwellness" },
+  ]);
 
   return (
     <>
@@ -22,21 +34,19 @@ export default function NavBar({ user, setUser }) {
           <Link>Login</Link> / <Link>Sign Up</Link>
         )}
       </div>
-      <nav>
-        <Link to="/categories/consumergoods">Consumer Goods</Link>
-        &nbsp; | &nbsp;
-        <Link to="/categories/technologyelectronics">
-          Technology and Electronics
-        </Link>
-        &nbsp; | &nbsp;
-        <Link to="/categories/fashionapparel">Fashion and Apparel</Link>
-        &nbsp; | &nbsp;
-        <Link to="/categories/homegarden">Home and Garden</Link>
-        &nbsp; | &nbsp;
-        <Link to="/categories/healthwellness">Health and Wellness</Link>
-        &nbsp; | &nbsp; &nbsp;&nbsp;
-        <span>Welcome, {user.name}</span>
-      </nav>
+      <>
+        <nav>
+          <ul>
+            {categories.map((category) => (
+              <li key={category.path}>
+                <Link to={category.path}>{category.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </>
+      &nbsp; | &nbsp; &nbsp;&nbsp;
+      <span>Welcome, {user.name}</span>
     </>
   );
 }
