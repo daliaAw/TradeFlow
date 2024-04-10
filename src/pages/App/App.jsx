@@ -43,7 +43,7 @@ export default function App() {
               element={<CategoryPage category={categories.name} key={categories.name} name={categoryName} />} />
               <Route path="/categories/:itemId" element={<ItemDetailsPage />} />
               <Route path="/create" element={<CreateItemPage />} />
-              <Route path="/orders/new" element={<NewOrderPage />} />
+              <Route path="/cart" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
             </Routes>
             </>

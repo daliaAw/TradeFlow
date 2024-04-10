@@ -28,10 +28,12 @@ export default function NavBar({ user, setUser }) {
         &nbsp; &nbsp;
         {user ? (
           <>
-      <span>Welcome, {user.name}&nbsp;|&nbsp;</span>
-
+          <span>Welcome, {user.name}&nbsp;&nbsp;|&nbsp;&nbsp;</span>
           <Link to="" onClick={handleLogOut}>
             Log Out
+          </Link>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <Link to="/create">
+          New Product
           </Link>
           </>
           

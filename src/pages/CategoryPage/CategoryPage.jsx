@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import ItemCard from "../../components/ItemCard/ItemCard"
 
 export default function CategoryPage({category, items}) {
 
@@ -8,9 +9,10 @@ export default function CategoryPage({category, items}) {
         <>
         <h1>{categoryName}</h1>
         <div className="item-list">
-            {/* {items.map((item) => (
-            <ItemCard key={item._id} product={item}/>
-            ))} */}
+            {/* {items.map((item) => ( */}
+            {/* <ItemCard key={item._id} product={item}/> */}
+            {/* ))} */}
+            <ItemCard/>
         </div>
         </>
     );
