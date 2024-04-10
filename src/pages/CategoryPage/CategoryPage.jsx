@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 
 export default function CategoryPage({category, items}) {
 
-
     let { categoryName } = useParams();
 
     return (

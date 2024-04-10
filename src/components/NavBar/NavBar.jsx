@@ -27,26 +27,30 @@ export default function NavBar({ user, setUser }) {
         <h3>Search bar will go here</h3>
         &nbsp; &nbsp;
         {user ? (
+          <>
+      <span>Welcome, {user.name}&nbsp;|&nbsp;</span>
+
           <Link to="" onClick={handleLogOut}>
             Log Out
           </Link>
+          </>
+          
         ) : (
           <Link>Login</Link> / <Link>Sign Up</Link>
         )}
       </div>
       <>
         <nav>
-          <ul>
+          
             {categories.map((category) => (
               <span key={category.name}>
-                <Link to={`categories/${category.name}`} setCategories={setCategories} >{category.name}</Link> &nbsp; 
+                <Link to={`categories/${category.name}`} setCategories={setCategories} >{category.name}</Link> &nbsp; &nbsp;
               </span>
             ))}
-          </ul>
+          
         </nav>
       </>
-      &nbsp; | &nbsp; &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
+       &nbsp; &nbsp;&nbsp;
     </>
   );
 }
