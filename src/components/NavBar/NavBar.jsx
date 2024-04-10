@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
+import "./NavBar.css";
+import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -19,34 +21,42 @@ export default function NavBar({ user, setUser }) {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   return (
     <>
       <div>
-        <h2>Trade Flow</h2>
+        <Link to="/">TradeFlow</Link>
         &nbsp; &nbsp;
         <h3>Search bar will go here</h3>
         &nbsp; &nbsp;
+        <>
+          <nav>
+            <ul>
+              {categories.map((category) => (
+                <li key={category.path}>
+                  <Link to={category.path}>{category.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
         {user ? (
-          <Link to="" onClick={handleLogOut}>
-            Log Out
-          </Link>
+          <>
+            <Link to="" onClick={handleLogOut}>
+              Log Out
+            </Link>
+            &nbsp; &nbsp;&nbsp; &nbsp;
+            <span>Welcome, {user.name}</span>
+          </>
         ) : (
-          <Link>Login</Link> / <Link>Sign Up</Link>
+          <>
+            <Link to="/">Login/Sign Up</Link>
+            {isRootPath && <AuthPage setUser={setUser} />}
+          </>
         )}
       </div>
-      <>
-        <nav>
-          <ul>
-            {categories.map((category) => (
-              <li key={category.path}>
-                <Link to={category.path}>{category.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </>
-      &nbsp; | &nbsp; &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
     </>
   );
 }
