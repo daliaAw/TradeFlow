@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 
 const reviewSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
     rating: {
         type: Number,
         required: true
@@ -40,8 +44,12 @@ const itemSchema = new Schema({
         type: Number,
         required: true
     },
-    minOrderQty: {
+    minQuantity: {
         type: Number,
+        required: true
+    },
+    delivery: {
+        type: String,
         required: true
     },
     reviews: [reviewSchema]
