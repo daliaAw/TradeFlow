@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import * as userService from '../../utilities/users-service';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import * as userService from "../../utilities/users-service";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -7,14 +8,45 @@ export default function NavBar({ user, setUser }) {
     setUser(null);
   }
 
+  const [categories, setCategories] = useState([
+    { name: "Consumer Goods", path: "categories/consumergoods" },
+    {
+      name: "Technology and Electronics",
+      path: "categories/technologyelectronics",
+    },
+    { name: "Fashion and Apparel", path: "categories/fashionapparel" },
+    { name: "Home and Garden", path: "categories/homegarden" },
+    { name: "Health and Wellness", path: "categories/healthwellness" },
+  ]);
+
   return (
-    <nav>
-      <Link to="/orders">Order History</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-      &nbsp;&nbsp;
+    <>
+      <div>
+        <h2>Trade Flow</h2>
+        &nbsp; &nbsp;
+        <h3>Search bar will go here</h3>
+        &nbsp; &nbsp;
+        {user ? (
+          <Link to="" onClick={handleLogOut}>
+            Log Out
+          </Link>
+        ) : (
+          <Link>Login</Link> / <Link>Sign Up</Link>
+        )}
+      </div>
+      <>
+        <nav>
+          <ul>
+            {categories.map((category) => (
+              <li key={category.path}>
+                <Link to={category.path}>{category.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </>
+      &nbsp; | &nbsp; &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-    </nav>
+    </>
   );
 }

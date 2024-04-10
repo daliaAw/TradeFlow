@@ -19,42 +19,45 @@ const reviewSchema = new Schema({
 })
 
 
-const itemSchema = new Schema({
+const itemSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     details: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     category: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     retailPrice: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     wholesalePrice: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     qtyAvailable: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     minQuantity: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     delivery: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    reviews: [reviewSchema]
-},{
-    timestamps: true
-})
+    reviews: [reviewSchema],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model('Item', itemSchema)
+module.exports = mongoose.model("Item", itemSchema);
