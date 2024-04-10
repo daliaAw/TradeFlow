@@ -12,7 +12,6 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
-// import SingleCategory from "../SingleCategory/SingleCategory";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -40,7 +39,7 @@ export default function App() {
               {/* Route components in here */}
               <Route path="/" element={<HomePage />} />
               <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/categories/:categoryName" key={categories.name} category={categories.name} setCategories={setCategories}   
+              <Route path="/categories/:categoryName" key={categories.name} setCategories={setCategories}   
               element={<CategoryPage category={categories.name} key={categories.name} name={categoryName} />} />
               <Route path="/categories/:itemId" element={<ItemDetailsPage />} />
               <Route path="/create" element={<CreateItemPage />} />
