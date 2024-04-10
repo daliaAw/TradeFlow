@@ -6,7 +6,6 @@ module.exports = {
   create,
   login,
   checkToken,
-  getUser,
 };
 
 function checkToken(req, res) {
@@ -35,15 +34,6 @@ async function login(req, res) {
     res.json(token);
   } catch (err) {
     res.status(400).json("Bad Credentials");
-  }
-}
-
-function getUser(req, res) {
-  try {
-    const user = User.find(req.user);
-    res.json(user);
-  } catch (err) {
-    conosle.log(err);
   }
 }
 

@@ -11,6 +11,7 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -29,6 +30,9 @@ export default function App() {
           )}
         </main>
       </>
+      <Routes>
+        <Route path="/profile" element={<ProfilePage user={user} />}></Route>
+      </Routes>
     </>
   );
 }
