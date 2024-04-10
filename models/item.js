@@ -1,6 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
-const reviewSchema = require('./reviews');
+
+const reviewSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: true
+    }
+}, {
+    timestamps: true
+})
+
 
 const itemSchema = new Schema({
     name: {

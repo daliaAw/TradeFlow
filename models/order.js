@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const itemSchema = require('./item');
 
 const lineItemSchema = new Schema({
     qty: { 
         type: Number, 
-        default: item.minOrderQty },
-    item: itemSchema
+        default: 1 },
+    item: {
+      type: Schema.Types.ObjectId,
+      ref: "Item"
+    }
   }, {
     timestamps: true,
     toJSON: { virtuals: true }
