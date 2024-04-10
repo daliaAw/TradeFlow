@@ -20,7 +20,7 @@ const userSchema = new Schema(
       required: true,
     },
     favorites: [itemSchema],
-    businessAcct: {
+    isBusiness: {
       type: Boolean,
       required: true,
     },
