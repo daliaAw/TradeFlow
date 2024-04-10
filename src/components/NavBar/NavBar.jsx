@@ -38,9 +38,9 @@ export default function NavBar({ user, setUser }) {
         <nav>
           <ul>
             {categories.map((category) => (
-              <li key={category.path}>
-                <Link to={category.path}>{category.name}</Link>
-              </li>
+              <span key={category.name}>
+                <Link to={`categories/${category.name}`} setCategories={setCategories} >{category.name}</Link> &nbsp; &nbsp;
+              </span>
             ))}
           </ul>
         </nav>
