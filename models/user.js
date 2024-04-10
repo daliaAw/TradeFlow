@@ -22,12 +22,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    favorites: [itemSchema],
+    favorites: [favoriteSchema],
     isBusiness: {
       type: Boolean,
       required: true
     },
-    favorites: [favoriteSchema]
   },
   {
     timestamps: true,
