@@ -47,6 +47,10 @@ export default class SignUpForm extends Component {
         ? await businessSignUp(formData)
         : await signUp(formData);
       this.props.setUser(user);
+      if (user && isBusiness) {
+        const businessUser = await fetchBusinessUserData(user.id);
+        this.props.setBusinessUser(businessUser);
+      }
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }

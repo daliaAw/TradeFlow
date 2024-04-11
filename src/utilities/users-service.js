@@ -4,7 +4,7 @@
 // for making AJAX requests to the server.
 
 import * as usersAPI from "./users-api";
-import * as businessUsersApI from "./businessUser";
+import * as businessUsersApI from "./businessUser-api";
 
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
@@ -15,7 +15,7 @@ export async function signUp(userData) {
 export async function businessSignUp(userData) {
   const token = await businessUsersApI.businessSignUp(userData);
   localStorage.setItem("token", token);
-  return getUser();
+  return getBusinessUser();
 }
 
 export async function login(credentials) {
@@ -52,7 +52,7 @@ export function getUser() {
 // THIS NEEDS WORK
 export function getBusinessUser() {
   const token = getToken();
-  console.log(token);
+  token && console.log(JSON.parse(atob(token.split(".")[1])));
   return token ? JSON.parse(atob(token.split(".")[1])).business : null;
 }
 

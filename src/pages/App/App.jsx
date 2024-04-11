@@ -65,10 +65,6 @@ export default function App() {
                 <Route path="/orders" element={<OrderHistoryPage />} />
                 <Route
                   path="/profile"
-                  element={<ProfilePage user={user} />}
-                ></Route>
-                <Route
-                  path="/profile"
                   element={
                     <ProfilePage user={user} businessUser={businessUser} />
                   }
