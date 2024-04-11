@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import ItemCard from "../../components/ItemCard/ItemCard"
 import { index } from "../../utilities/items-api"
 import { useState, useEffect } from "react";
+import ItemFilter from "../../components/ItemFilter/ItemFilter";
 
 export default function CategoryPage() {
     const [products, setProducts] = useState([]);
@@ -49,6 +50,7 @@ export default function CategoryPage() {
         <div>no products</div>
         )
     }
+        <ItemFilter/>
         </>
     );
 }
