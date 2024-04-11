@@ -7,9 +7,9 @@ const AddProductForm = ({addProduct}) => {
     retailPrice: '',
     wholesalePrice: '',
     title: '',
-    quantity: '',
+    qtyAvailable: '',
     minQuantity: '',
-    description: ''
+    description: '',
   })
   function handleChange(e){
     setNewItem({...newItem, [e.target.name]: e.target.value})
@@ -18,6 +18,11 @@ const AddProductForm = ({addProduct}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addProduct(newItem)
+    
+    // addItem()
+    // Handle form submission logic here
+    // For example, you can send form data to the server
+
   };
 
   return (
@@ -57,7 +62,7 @@ const AddProductForm = ({addProduct}) => {
       </div>
       <div>
         <label>Quantity:</label>
-        <input type="number" name='quantity' value={newItem.quantity} onChange={handleChange} />
+        <input type="number" name='qtyAvailable' value={newItem.qtyAvailable} onChange={handleChange} />
       </div>
       <div>
         <label>Minimum Quantity:</label>
