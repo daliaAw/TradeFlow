@@ -12,8 +12,10 @@ export default function ItemCard({title, category, wholesalePrice, retailPrice, 
             <div>
                 <Link to={`/${category}/${id}`}>
                     <div className="item-card">
-                        <p>{title}</p>
-                        <p>${wholesalePrice}</p>
+
+                        <h3>{item.title}</h3>
+                        <h3>${item.wholesalePrice}</h3> 
+
                     </div>
                 </Link>
             </div>
