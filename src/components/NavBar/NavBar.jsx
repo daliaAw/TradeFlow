@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
+import "./NavBar.css";
+import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -19,26 +21,46 @@ export default function NavBar({ user, setUser }) {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   return (
     <>
       <div>
-        <h2>Trade Flow</h2>
+        <Link to="/">TradeFlow</Link>
         &nbsp; &nbsp;
         <h3>Search bar will go here</h3>
         &nbsp; &nbsp;
+        <>
+          <nav>
+            <ul className="navUL">
+              {categories.map((category) => (
+                <li key={category.path}>
+                  <Link to={category.path}>{category.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
         {user ? (
           <>
-          <span>Welcome, {user.name}&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          <Link to="" onClick={handleLogOut}>
-            Log Out
-          </Link>&nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="/create">
-          New Product
-          </Link>
+
+            <Link to="" onClick={handleLogOut}>
+              Log Out
+            </Link>
+            &nbsp; &nbsp;&nbsp; &nbsp;
+            <span>
+              Welcome,
+              <Link to="/profile">{user.name}</Link>
+              <Link to="/create">New Product</Link>
+            </span>
+
           </>
-          
+
         ) : (
-          <Link>Login</Link> / <Link>Sign Up</Link>
+          <>
+            <Link to="/">Login/Sign Up</Link>
+          </>
         )}
       </div>
       <>

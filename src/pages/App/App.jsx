@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
-// import { BrowserRouter as Router, Link } from "react-router-dom";
+
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HomePage from "../HomePage/HomePage";
@@ -12,6 +13,8 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
+
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -28,11 +31,16 @@ export default function App() {
 
   let { categoryName } = useParams();
 
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   return (
     <>
       <>
         <main className="App">
+          <NavBar user={user} setUser={setUser} />
           {user ? (
+
             <>
               <NavBar user={user} setUser={setUser} />
             <Routes>
@@ -49,11 +57,15 @@ export default function App() {
             </>
           ) : (
             <>
-              <AuthPage setUser={setUser} />
+              <>{isRootPath && <AuthPage setUser={setUser} />}</>
           </>
+
           )}
         </main>
       </>
+      <Routes>
+        <Route path="/profile" element={<ProfilePage user={user} />}></Route>
+      </Routes>
     </>
   );
 }
