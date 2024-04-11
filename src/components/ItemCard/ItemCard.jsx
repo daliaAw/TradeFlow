@@ -1,6 +1,6 @@
 import React from "react";
 // import { useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { item } from "../../models/item";
 
 export default function ItemCard({title, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
@@ -10,16 +10,12 @@ export default function ItemCard({title, category, wholesalePrice, retailPrice, 
         <>
         <div className="item-card-container">
             <div>
-                {/* <Link to={`categories/${item.category}/${item._id}`}> */}
+                <Link to={`/${category}/${id}`}>
                     <div className="item-card">
-                        <p>{title} - {category}</p>
+                        <p>{title}</p>
                         <p>${wholesalePrice}</p>
-                        {/* <p>{product}</p> */}
-                        {/* <p>{item} item</p> */}
-                        {/* <h3>{item.name}</h3>
-                        <h3>{item.wholesalePrice}</h3> */}
                     </div>
-                {/* </Link> */}
+                </Link>
             </div>
         </div>
         </>

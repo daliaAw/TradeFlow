@@ -42,7 +42,7 @@ export default function App() {
           <Routes>
           <Route path="/" element={<HomePage />} />
               <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/categories/:categoryName" key={categories.name} setCategories={setCategories}   
+              <Route path="/:categoryName" key={categories.name} setCategories={setCategories}   
               element={<CategoryPage category={categories.name} key={categories.name} name={categoryName} />} />
               <Route path="/categories/:itemId" element={<ItemDetailsPage />} />
           </Routes>
@@ -50,8 +50,6 @@ export default function App() {
 
             <>
             <Routes>
-              {/* Route components in here */}
-            
               <Route path="/create" element={<CreateItemPage />} />
               <Route path="/cart" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
