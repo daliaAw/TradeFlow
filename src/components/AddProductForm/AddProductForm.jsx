@@ -29,10 +29,6 @@ const AddProductForm = ({addProduct}) => {
       description: '',
     })
     
-    // addItem()
-    // Handle form submission logic here
-    // For example, you can send form data to the server
-
   };
 
   return (

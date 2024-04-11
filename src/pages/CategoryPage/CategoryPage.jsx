@@ -8,12 +8,14 @@ export default function CategoryPage() {
     useEffect(function(){
         async function getProducts(){
             const products = await index()
-            console.log(products)
             setProducts(products)
         }
         getProducts()
     }, []);
 
+    const productListItems = products.map((p, idx) => (
+        <ItemCard product={p} key={idx}/>
+    ))
 
 
     let { categoryName } = useParams();
@@ -21,12 +23,13 @@ export default function CategoryPage() {
     return (
         <>
         <h1>{categoryName}</h1>
-        <div className="item-list">
-            {/* {items.map((item) => ( */}
-            {/* <ItemCard key={item._id} product={item}/> */}
-            {/* ))} */}
-            <ItemCard products={products}/>
-        </div>
+        {productListItems.length ?
+        (
+        <ul>{productListItems}</ul>
+        ) : ( 
+        <div>no products</div>
+        )
+    }
         </>
     );
 }

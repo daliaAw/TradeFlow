@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { item } from "../../models/item";
 
-export default function ItemCard({item}){
+export default function ItemCard({products}){
     let { categoryName } = useParams();
 
     return (
