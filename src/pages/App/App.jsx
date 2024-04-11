@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useParams } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 
 import "./App.css";
@@ -39,20 +39,24 @@ export default function App() {
       <>
         <main className="App">
           <NavBar user={user} setUser={setUser} />
-          {user ? (
-
-            <>
-              <NavBar user={user} setUser={setUser} />
-            <Routes>
-              {/* Route components in here */}
-              <Route path="/" element={<HomePage />} />
+          <Routes>
+          <Route path="/" element={<HomePage />} />
               <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/categories/:categoryName" key={categories.name} setCategories={setCategories}   
               element={<CategoryPage category={categories.name} key={categories.name} name={categoryName} />} />
               <Route path="/categories/:itemId" element={<ItemDetailsPage />} />
+          </Routes>
+          {user ? (
+
+            <>
+            <Routes>
+              {/* Route components in here */}
+            
               <Route path="/create" element={<CreateItemPage />} />
               <Route path="/cart" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
+             <Route path="/profile" element={<ProfilePage user={user} />}></Route>
+
             </Routes>
             </>
           ) : (
@@ -64,7 +68,6 @@ export default function App() {
         </main>
       </>
       <Routes>
-        <Route path="/profile" element={<ProfilePage user={user} />}></Route>
       </Routes>
     </>
   );
