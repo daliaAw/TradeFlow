@@ -5,16 +5,36 @@ import { useState, useEffect } from "react";
 
 export default function CategoryPage() {
     const [products, setProducts] = useState([]);
-    useEffect(function(){
-        async function getProducts(){
-            const products = await index()
-            setProducts(products)
+    useEffect(() => {
+        async function getProducts() {
+            try {
+                const products = await index();
+                setProducts(products);
+                const productListItems = products.map((p, idx) => (
+                    <ItemCard products={p} key={idx}/>
+                ))
+            } catch (error) {
+                console.log("Error fetching products:", error);
+            }
         }
-        getProducts()
+        getProducts();
     }, []);
 
+    // useEffect(function fetchProducts(){
+    //     async fucntion fetchProducts(){
+    //         try {
+    //             const response = await fetch('/api/item');
+    //             const items = await response.json();
+    //             setProducts(items)
+    //         }
+    //         catch(err) {
+    //             console.log("Error: ", err)
+    //         }
+    //     }
+    // })
+
     const productListItems = products.map((p, idx) => (
-        <ItemCard product={p} key={idx}/>
+        <ItemCard product={p.title} key={idx} index={idx}/>
     ))
 
 
