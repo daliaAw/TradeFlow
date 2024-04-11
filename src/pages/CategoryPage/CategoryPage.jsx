@@ -16,24 +16,28 @@ export default function CategoryPage() {
         }
         getProducts();
     }, []);
-
-    const productListItems = products.map((p, idx) => (
-        <ItemCard 
-        title={p.title} 
-        description={p.description} 
-        category={p.category} 
-        wholesalePrice={p.wholesalePrice}  
-        retailPrice={p.retailPrice}  
-        qtyAvailable={p.qtyAvailable}  
-        minQuantity={p.minQuantity}  
-        delivery={p.delivery}
-        id={p._id}  
-        key={idx} 
-        index={idx}/>
-    ))
-
-
+    
     let { categoryName } = useParams();
+
+    const productListItems = products
+      .filter(product => product.category === categoryName)
+      .map((p, idx) => (
+        <ItemCard 
+          title={p.title} 
+          description={p.description} 
+          category={p.category} 
+          wholesalePrice={p.wholesalePrice}  
+          retailPrice={p.retailPrice}  
+          qtyAvailable={p.qtyAvailable}  
+          minQuantity={p.minQuantity}  
+          delivery={p.delivery}
+          id={p._id}  
+          key={idx} 
+          index={idx}
+        />
+      ));
+
+
 
     return (
         <>
