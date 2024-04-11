@@ -49,12 +49,11 @@ export function getUser() {
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
 }
 
+// THIS NEEDS WORK
 export function getBusinessUser() {
   const token = getToken();
-  if (!token) return null;
-  const payload = JSON.parse(atob(token.split(".")[1]));
-  return payload.businessUser ? payload.businessUser : null;
-  
+  console.log(token);
+  return token ? JSON.parse(atob(token.split(".")[1])).business : null;
 }
 
 export function checkToken() {

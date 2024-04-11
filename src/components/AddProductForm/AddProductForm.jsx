@@ -31,22 +31,22 @@ const AddProductForm = () => {
       <div>
         <label>Select category for your product:</label>
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">Select category...</option>
-          <option value="Consumer Goods">Consumer Goods</option>
-          <option value="Technology and Electronics">Technology and Electronics</option>
-          <option value="Fashion and Apparel">Fashion and Apparel</option>
-          <option value="Home and Garden">Home and Garden</option>
-          <option value="Health and Wellness">Health and Wellness</option>
+          <option value="" disabled selected>Select category...</option>
+          <option value={"Consumer Goods"}>Consumer Goods</option>
+          <option value={"Technology and Electronics"}>Technology and Electronics</option>
+          <option value={"Fashion and Apparel"}>Fashion and Apparel</option>
+          <option value={"Home and Garden"}>Home and Garden</option>
+          <option value={"Health and Wellness"}>Health and Wellness</option>
         </select>
       </div>
       <div>
         <label>Delivery:</label>
         <select value={delivery} onChange={(e) => setDelivery(e.target.value)}>
-          <option value="">Select delivery...</option>
-          <option value="1 day">1 day</option>
-          <option value="3 days">3 days</option>
-          <option value="7 days">7 days</option>
-          <option value="more">More than 7 days</option>
+          <option value="" disabled selected>Select delivery...</option>
+          <option value={"1 day"}>1 day</option>
+          <option value={"3 days"}>3 days</option>
+          <option value={"7 days"}>7 days</option>
+          <option value={"more"}>More than 7 days</option>
         </select>
       </div>
       <div>

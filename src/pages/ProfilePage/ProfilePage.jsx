@@ -1,5 +1,6 @@
 import React from "react";
-
+import FavoritesList from "../../components/FavoritesList/FavoritesList";
+import OrderHistory from "../../components/OrderHistory/OrderHistory";
 function ProfilePage({ user, businessUser }) {
   return (
     <>
@@ -7,10 +8,16 @@ function ProfilePage({ user, businessUser }) {
       {user.isBusiness ? (
         <>
           <h1>This is the business page</h1>
-          <p>{businessUser.businessName}</p>
+
+          <p>{user.email}</p>
         </>
       ) : (
-        <h1>The is NOT a business page</h1>
+        <>
+          <p>The is NOT a business page</p>
+          <p>{user.email}</p>
+          <FavoritesList />
+          <OrderHistory />
+        </>
       )}
     </>
   );

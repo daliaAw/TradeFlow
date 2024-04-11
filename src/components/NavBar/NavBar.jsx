@@ -33,13 +33,12 @@ export default function NavBar({ user, setUser }) {
         &nbsp; &nbsp;
         <>
           <nav>
-            <ul className="navUL">
-              {categories.map((category) => (
-                <li key={category.path}>
-                  <Link to={category.path}>{category.name}</Link>
-                </li>
-              ))}
-            </ul>
+            {categories.map((category) => (
+              <span key={category.name}>
+                <Link to={`categories/${category.name}`}>{category.name}</Link>{" "}
+                &nbsp; &nbsp;
+              </span>
+            ))}
           </nav>
         </>
         {user ? (
@@ -47,18 +46,21 @@ export default function NavBar({ user, setUser }) {
             <Link to="" onClick={handleLogOut}>
               Log Out
             </Link>
-            &nbsp; &nbsp;&nbsp; &nbsp;
+            &nbsp; &nbsp;&nbsp;
             <span>
-              Welcome,
+              Welcome,&nbsp;
               <Link to="/profile">{user.name}</Link>
+              &nbsp; &nbsp;<Link to="/create">New Product</Link>
             </span>
           </>
         ) : (
           <>
-            <Link to="/">Login/Sign Up</Link>
+            <Link to="">Login/Sign Up</Link>
           </>
         )}
       </div>
+      <></>
+      &nbsp; &nbsp;&nbsp;
     </>
   );
 }

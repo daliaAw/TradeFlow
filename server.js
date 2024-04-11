@@ -25,7 +25,7 @@ const port = process.env.PORT || 3001;
 
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
-app.use("/api/business-users", require("./routes/api/businessUsers"));
+app.use("/api/business-users", require("./routes/api/businessUsers"));  
 app.use("/api/items", require("./routes/api/items"));
 
 // Protect all routes below from anonymous users

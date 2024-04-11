@@ -18,9 +18,9 @@ async function createBusinessUser(req, res) {
       businessAddress: req.body.businessAddress,
       user: user._id,
     });
-    console.log("user: ", user, "buzz: ", business);
+    console.log("buzz: ", business);
     const token = createJWT(user);
-    res.json(token);
+    res.json({ token, user, business });
   } catch (err) {
     res.status(400).json(err);
   }

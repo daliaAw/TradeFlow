@@ -1,6 +1,15 @@
 const Item = require('../../models/item');
 
-module.exports = {getItemDetails}
+module.exports = {
+    getItemDetails
+}
+
+async function create(req, res){
+    try {
+        const createItem = await Item.create()
+    }
+    catch (error) {}
+}
 
 async function getItemDetails(req, res, next) {
     try {
