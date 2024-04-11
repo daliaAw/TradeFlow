@@ -23,11 +23,11 @@ const reviewSchema = new Schema(
 
 const itemSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
     },
-    details: {
+    description: {
       type: String,
       required: true,
     },
