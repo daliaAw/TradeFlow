@@ -10,9 +10,6 @@ export default function CategoryPage() {
             try {
                 const products = await index();
                 setProducts(products);
-                const productListItems = products.map((p, idx) => (
-                    <ItemCard products={p} key={idx}/>
-                ))
             } catch (error) {
                 console.log("Error fetching products:", error);
             }
@@ -20,21 +17,19 @@ export default function CategoryPage() {
         getProducts();
     }, []);
 
-    // useEffect(function fetchProducts(){
-    //     async fucntion fetchProducts(){
-    //         try {
-    //             const response = await fetch('/api/item');
-    //             const items = await response.json();
-    //             setProducts(items)
-    //         }
-    //         catch(err) {
-    //             console.log("Error: ", err)
-    //         }
-    //     }
-    // })
-
     const productListItems = products.map((p, idx) => (
-        <ItemCard product={p.title} key={idx} index={idx}/>
+        <ItemCard 
+        title={p.title} 
+        description={p.description} 
+        category={p.category} 
+        wholesalePrice={p.wholesalePrice}  
+        retailPrice={p.retailPrice}  
+        qtyAvailable={p.qtyAvailable}  
+        minQuantity={p.minQuantity}  
+        delivery={p.delivery}
+        id={p._id}  
+        key={idx} 
+        index={idx}/>
     ))
 
 
