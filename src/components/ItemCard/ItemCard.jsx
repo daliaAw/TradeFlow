@@ -11,9 +11,8 @@ export default function ItemCard({item}){
             <div>
                 {/* <Link to={`categories/${item.category}/${item._id}`}> */}
                     <div className="item-card">
-                        <p>{categoryName} item</p>
-                        {/* <h3>{item.name}</h3>
-                        <h3>{item.wholesalePrice}</h3> */}
+                        <h3>{item.title}</h3>
+                        <h3>${item.wholesalePrice}</h3> 
                     </div>
                 {/* </Link> */}
             </div>
