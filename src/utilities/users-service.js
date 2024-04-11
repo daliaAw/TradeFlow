@@ -49,6 +49,14 @@ export function getUser() {
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
 }
 
+export function getBusinessUser() {
+  const token = getToken();
+  if (!token) return null;
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  return payload.businessUser ? payload.businessUser : null;
+  
+}
+
 export function checkToken() {
   // We can't forget how to use .then with promises
   return usersAPI.checkToken().then((dateStr) => new Date(dateStr));
