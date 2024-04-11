@@ -26,7 +26,6 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           {user ? (
             <>
-              console.log("User Logged In")
               <h1>Home Page</h1>
             </>
           ) : (
