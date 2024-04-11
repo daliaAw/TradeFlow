@@ -12,12 +12,6 @@ export async function signUp(userData) {
   return getUser();
 }
 
-export async function businessSignUp(userData) {
-  const token = await businessUsersApI.businessSignUp(userData);
-  localStorage.setItem("token", token);
-  return getBusinessUser();
-}
-
 export async function login(credentials) {
   // Delegate the AJAX request to the users-api.js
   // module.
@@ -47,13 +41,6 @@ export function getToken() {
 export function getUser() {
   const token = getToken();
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
-}
-
-// THIS NEEDS WORK
-export function getBusinessUser() {
-  const token = getToken();
-  token && console.log(JSON.parse(atob(token.split(".")[1])));
-  return token ? JSON.parse(atob(token.split(".")[1])).business : null;
 }
 
 export function checkToken() {

@@ -27,13 +27,16 @@ async function createBusinessUser(req, res) {
   }
 }
 
-async function fetchBusinessUserData(user) {
+async function fetchBusinessUserData(req, res) {
   try {
-    const businessUser = await BusinessUser.findOne({ user: user });
+    const businessUser = await BusinessUser.findOne({
+      user: req.params.userId,
+    });
     if (!businessUser) {
       throw new Error("Business user not found");
     }
-    return businessUser;
+    console.log("business user:", businessUser);
+    res.json(businessUser);
   } catch (err) {
     console.log(err);
   }

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import AuthPage from "../../pages/AuthPage/AuthPage";
+// import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -21,8 +22,8 @@ export default function NavBar({ user, setUser }) {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
-  const location = useLocation();
-  const isRootPath = location.pathname === "/";
+  // const location = useLocation();
+  // const isRootPath = location.pathname === "/";
 
   return (
     <>
@@ -35,8 +36,7 @@ export default function NavBar({ user, setUser }) {
           <nav>
             {categories.map((category) => (
               <span key={category.name}>
-                <Link to={`categories/${category.name}`}>{category.name}</Link>{" "}
-                &nbsp; &nbsp;
+                <Link to={`/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
               </span>
             ))}
           </nav>
@@ -48,8 +48,9 @@ export default function NavBar({ user, setUser }) {
             </Link>
             &nbsp; &nbsp;&nbsp;
             <span>
-              Welcome,&nbsp;
-              <Link to="/profile">{user.name}</Link>
+              Welcome,
+              <Link to="/profile">{user.name}</Link>&nbsp;&nbsp;
+              <Link to="/cart">Cart</Link>
               &nbsp; &nbsp;<Link to="/create">New Product</Link>
             </span>
           </>

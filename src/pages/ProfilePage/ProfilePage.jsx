@@ -8,8 +8,8 @@ function ProfilePage({ user, businessUser }) {
       {user && user.isBusiness ? (
         <>
           <h1>This is the business page</h1>
-          <p>{businessUser && businessUser.businessName}</p>
-          <p>{user && user.email}</p>
+          <p>{businessUser.businessName}</p>
+          <p>{user.email}</p>
         </>
       ) : (
         <>
