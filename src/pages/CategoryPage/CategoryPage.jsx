@@ -8,6 +8,7 @@ export default function CategoryPage() {
     useEffect(function(){
         async function getProducts(){
             const products = await index()
+            console.log(products)
             setProducts(products)
         }
         getProducts()

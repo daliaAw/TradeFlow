@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Routes, Route, Link, useLocation, useParams } from "react-router-dom";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 
 import "./App.css";

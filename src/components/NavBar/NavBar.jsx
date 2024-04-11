@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import AuthPage from "../../pages/AuthPage/AuthPage";
+// import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -18,8 +19,8 @@ export default function NavBar({ user, setUser }) {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
-  const location = useLocation();
-  const isRootPath = location.pathname === "/";
+  // const location = useLocation();
+  // const isRootPath = location.pathname === "/";
 
   return (
     <>

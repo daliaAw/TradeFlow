@@ -17,20 +17,7 @@ const AddProductForm = ({addProduct}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNewItem({
-      category: '',
-      delivery: '',
-      retailPrice: '',
-      wholesalePrice: '',
-      title: '',
-      quantity: '',
-      minQuantity: '',
-      description: ''
-    })
-    // addItem()
-    // Handle form submission logic here
-    // For example, you can send form data to the server
-
+    addProduct(newItem)
   };
 
   return (
