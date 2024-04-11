@@ -1,12 +1,14 @@
 const Item = require('../../models/item');
 
 module.exports = {
-    getItemDetails
+    getItemDetails, 
+    create
 }
 
 async function create(req, res){
     try {
-        const createItem = await Item.create()
+        const createItem = await Item.create({...req.body, user: req.user._id})
+        res.json(createItem)
     }
     catch (error) {}
 }
