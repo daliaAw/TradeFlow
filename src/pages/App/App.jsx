@@ -15,6 +15,7 @@ import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import Footer from "../../components/Footer/Footer";
 import { getBusinessUser } from "../../utilities/businessUser-api";
 
 export default function App() {
@@ -96,6 +97,7 @@ export default function App() {
             </>
           )}
         </main>
+        <Footer />
       </>
     </>
   );
