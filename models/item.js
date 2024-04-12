@@ -1,31 +1,33 @@
-const mongoose = require('mongoose');
-const Schema = require('mongoose').Schema;
+const mongoose = require("mongoose");
+const Schema = require("mongoose").Schema;
 
-const reviewSchema = new Schema({
+const reviewSchema = new Schema(
+  {
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     rating: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     comment: {
-        type: String,
-        required: true
-    }
-}, {
-    timestamps: true
-})
-
-
-const itemSchema = new Schema(
-  {
-    name: {
       type: String,
       required: true,
     },
-    details: {
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const itemSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },

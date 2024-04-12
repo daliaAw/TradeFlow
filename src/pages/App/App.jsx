@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import { Routes, Route, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { display } from "../../utilities/items-api"
+
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HomePage from "../HomePage/HomePage";
@@ -12,24 +14,71 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
-import SingleCategory from "../SingleCategory/SingleCategory";
+
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [categories, setCategories] = useState([
+    { name: "Consumer Goods", path: "categories/consumergoods" },
+    {
+      name: "Technology and Electronics",
+      path: "categories/technologyelectronics",
+    },
+    { name: "Fashion and Apparel", path: "categories/fashionapparel" },
+    { name: "Home and Garden", path: "categories/homegarden" },
+    { name: "Health and Wellness", path: "categories/healthwellness" },
+  ]);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+      async function getProducts() {
+          try {
+              const products = await display();
+              setProducts(products);
+          } catch (error) {
+              console.log("Error fetching products:", error);
+          }
+      }
+      getProducts();
+  }, []);
+
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
 
   return (
     <>
       <>
         <main className="App">
+          <NavBar user={user} setUser={setUser} />
+          <Routes>
+          <Route path="/" element={<HomePage  products={products}/>} />
+              <Route path="/categories" element={<CategoriesPage />} />
+              <Route path="/:categoryName" setCategories={setCategories}   
+               element={<CategoryPage key={categories.name} products={products}/>} />
+              <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} />
+              <Route exact path="/item/:category/:id" element={<ItemDetailsPage />} />
+          </Routes>
+
           {user ? (
-            <NavBar user={user} setUser={setUser} />
+            <>
+            <Routes>
+              <Route path="/create"  element={<CreateItemPage />} />
+              <Route path="/cart"    element={<NewOrderPage />} />
+              <Route path="/orders"  element={<OrderHistoryPage />} />
+              <Route path="/profile" element={<ProfilePage user={user} />}></Route>
+
+            </Routes>
+            </>
           ) : (
             <>
-              <AuthPage setUser={setUser} />
-            </>
+              <>{isRootPath && <AuthPage setUser={setUser} />}</>
+          </>
+
           )}
         </main>
       </>
+      <Routes>
+      </Routes>
     </>
   );
 }

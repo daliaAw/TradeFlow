@@ -1,0 +1,13 @@
+.top-Navbar{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.second-Nav{
+    background-color: darkblue;
+    display: flex;
+    justify-content: space-evenly;
+    
+
+}

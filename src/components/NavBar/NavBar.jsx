@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
+import "./NavBar.css";
+import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -10,43 +12,63 @@ export default function NavBar({ user, setUser }) {
 
   const [categories, setCategories] = useState([
     { name: "Consumer Goods", path: "categories/consumergoods" },
-    {
-      name: "Technology and Electronics",
-      path: "categories/technologyelectronics",
-    },
+    { name: "Technology and Electronics", path: "categories/technologyelectronics",},
     { name: "Fashion and Apparel", path: "categories/fashionapparel" },
     { name: "Home and Garden", path: "categories/homegarden" },
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
+  const location = useLocation();
+  const isRootPath = location.pathname === "/";
+
   return (
     <>
       <div>
-        <h2>Trade Flow</h2>
-        &nbsp; &nbsp;
-        <h3>Search bar will go here</h3>
-        &nbsp; &nbsp;
+        <>
+        <nav className="top-Navbar navbar navbar-expand-lg navbar-light">
+
+        <Link className="navbar-brand" to="/">TradeFlow</Link>
+        <form className="form-inline my-2 my-lg-0">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+ 
+       
         {user ? (
-          <Link to="" onClick={handleLogOut}>
-            Log Out
-          </Link>
+          <>
+            <div>
+            <span>
+              Welcome, &nbsp;
+              <Link to="/profile">{user.name}</Link>
+              &nbsp; | &nbsp; <Link to="/create">New Product</Link>
+              &nbsp; | &nbsp;   <Link to="/cart">Cart</Link>
+
+            </span>
+            &nbsp;  &nbsp; 
+            <Link to="" onClick={handleLogOut}>
+              Log Out
+            </Link>           
+            </div>
+          </>
+
         ) : (
-          <Link>Login</Link> / <Link>Sign Up</Link>
+          <>
+            <Link to="">Login/Sign Up</Link>
+          </>
         )}
+         </nav>
+        </>
       </div>
-      <>
-        <nav>
-          <ul>
-            {categories.map((category) => (
-              <li key={category.path}>
-                <Link to={category.path}>{category.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <nav className="second-Nav navbar navbar-expand-lg ">
+      {categories.map((category) => (
+        <span key={category.name}>
+                <Link to={`/${category.name}`} setCategories={setCategories}>{category.name}</Link> &nbsp; &nbsp;
+            </span>
+          ))}
+      </nav>
+      
       </>
-      &nbsp; | &nbsp; &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
-    </>
+
   );
+  
 }

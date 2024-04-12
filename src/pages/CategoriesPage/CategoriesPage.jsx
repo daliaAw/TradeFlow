@@ -1,22 +1,18 @@
 import React from "react";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import { Link } from "react-router-dom";
 // import CategoryCard from '../components/CategoryCard';
 
 const categories = [
-    {
-        name: 'Consumer Goods'
+    { name: 'Consumer Goods'
     },
-    {
-        name: 'Technology and Electronics'
+    { name: 'Technology and Electronics'
     },
-    {
-        name: 'Fashion and Apparel'
+    { name: 'Fashion and Apparel'
     },
-    {
-        name: 'Home and Garden'
+    { name: 'Home and Garden'
     },
-    {
-        name: 'Health and Wellness'
+    { name: 'Health and Wellness'
     }
 ]
 
@@ -26,11 +22,15 @@ export default function CategoriesPage() {
             <h1>All Categories</h1>
             <div className="categoriesPage">
                 {categories.map(c => (
+                    <Link to="">
                     <CategoryCard
                         name={c.name}
-                    />
+                        />
+                        </Link>
                 ))}
             </div>
+            
+        
         </>
     );
 }
