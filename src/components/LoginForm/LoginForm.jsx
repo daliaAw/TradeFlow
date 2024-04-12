@@ -23,7 +23,7 @@ export default function LoginForm({ setUser, setBusinessUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
-      setBusinessUser(getBusinessUser(user._id));
+      setBusinessUser(getBusinessUser(JSON.parse(user._id)));
     } catch {
       setError("Log In Failed - Try Again");
     }

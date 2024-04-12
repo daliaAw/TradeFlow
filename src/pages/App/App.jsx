@@ -17,14 +17,14 @@ import { getBusinessUser } from "../../utilities/businessUser-api";
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [businessUser, setBusinessUser] = useState({});
-  // useEffect(() => {
-  //   async function logBusinessUser() {
-  //     const businessUser = await getBusinessUser(user?._id);
-  //     setBusinessUser(businessUser);
-  //     console.log(businessUser);
-  //   }
-  //   logBusinessUser();
-  // });
+  useEffect(() => {
+    async function logBusinessUser() {
+      const businessUser = await getBusinessUser(JSON.parse(user?._id));
+      setBusinessUser(businessUser);
+      console.log(businessUser);
+    }
+    logBusinessUser();
+  });
 
   const [categories, setCategories] = useState([
     { name: "Consumer Goods", path: "categories/consumergoods" },

@@ -36,7 +36,8 @@ export default function NavBar({ user, setUser }) {
           <nav>
             {categories.map((category) => (
               <span key={category.name}>
-                <Link to={`/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
+                <Link to={`/${category.name}`}>{category.name}</Link> &nbsp;
+                &nbsp;
               </span>
             ))}
           </nav>
@@ -48,7 +49,7 @@ export default function NavBar({ user, setUser }) {
             </Link>
             &nbsp; &nbsp;&nbsp;
             <span>
-              Welcome,
+              Welcome &nbsp;
               <Link to="/profile">{user.name}</Link>&nbsp;&nbsp;
               <Link to="/cart">Cart</Link>
               &nbsp; &nbsp;<Link to="/create">New Product</Link>
