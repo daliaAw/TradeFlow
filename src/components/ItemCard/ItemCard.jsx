@@ -1,29 +1,23 @@
 import React from "react";
+// import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const ItemCard = ({
-    title,
-    category,
-    wholesalePrice,
-    retailPrice,
-    qtyAvailable,
-    minQuantity,
-    delivery,
-    id,
-    index
-}) => {
+export default function ItemCard({item, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
+
     return (
+        <>
         <div className="item-card-container">
-            <div className="category-card card p-3">
-                <Link to={`/item/${category}/${id}`}>
+            
+                <Link to={`/item/${item.category}/${item._id}`}>
                     <div className="item-card">
-                        <p>{title}</p>
-                        <p>${wholesalePrice}</p>
+                        {/* {console.log(item)} */}
+                        <h3>{item.title}</h3>
+                        <h3>${item.wholesalePrice}</h3> 
+
                     </div>
                 </Link>
-            </div>
+            
         </div>
-    );
-};
-
-export default ItemCard;
+        </>
+    )
+}
