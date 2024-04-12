@@ -7,10 +7,10 @@ function ItemFilter() {
     <form action="">
       <div className="delivery-filter">
       <label htmlFor="">Delivery</label>
-      <input type="radio" name="delivery" />One Day <br />
+      <input type="radio" name="delivery" />1 Day <br />
       <input type="radio" name="delivery" />3 Days <br />
       <input type="radio" name="delivery" />7 Days <br />
-      <input type="radio" name="delivery" />Over 7 Days <br />
+      <input type="radio" name="delivery" />7 Days + <br />
       </div>
        <br />
       <div className="price-filter">

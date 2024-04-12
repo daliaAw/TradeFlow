@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser }) {
     setUser(null);
   }
 
-  const [categories, setCategories] = useState([
+  const categories = [
     { name: "Consumer Goods", path: "categories/consumergoods" },
     {
       name: "Technology and Electronics",
@@ -20,7 +20,7 @@ export default function NavBar({ user, setUser }) {
     { name: "Fashion and Apparel", path: "categories/fashionapparel" },
     { name: "Home and Garden", path: "categories/homegarden" },
     { name: "Health and Wellness", path: "categories/healthwellness" },
-  ]);
+  ];
 
   // const location = useLocation();
   // const isRootPath = location.pathname === "/";
@@ -36,7 +36,7 @@ export default function NavBar({ user, setUser }) {
           <nav>
             {categories.map((category) => (
               <span key={category.name}>
-                <Link to={`/${category.name}`} setCategories={setCategories}>{category.name}</Link> &nbsp; &nbsp;
+                <Link to={`/cat/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
               </span>
             ))}
           </nav>

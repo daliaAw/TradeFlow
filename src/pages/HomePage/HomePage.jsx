@@ -24,7 +24,7 @@ export default function HomePage() {
         <div>
             <h1>Home Page</h1>
             <Link to="/categories">See All Categories</Link>
-            {console.log(categoryItems)}
+            {/* {console.log(categoryItems)} */}
             {categoryItems.map((category) => (
                 <div key={category.category}>
                     <h2>{category.category}</h2>
