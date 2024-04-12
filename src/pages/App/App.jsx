@@ -37,8 +37,6 @@ export default function App() {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
 
-  let { categoryName } = useParams();
-
   const location = useLocation();
   const isRootPath = location.pathname === "/";
 
@@ -54,13 +52,7 @@ export default function App() {
               path="/:categoryName"
               key={categories.name}
               setCategories={setCategories}
-              element={
-                <CategoryPage
-                  category={categories.name}
-                  key={categories.name}
-                  name={categoryName}
-                />
-              }
+              element={<CategoryPage key={categories.name} />}
             />
             <Route
               path="/:categoryName/:itemId"
@@ -76,7 +68,6 @@ export default function App() {
                 <CategoryPage
                   category={categories.name}
                   key={categories.name}
-                  name={categoryName}
                 />
               }
             />
