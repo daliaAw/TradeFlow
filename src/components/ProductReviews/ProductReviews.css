@@ -1,0 +1,14 @@
+.write-review-btn{
+    background-color: rgb(67, 67, 246);
+}
+.write-review-btn:hover{
+    background-color: lightskyblue;
+}
+.reviews-user-icon{
+    padding-right: 9px;
+    font-size: 25px;
+}
+.write-review-description{
+    width: 100%;
+    min-height: 150px;
+}

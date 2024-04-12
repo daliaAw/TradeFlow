@@ -21,8 +21,6 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
-  padding: 2vmin;
   height: 100vh;
 }
 
@@ -151,3 +149,38 @@ button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
 }
+
+/* NavBar  */
+
+/* Navbar background color */
+.navbar {
+  background-color: #faf8f9; /* Light gray background color */
+}
+
+/* Navbar text color */
+.navbar-nav .nav-link {
+  color: #333333; /* Dark gray text color */
+}
+
+/* Active link color */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Blue active link color */
+}
+
+/* Brand/logo text color */
+.navbar-brand {
+  color: #333333; /* Dark gray brand/logo text color */
+}
+
+/* Brand/logo hover color */
+.navbar-brand:hover {
+  color: #007bff; /* Blue brand/logo hover color */
+}
+/* End of NavBar */
+
+.banner {
+  height: 100px; 
+  border: 1px black solid;
+}
+

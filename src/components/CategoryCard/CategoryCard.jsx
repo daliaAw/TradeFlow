@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function CategoryCard({name}) {
+function CategoryCard({ name }) {
   return (
-    <div className="categoryCard">
-      <h3>{name}</h3>
+    <div className="p-4">
+      <Link to={`${name}`} className="card">      
+      <h3 className="card">{name}</h3>
+      </Link>
     </div>
   );
 }

@@ -4,8 +4,10 @@ module.exports = {
 
     getItems,
     getHomePageItems,
-    create
+    create,
+    getItemDetails
 }
+
 
 async function create(req, res){
     try {
@@ -41,4 +43,9 @@ async function getHomePageItems(req, res) {
     } catch (err) {
         console.log(err)
     }
+
+}
+async function getItemDetails(req, res){
+    const getItems = await Item.find()
+    res.json(getItems)
 }
