@@ -56,6 +56,11 @@ const itemSchema = new Schema(
       required: true,
     },
     reviews: [reviewSchema],
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -19,12 +19,12 @@ export default function App() {
   const [businessUser, setBusinessUser] = useState({});
   useEffect(() => {
     async function logBusinessUser() {
-      const businessUser = await getBusinessUser(JSON.parse(user?._id));
+      const businessUser = await getBusinessUser(user?._id);
       setBusinessUser(businessUser);
       console.log(businessUser);
     }
     logBusinessUser();
-  });
+  }, []);
 
   const [categories, setCategories] = useState([
     { name: "Consumer Goods", path: "categories/consumergoods" },
