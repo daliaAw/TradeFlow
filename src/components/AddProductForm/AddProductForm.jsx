@@ -71,7 +71,7 @@ const AddProductForm = ({addProduct}) => {
         <input type="number" name='qtyAvailable' value={newItem.qtyAvailable} onChange={handleChange} />
       </div>
       <div>
-        <label>Minimum Quantity:</label>
+        <label>Minimum Order Quantity:</label>
         <input type="number" name='minQuantity' value={newItem.minQuantity} onChange={handleChange} />
       </div>
       <div>
