@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { signUp } from "../../utilities/users-service";
+import {
+  getBusinessUser,
+  businessSignUp,
+} from "../../utilities/businessUser-api";
 
 export default class SignUpForm extends Component {
   state = {
@@ -25,11 +29,32 @@ export default class SignUpForm extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const { name, email, password, isBusiness, businessName, businessPhone, businessAddress } = this.state;
-      const formData = { name, email, password, isBusiness, businessName, businessPhone, businessAddress };
-      const user = await signUp(formData);
+      const {
+        name,
+        email,
+        password,
+        isBusiness,
+        businessName,
+        businessPhone,
+        businessAddress,
+      } = this.state;
+      const formData = {
+        name,
+        email,
+        password,
+        isBusiness,
+        businessName,
+        businessPhone,
+        businessAddress,
+      };
+      const user = this.state.isBusiness
+        ? await businessSignUp(formData)
+        : await signUp(formData);
       this.props.setUser(user);
-      // IFF USER IS FALSE GO TO MAIN PAGE ELSE GO TO BUSINESS DETAILS PAGE
+      if (user && isBusiness) {
+        const businessUser = await getBusinessUser(user.id);
+        this.props.setBusinessUser(businessUser);
+      }
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }
@@ -71,7 +96,9 @@ export default class SignUpForm extends Component {
 
   render() {
     const disable = this.state.password !== this.state.confirm;
-    const buttonText = this.state.isBusiness ? "Create Business Account" : "SIGN UP";
+    const buttonText = this.state.isBusiness
+      ? "Create Business Account"
+      : "SIGN UP";
 
     return (
       <div>
@@ -109,7 +136,7 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <br/>
+            <br />
             <div>
               <input
                 type="checkbox"

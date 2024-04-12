@@ -1,13 +1,16 @@
 .top-Navbar{
-    display: flex;
-    justify-content: space-around;
-    
+  display: flex;
+  justify-content: space-around;
+  
 }
 
 .second-Nav{
-    background-color: darkblue;
-    display: flex;
-    justify-content: space-evenly;
-    
+  background-color: darkblue;
+  display: flex;
+  justify-content: space-evenly;
+  
 
+}
+ul {
+list-style-type: none;
 }

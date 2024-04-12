@@ -1,7 +1,6 @@
 import React from "react";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import { Link } from "react-router-dom";
-// import CategoryCard from '../components/CategoryCard';
 
 const categories = [
     { name: 'Consumer Goods'
@@ -22,14 +21,13 @@ export default function CategoriesPage() {
             <h1>All Categories</h1>
             <div className="categoriesPage">
                 {categories.map(c => (
-                    <Link to="">
+                    <Link to={`/cat/${c.name}`} >
                     <CategoryCard
                         name={c.name}
                         />
                         </Link>
                 ))}
             </div>
-            
         
         </>
     );

@@ -1,15 +1,33 @@
 import React from "react";
-
-function ProfilePage({ user }) {
+import FavoritesList from "../../components/FavoritesList/FavoritesList";
+import OrderHistory from "../../components/OrderHistory/OrderHistory";
+function ProfilePage({ user, businessUser }) {
   return (
     <>
-      <h1>{user.name}'s Profile</h1>
-      {user.isBusiness ? (
+      <h1>{user && user.name}'s Profile</h1>
+      {user && user.isBusiness ? (
         <>
-          <h1>This is the business page</h1>
+          <div className="businessInfo">
+            <h1>This is the business page</h1>
+            <h2 className="businessName">{businessUser.businessName}</h2>
+            <p className="businessPhone">{businessUser.businessPhone}</p>
+            <p className="businessAddress">{businessUser.businessAddress}</p>
+            <p className="userEmail">{user.email}</p>
+          </div>
         </>
       ) : (
-        <h1>The is NOT a business page</h1>
+        <>
+          <div className="profilePage">
+            <p>The is NOT a business page</p>
+            <p className="userEmail">{user && user.email}</p>
+            <div className="profileFavs">
+              <FavoritesList />
+            </div>
+            <div className="profileOrderHistory">
+              <OrderHistory />
+            </div>
+          </div>
+        </>
       )}
     </>
   );

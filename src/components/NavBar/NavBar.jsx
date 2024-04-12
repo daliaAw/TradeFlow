@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import AuthPage from "../../pages/AuthPage/AuthPage";
+//import AuthPage from "../../pages/AuthPage/AuthPage";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -10,13 +10,16 @@ export default function NavBar({ user, setUser }) {
     setUser(null);
   }
 
-  const [categories, setCategories] = useState([
+  const categories = [
     { name: "Consumer Goods", path: "categories/consumergoods" },
     { name: "Technology and Electronics", path: "categories/technologyelectronics",},
     { name: "Fashion and Apparel", path: "categories/fashionapparel" },
     { name: "Home and Garden", path: "categories/homegarden" },
     { name: "Health and Wellness", path: "categories/healthwellness" },
-  ]);
+  ];
+
+  // const location = useLocation();
+  // const isRootPath = location.pathname === "/";
 
   const location = useLocation();
   const isRootPath = location.pathname === "/";
@@ -62,7 +65,7 @@ export default function NavBar({ user, setUser }) {
       <nav className="second-Nav navbar navbar-expand-lg ">
       {categories.map((category) => (
         <span key={category.name}>
-                <Link to={`/${category.name}`} setCategories={setCategories}>{category.name}</Link> &nbsp; &nbsp;
+                <Link to={`/cat/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
             </span>
           ))}
       </nav>

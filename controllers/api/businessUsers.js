@@ -18,21 +18,38 @@ async function createBusinessUser(req, res) {
       businessAddress: req.body.businessAddress,
       user: user._id,
     });
-    console.log("user: ", user, "buzz: ", business);
-    const token = createJWT(user);
+    console.log("buzz: ", business);
+    const token = createJWT(user, business);
+    console.log(token);
     res.json(token);
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
-function createJWT(user) {
+async function fetchBusinessUserData(req, res) {
+  console.log(req.params.userId);
+  try {
+    const businessUser = await BusinessUser.findOne({
+      user: req.params.userId,
+    });
+    // if (!businessUser) {
+    //   throw new Error("Business user not found");
+    // }
+    console.log("business user:", businessUser);
+    res.json(businessUser);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function createJWT(user, business) {
   return jwt.sign(
     // data payload
-    { user },
+    { user, business },
     process.env.SECRET,
     { expiresIn: "24h" }
   );
 }
 
-module.exports = { createBusinessUser };
+module.exports = { createBusinessUser, fetchBusinessUserData };

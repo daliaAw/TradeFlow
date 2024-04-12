@@ -15,7 +15,7 @@ const businessUserSchema = new Schema({
         type: String,
         required: true
     },
-    businessPhone: {
+businessPhone: {
         type: String,
         required: true
     }, 

@@ -1,0 +1,36 @@
+.footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.subscribe h5 {
+    margin: 0;
+}
+
+.categories ul {
+    padding: 0;
+    /* margin: 0; */
+}
+
+.categories h5 {
+    margin: 0;
+}
+
+.categories li {
+    margin-bottom: 5px;
+}
+
+.categories a {
+    text-decoration: none;
+    color: black;
+}
+
+.misc h5 {
+    margin: 0;
+}
+
+.misc p {
+    margin-bottom: 5px;
+}
