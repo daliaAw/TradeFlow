@@ -52,7 +52,7 @@ export default function CategoryPage() {
         <div>no products</div>
         )
     }
-        <ItemFilter/>
+        <ItemFilter items={items}/>
         </>
     );
 }
