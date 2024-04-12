@@ -7,16 +7,26 @@ function ProfilePage({ user, businessUser }) {
       <h1>{user && user.name}'s Profile</h1>
       {user && user.isBusiness ? (
         <>
-          <h1>This is the business page</h1>
-          <p>{businessUser.businessName}</p>
-          <p>{user.email}</p>
+          <div className="businessInfo">
+            <h1>This is the business page</h1>
+            <h2 className="businessName">{businessUser.businessName}</h2>
+            <p className="businessPhone">{businessUser.businessPhone}</p>
+            <p className="businessAddress">{businessUser.businessAddress}</p>
+            <p className="userEmail">{user.email}</p>
+          </div>
         </>
       ) : (
         <>
-          <p>The is NOT a business page</p>
-          <p>{user && user.email}</p>
-          <FavoritesList />
-          <OrderHistory />
+          <div className="profilePage">
+            <p>The is NOT a business page</p>
+            <p className="userEmail">{user && user.email}</p>
+            <div className="profileFavs">
+              <FavoritesList />
+            </div>
+            <div className="profileOrderHistory">
+              <OrderHistory />
+            </div>
+          </div>
         </>
       )}
     </>
