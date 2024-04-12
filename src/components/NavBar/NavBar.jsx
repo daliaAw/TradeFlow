@@ -13,7 +13,10 @@ export default function NavBar({ user, setUser }) {
 
   const [categories, setCategories] = useState([
     { name: "Consumer Goods", path: "categories/consumergoods" },
-    { name: "Technology and Electronics", path: "categories/technologyelectronics",},
+    {
+      name: "Technology and Electronics",
+      path: "categories/technologyelectronics",
+    },
     { name: "Fashion and Apparel", path: "categories/fashionapparel" },
     { name: "Home and Garden", path: "categories/homegarden" },
     { name: "Health and Wellness", path: "categories/healthwellness" },
@@ -30,40 +33,35 @@ export default function NavBar({ user, setUser }) {
         <h3>Search bar will go here</h3>
         &nbsp; &nbsp;
         <>
-        <nav>
+          <nav>
             {categories.map((category) => (
               <span key={category.name}>
                 <Link to={`/${category.name}`} setCategories={setCategories}>{category.name}</Link> &nbsp; &nbsp;
               </span>
             ))}
-        </nav>
+          </nav>
         </>
         {user ? (
           <>
-
             <Link to="" onClick={handleLogOut}>
               Log Out
             </Link>
             &nbsp; &nbsp;&nbsp;
             <span>
-              Welcome,
+              Welcome &nbsp;
               <Link to="/profile">{user.name}</Link>&nbsp;&nbsp;
               <Link to="/cart">Cart</Link>
               &nbsp; &nbsp;<Link to="/create">New Product</Link>
             </span>
-
           </>
-
         ) : (
           <>
             <Link to="">Login/Sign Up</Link>
           </>
         )}
       </div>
-      <>
-
-      </>
-       &nbsp; &nbsp;&nbsp;
+      <></>
+      &nbsp; &nbsp;&nbsp;
     </>
   );
 }

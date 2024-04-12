@@ -4,16 +4,10 @@
 // for making AJAX requests to the server.
 
 import * as usersAPI from "./users-api";
-import * as businessUsersApI from "./businessUser";
+import * as businessUsersApI from "./businessUser-api";
 
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
-  localStorage.setItem("token", token);
-  return getUser();
-}
-
-export async function businessSignUp(userData) {
-  const token = await businessUsersApI.businessSignUp(userData);
   localStorage.setItem("token", token);
   return getUser();
 }

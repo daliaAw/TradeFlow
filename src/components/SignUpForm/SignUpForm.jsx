@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { signUp, businessSignUp } from "../../utilities/users-service";
+import { signUp } from "../../utilities/users-service";
+import {
+  getBusinessUser,
+  businessSignUp,
+} from "../../utilities/businessUser-api";
 
 export default class SignUpForm extends Component {
   state = {
@@ -47,6 +51,10 @@ export default class SignUpForm extends Component {
         ? await businessSignUp(formData)
         : await signUp(formData);
       this.props.setUser(user);
+      if (user && isBusiness) {
+        const businessUser = await getBusinessUser(user.id);
+        this.props.setBusinessUser(businessUser);
+      }
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }

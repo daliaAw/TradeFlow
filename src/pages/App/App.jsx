@@ -14,11 +14,21 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
-
 import ProfilePage from "../ProfilePage/ProfilePage";
+import { getBusinessUser } from "../../utilities/businessUser-api";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [businessUser, setBusinessUser] = useState({});
+  useEffect(() => {
+    async function logBusinessUser() {
+      const businessUser = await getBusinessUser(user?._id);
+      setBusinessUser(businessUser);
+      console.log(businessUser);
+    }
+    logBusinessUser();
+  }, []);
+
   const [categories, setCategories] = useState([
     { name: "Consumer Goods", path: "categories/consumergoods" },
     {
@@ -58,26 +68,34 @@ export default function App() {
               <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} />
           </Routes>
           {user ? (
-
             <>
-            <Routes>
-              <Route path="/create" element={<CreateItemPage />} />
-              <Route path="/cart" element={<NewOrderPage />} />
-              <Route path="/orders" element={<OrderHistoryPage />} />
-             <Route path="/profile" element={<ProfilePage user={user} />}></Route>
-
-            </Routes>
+              <Routes>
+                {/* Route components in here */}
+                <Route
+                  path="/profile"
+                  element={
+                    <ProfilePage user={user} businessUser={businessUser} />
+                  }
+                ></Route>
+                <Route path="/create" element={<CreateItemPage />} />
+                <Route path="/cart" element={<NewOrderPage />} />
+                <Route path="/orders" element={<OrderHistoryPage />} />
+              </Routes>
             </>
           ) : (
             <>
-              <>{isRootPath && <AuthPage setUser={setUser} />}</>
-          </>
-
+              <>
+                {isRootPath && (
+                  <AuthPage
+                    setUser={setUser}
+                    setBusinessUser={setBusinessUser}
+                  />
+                )}
+              </>
+            </>
           )}
         </main>
       </>
-      <Routes>
-      </Routes>
     </>
   );
 }
