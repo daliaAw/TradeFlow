@@ -1,8 +1,7 @@
 import React from "react";
-// import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export default function ItemCard({item, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
+export default function CategoryItemCard({ title, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
 
     return (
         <>
@@ -10,9 +9,8 @@ export default function ItemCard({item, category, wholesalePrice, retailPrice, q
             
                 <Link to={`/${category}/${id}`}>
                     <div className="item-card">
-                        {/* {console.log(item)} */}
-                        <h3>{item.title}</h3>
-                        <h3>${item.wholesalePrice}</h3> 
+                        <h3>{title}</h3>
+                        <h3>${wholesalePrice}</h3> 
 
                     </div>
                 </Link>

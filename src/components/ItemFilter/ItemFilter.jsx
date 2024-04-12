@@ -3,9 +3,9 @@ import React from "react";
 function ItemFilter() {
   return (
   <>
-  <div class="item-filter">
+  <div className="item-filter">
     <form action="">
-      <div class="delivery-filter">
+      <div className="delivery-filter">
       <label htmlFor="">Delivery</label>
       <input type="radio" name="delivery" />One Day <br />
       <input type="radio" name="delivery" />3 Days <br />
@@ -13,7 +13,7 @@ function ItemFilter() {
       <input type="radio" name="delivery" />Over 7 Days <br />
       </div>
        <br />
-      <div class="price-filter">
+      <div className="price-filter">
       <label htmlFor="">Price</label>
       <input type="radio" name="wholesalePrice" />Under $25 <br />
       <input type="radio" name="wholesalePrice" />$25 - $50 <br />
@@ -22,13 +22,13 @@ function ItemFilter() {
       <input type="radio" name="wholesalePrice" />$200 & Above  <br />
       </div>
       <br />
-      <div class="min-max-price">
+      <div className="min-max-price">
         <input type="text" placeholder="min" />
         <input type="text" placeholder="max" />
         <button>Filter</button>
       </div>
       <br />
-      <div class="rating-filter">
+      <div className="rating-filter">
       <label htmlFor="">Rating</label>
       <input type="radio" name="wholesalePrice" />⭐⭐⭐⭐☆ & Up<br />
       <input type="radio" name="wholesalePrice" />⭐⭐⭐☆☆ & Up<br />
