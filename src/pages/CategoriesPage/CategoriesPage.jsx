@@ -3,20 +3,15 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import { Link } from "react-router-dom";
 
 const categories = [
-    {
-        name: 'Consumer Goods'
+    { name: 'Consumer Goods'
     },
-    {
-        name: 'Technology and Electronics'
+    { name: 'Technology and Electronics'
     },
-    {
-        name: 'Fashion and Apparel'
+    { name: 'Fashion and Apparel'
     },
-    {
-        name: 'Home and Garden'
+    { name: 'Home and Garden'
     },
-    {
-        name: 'Health and Wellness'
+    { name: 'Health and Wellness'
     }
 ]
 

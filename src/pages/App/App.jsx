@@ -63,15 +63,18 @@ export default function App() {
         <main className="App">
           <NavBar user={user} setUser={setUser} />
           <Routes>
-          <Route path="/" element={<HomePage  products={products}/>} />
+              <Route path="/" element={<HomePage  products={products}/>} />
+              <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/cat/:categoryName" setCategories={setCategories} categoryName={categories.name}  
               element={<CategoryPage key={categories.name} products={products} categoryName={categories.name}/>} />
               <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} />
+              <Route exact path="/item/:category/:id" element={<ItemDetailsPage />} />
           </Routes>
+
           {user ? (
             <>
-              <Routes>
+            <Routes>
                 {/* Route components in here */}
                 <Route
                   path="/profile"
@@ -86,19 +89,19 @@ export default function App() {
             </>
           ) : (
             <>
-              <>
-                {isRootPath && (
-                  <AuthPage
-                    setUser={setUser}
-                    setBusinessUser={setBusinessUser}
-                  />
-                )}
-              </>
+            <>
+              {isRootPath && (
+                <AuthPage
+                  setUser={setUser}
+                  setBusinessUser={setBusinessUser}
+                />
+              )}
             </>
-          )}
-        </main>
-        <Footer />
-      </>
+          </>
+        )}
+      </main>
+      <Footer />
     </>
-  );
+  </>
+);
 }
