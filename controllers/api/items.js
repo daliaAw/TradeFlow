@@ -3,7 +3,7 @@ const Item = require('../../models/item');
 module.exports = {
 
     getItemDetails,
-    getHomePageItems
+    getHomePageItems,
     create
 
 }
@@ -46,3 +46,4 @@ async function getHomePageItems(req, res) {
     } catch (err) {
         console.log(err)
     }
+}

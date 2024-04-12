@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ItemCard from "../../components/ItemCard/ItemCard";
+import { index } from "../../utilities/items-api"
     
 export default function HomePage() {
     const [categoryItems, setCategoryItems] = useState([]);
@@ -8,9 +9,10 @@ export default function HomePage() {
     useEffect(() => {
         async function fetchItems() {
             try {
-                const res = await fetch("/api/items")
-                const itemsInCat = await res.json();
-                setCategoryItems(itemsInCat);
+                const res = await index()
+                // const itemsInCat = await res.json();
+                // console.log(itemsInCat)
+                setCategoryItems(res);
             } catch (err) {
                 console.log(err)
             }
