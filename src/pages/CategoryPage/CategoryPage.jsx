@@ -1,29 +1,29 @@
 import { useParams } from "react-router-dom";
-import ItemCard from "../../components/ItemCard/ItemCard"
-import { index } from "../../utilities/items-api"
+import CategoryItemCard from "../../components/CategoryItemCard/CategoryItemCard"
+import { display } from "../../utilities/items-api"
 import { useState, useEffect } from "react";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
 
 export default function CategoryPage() {
-    const [products, setProducts] = useState([]);
+    const [items, setItems] = useState([]);
     useEffect(() => {
-        async function getProducts() {
+        async function getItems() {
             try {
-                const products = await index();
-                setProducts(products);
+                const items = await display();
+                setItems(items);
             } catch (error) {
                 console.log("Error fetching products:", error);
             }
         }
-        getProducts();
+        getItems();
     }, []);
     
     let { categoryName } = useParams();
 
-    const productListItems = products
-      .filter(product => product.category === categoryName)
+    const productListItems = items
+      .filter(items => items.category === categoryName)
       .map((p, idx) => (
-        <ItemCard 
+        <CategoryItemCard 
           title={p.title} 
           description={p.description} 
           category={p.category} 
