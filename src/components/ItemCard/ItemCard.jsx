@@ -8,7 +8,7 @@ export default function ItemCard({item, category, wholesalePrice, retailPrice, q
         <>
         <div className="item-card-container">
             
-                <Link to={`/${category}/${id}`}>
+                <Link to={`/item/${item.category}/${item._id}`}>
                     <div className="item-card">
                         {/* {console.log(item)} */}
                         <h3>{item.title}</h3>

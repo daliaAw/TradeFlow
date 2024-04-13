@@ -4,6 +4,8 @@ import { display } from "../../utilities/items-api"
 import { useState, useEffect } from "react";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
 
+
+
 export default function CategoryPage() {
     const [items, setItems] = useState([]);
     useEffect(() => {
@@ -50,7 +52,7 @@ export default function CategoryPage() {
         <div>no products</div>
         )
     }
-        <ItemFilter/>
+        <ItemFilter items={items}/>
         </>
     );
 }

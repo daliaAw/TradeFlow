@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../ProductReviews/ProductReviews.css";
 const StarRating = ({ rating, onRatingChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
@@ -37,55 +37,71 @@ const StarRating = ({ rating, onRatingChange }) => {
 
 const WriteReviewForm = ({ createReview, setReviews, reviews }) => {
   // const [description, setDescription] = useState("");
-  const [rating, setRating] = useState(0);
-  const [newReview, setNewReview] = useState();
+  const WriteReviewForm = ({ onSubmit }) => {
+    const [description, setDescription] = useState("");
+    const [rating, setRating] = useState(0);
+    const [newReview, setNewReview] = useState();
+    const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
 
-  const handleRatingChange = (evt) => {
-    setRating(evt);
-  };
+    const handleRatingChange = (evt) => {
+      setRating(evt);
+    };
 
-  const handleDescriptionChange = (evt) => {
-    // setDescription(evt.target.value);
-    setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
-  };
+    const handleDescriptionChange = (evt) => {
+      // setDescription(evt.target.value);
+      setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
+    };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const review = await createReview(newReview);
-      setNewReview({
-        text: "",
-      });
-      setReviews([...reviews, review]);
-    } catch (err) {
-      console.log(err);
-    }
-    // You can do something with the description and rating here
-    // console.log("Description:", description);
-    console.log("Rating:", rating);
-    // Reset form fields
-    // setDescription("");
-    setRating(0);
-  };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const review = await createReview(newReview);
+        setNewReview({
+          text: "",
+        });
+        setReviews([...reviews, review]);
+      } catch (err) {
+        console.log(err);
+      }
+      // You can do something with the description and rating here
+      // console.log("Description:", description);
+      console.log("Rating:", rating);
+      // Pass the review data to the parent component for further processing
+      onSubmit({ description, rating });
+      // Reset form fields
+      // setDescription("");
+      setRating(0);
+      // Update state to indicate that the form has been submitted
+      setSubmitted(true);
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
+    return (
       <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          // value={description}
-          onChange={handleDescriptionChange}
-          placeholder="Write your review here..."
-        />
+        {submitted ? (
+          <p>Thank you for your review!</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="description">Description:</label>
+              <textarea
+                className="write-review-description"
+                id="description"
+                value={description}
+                required
+                onChange={handleDescriptionChange}
+                placeholder="Write your review here..."
+              />
+            </div>
+            <div className="ml-4">
+              <label>Rating:</label>
+              <StarRating rating={rating} onRatingChange={handleRatingChange} />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </div>
-      <div>
-        <label>Rating:</label>
-        <StarRating rating={rating} onRatingChange={handleRatingChange} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  );
+    );
+  };
 };
 
 export default WriteReviewForm;

@@ -6,15 +6,14 @@ export default function CategoryItemCard({ title, category, wholesalePrice, reta
     return (
         <>
         <div className="item-card-container">
-            
-                <Link to={`/${category}/${id}`}>
+            <div className="category-card card p-3">
+                <Link to={`/item/${category}/${id}`}>
                     <div className="item-card">
-                        <h3>{title}</h3>
-                        <h3>${wholesalePrice}</h3> 
-
+                        <p>{title}</p>
+                        <p>${wholesalePrice}</p>
                     </div>
                 </Link>
-            
+            </div>
         </div>
         </>
     )

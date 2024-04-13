@@ -1,12 +1,13 @@
 const Item = require("../../models/item");
 
 module.exports = {
-  getItems,
-  getHomePageItems,
-  create,
-  createReview,
-  getReviewsByUser,
-};
+
+    getItems,
+    getHomePageItems,
+    create,
+    getItemDetails
+}
+
 
 async function create(req, res) {
   try {
@@ -35,32 +36,19 @@ async function getHomePageItems(req, res) {
   ];
   const categoryItems = [];
 
-  try {
-    for (const category of homeCategories) {
-      const items = await Item.find({ category: category });
-      categoryItems.push({ category: category, items: [...items] });
+    try {
+        for (const category of homeCategories) {
+            const items = await Item.find({ category: category });
+            categoryItems.push({category:category, items:[...items]})
+        }
+        console.log(categoryItems);
+        res.json(categoryItems);
+    } catch (err) {
+        console.log(err)
     }
-    console.log(categoryItems);
-    res.json(categoryItems);
-  } catch (err) {
-    console.log(err);
-  }
-}
 
-async function createReview(req, res) {
-  try {
-    const review = await Review.create({ ...req.body, user: req.user });
-    res.json(review);
-  } catch (err) {
-    console.log(err);
-  }
 }
-
-async function getReviewsByUser(req, res) {
-  try {
-    const notes = await Review.find({ user: req.user });
-    res.json(review);
-  } catch (err) {
-    console.log(err);
-  }
+async function getItemDetails(req, res){
+    const getItems = await Item.find()
+    res.json(getItems)
 }

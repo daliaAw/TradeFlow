@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
-import { display } from "../../utilities/items-api"
-
+import { display } from "../../utilities/items-api";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HomePage from "../HomePage/HomePage";
@@ -12,9 +11,10 @@ import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
-import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
+import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import Footer from "../../components/Footer/Footer";
 import { getBusinessUser } from "../../utilities/businessUser-api";
 
 export default function App() {
@@ -41,15 +41,15 @@ export default function App() {
   ]);
   const [products, setProducts] = useState([]);
   useEffect(() => {
-      async function getProducts() {
-          try {
-              const products = await display();
-              setProducts(products);
-          } catch (error) {
-              console.log("Error fetching products:", error);
-          }
+    async function getProducts() {
+      try {
+        const products = await display();
+        setProducts(products);
+      } catch (error) {
+        console.log("Error fetching products:", error);
       }
-      getProducts();
+    }
+    getProducts();
   }, []);
 
   const location = useLocation();
@@ -61,12 +61,32 @@ export default function App() {
         <main className="App">
           <NavBar user={user} setUser={setUser} />
           <Routes>
-          <Route path="/" element={<HomePage  products={products}/>} />
-              <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/:categoryName" setCategories={setCategories}   
-              element={<CategoryPage key={categories.name} products={products}/>} />
-              <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} />
+            <Route path="/" element={<HomePage products={products} />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route
+              path="/cat/:categoryName"
+              setCategories={setCategories}
+              categoryName={categories.name}
+              element={
+                <CategoryPage
+                  key={categories.name}
+                  products={products}
+                  categoryName={categories.name}
+                />
+              }
+            />
+            <Route
+              path="/:categoryName/:itemId"
+              element={<ItemDetailsPage products={products} />}
+            />
+            <Route
+              exact
+              path="/item/:category/:id"
+              element={<ItemDetailsPage />}
+            />
           </Routes>
+
           {user ? (
             <>
               <Routes>
@@ -95,6 +115,7 @@ export default function App() {
             </>
           )}
         </main>
+        <Footer />
       </>
     </>
   );
