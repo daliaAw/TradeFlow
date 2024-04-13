@@ -96,7 +96,7 @@ function ProductDeets({ item }) {
         {/* Second row */}
         <div className="Item-Details row">
             <h1>Product Details</h1>
-            <p><span>Details: </span>{item.details}</p>
+            <p><span>Details: </span>{item.description}</p>
             <p><span>Quantity Available:</span> {item.qtyAvailable}</p>
             <p><span>Minimum Quantity:</span> {item.minQuantity}</p>
             <p><span>Retail Price:</span> ${item.retailPrice}</p>
