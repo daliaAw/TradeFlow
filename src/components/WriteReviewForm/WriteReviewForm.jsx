@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const StarRating = ({ rating, onRatingChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
-  const handleMouseEnter = value => {
+  const handleMouseEnter = (value) => {
     setHoverRating(value);
   };
 
@@ -11,7 +11,7 @@ const StarRating = ({ rating, onRatingChange }) => {
     setHoverRating(0);
   };
 
-  const handleClick = value => {
+  const handleClick = (value) => {
     onRatingChange(value);
   };
 
@@ -22,12 +22,12 @@ const StarRating = ({ rating, onRatingChange }) => {
         return (
           <span
             key={starValue}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onMouseEnter={() => handleMouseEnter(starValue)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleClick(starValue)}
           >
-            {starValue <= (hoverRating || rating) ? '★' : '☆'}
+            {starValue <= (hoverRating || rating) ? "★" : "☆"}
           </span>
         );
       })}
@@ -35,25 +35,36 @@ const StarRating = ({ rating, onRatingChange }) => {
   );
 };
 
-const WriteReviewForm = () => {
-  const [description, setDescription] = useState('');
+const WriteReviewForm = ({ createReview, setReviews, reviews }) => {
+  // const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
+  const [newReview, setNewReview] = useState();
 
-  const handleRatingChange = value => {
-    setRating(value);
+  const handleRatingChange = (evt) => {
+    setRating(evt);
   };
 
-  const handleDescriptionChange = event => {
-    setDescription(event.target.value);
+  const handleDescriptionChange = (evt) => {
+    // setDescription(evt.target.value);
+    setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const review = await createReview(newReview);
+      setNewReview({
+        text: "",
+      });
+      setReviews([...reviews, review]);
+    } catch (err) {
+      console.log(err);
+    }
     // You can do something with the description and rating here
-    console.log('Description:', description);
-    console.log('Rating:', rating);
+    // console.log("Description:", description);
+    console.log("Rating:", rating);
     // Reset form fields
-    setDescription('');
+    // setDescription("");
     setRating(0);
   };
 
@@ -63,7 +74,7 @@ const WriteReviewForm = () => {
         <label htmlFor="description">Description:</label>
         <textarea
           id="description"
-          value={description}
+          // value={description}
           onChange={handleDescriptionChange}
           placeholder="Write your review here..."
         />
