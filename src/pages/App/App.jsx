@@ -60,7 +60,7 @@ export default function App() {
     <>
       <>
         <main className="App">
-          <NavBar user={user} setUser={setUser} setBusinessUser={setBusinessUser}/>
+          <NavBar user={user} setUser={setUser} setBusinessUser={setBusinessUser} products={products}/>
           <Routes>
               <Route path="/" element={<HomePage  products={products}/>} />
               <Route path="/categories" element={<CategoriesPage />} />

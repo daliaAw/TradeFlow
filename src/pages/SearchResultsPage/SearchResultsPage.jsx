@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default function SearchResultsPage({newSearch, products}){
+export default function SearchResultsPage({ products }){
+
+    const location = useLocation();
+    const searchTerm = JSON.stringify(location.state)
+    // const resultsArr = products.filter(product => product.tile.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    // product.description.toLowerCase().includes(searchTerm.toLowerCase()))
 
     return(
         <>
         <h1>Search Results</h1>
-        <p>{newSearch}</p>
+        <p>{location.state}</p>
+        <p>{searchTerm}</p>
         {products.map((product) => (
         <Link to={`/item/${product.category}/${product._id}`}>
         <div className="item-card">
@@ -13,7 +19,7 @@ export default function SearchResultsPage({newSearch, products}){
             <p>${product.wholesalePrice}</p>
         </div>
         </Link>
-))}
+            ))}
         </>
     )
 }

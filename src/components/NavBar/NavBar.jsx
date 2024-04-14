@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import SearchResultsPage from "../../pages/SearchResultsPage/SearchResultsPage";
 //import AuthPage from "../../pages/AuthPage/AuthPage";
 
-export default function NavBar({ user, setUser, setBusinessUser }) {
+export default function NavBar({ user, setUser, setBusinessUser, products, setSearchResults }) {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
@@ -25,16 +24,14 @@ export default function NavBar({ user, setUser, setBusinessUser }) {
   
   // let history = useHistory()
 
-  // function handleClick(){
-  //   history.push("/results")
-  // };
     const navigate = useNavigate()
     const [newSearch, setNewSearch] = useState("")
 
-    function handleSearch(evt){
-      navigate("/search", {state: {newSearch: (evt.target.value)}})
+    function handleSearch(e){
+      e.preventDefault()
       if (newSearch.length > 0){
-        return <SearchResultsPage newSearch={newSearch}/>
+        navigate("/search", {state: newSearch})
+        setNewSearch("")
       }
       else {
         alert("Search bar empty")
@@ -50,9 +47,7 @@ export default function NavBar({ user, setUser, setBusinessUser }) {
         <Link className="navbar-brand" to="/">TradeFlow</Link>
         <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0">
           <input onChange={(evt) => setNewSearch(evt.target.value)} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={newSearch}/>
-          {/* <Link to="/search"> */}
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          {/* </Link> */}
         </form>
  
        
