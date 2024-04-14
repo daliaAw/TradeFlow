@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import { display } from "../../utilities/items-api"
-
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HomePage from "../HomePage/HomePage";
@@ -15,6 +13,7 @@ import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import Footer from "../../components/Footer/Footer";
 import { getBusinessUser } from "../../utilities/businessUser-api";
 
@@ -61,15 +60,15 @@ export default function App() {
     <>
       <>
         <main className="App">
-          <NavBar user={user} setUser={setUser} />
+          <NavBar user={user} setUser={setUser} setBusinessUser={setBusinessUser}/>
           <Routes>
               <Route path="/" element={<HomePage  products={products}/>} />
               <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/cat/:categoryName" setCategories={setCategories} categoryName={categories.name}  
               element={<CategoryPage key={categories.name} products={products} categoryName={categories.name}/>} />
-              <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} />
+              {/* <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} /> */}
               <Route exact path="/item/:category/:id" element={<ItemDetailsPage />} />
+              <Route path="/search" element={<SearchResultsPage products={products}/>} />
           </Routes>
 
           {user ? (
@@ -83,13 +82,16 @@ export default function App() {
                   }
                 ></Route>
                 <Route path="/create" element={<CreateItemPage />} />
-                <Route path="/cart" element={<NewOrderPage />} />
-                <Route path="/orders" element={<OrderHistoryPage />} />
+                <Route path="/cart" element={<NewOrderPage  products={products}/>} />
+                <Route path="/orders" element={<OrderHistoryPage  products={products}/>} />
               </Routes>
             </>
           ) : (
             <>
             <>
+            <Routes>
+              <Route path="/auth" element={<AuthPage/>}/>
+            </Routes>
               {isRootPath && (
                 <AuthPage
                   setUser={setUser}
