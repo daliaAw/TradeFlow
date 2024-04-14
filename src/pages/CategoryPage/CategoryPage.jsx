@@ -62,7 +62,7 @@ export default function CategoryPage() {
         }
         if (selection.wholesalePrice === "200+"){
             selection.minPrice = 200;
-            selection.maxPrice = 999999;
+            selection.maxPrice = 999999999;
         }
       }
       if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
