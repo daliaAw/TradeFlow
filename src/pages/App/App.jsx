@@ -74,7 +74,6 @@ export default function App() {
           {user ? (
             <>
             <Routes>
-                {/* Route components in here */}
                 <Route
                   path="/profile"
                   element={

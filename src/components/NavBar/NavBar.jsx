@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
 import SearchResultsPage from "../../pages/SearchResultsPage/SearchResultsPage";
@@ -23,15 +23,16 @@ export default function NavBar({ user, setUser, setBusinessUser }) {
   // const location = useLocation();
   // const isRootPath = location.pathname === "/";
   
+  // let history = useHistory()
+
+  // function handleClick(){
+  //   history.push("/results")
+  // };
+    const navigate = useNavigate()
     const [newSearch, setNewSearch] = useState("")
-    // let history = useHistory()
 
-    // function handleClick(){
-    //   history.push("/results")
-    // };
-
-    function handleSearch(e){
-      // let searchTerm = newSearch
+    function handleSearch(evt){
+      navigate("/search", {state: {newSearch: (evt.target.value)}})
       if (newSearch.length > 0){
         return <SearchResultsPage newSearch={newSearch}/>
       }
