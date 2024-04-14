@@ -14,6 +14,10 @@ export default function CategoryPage() {
     maxPrice: "",
     rating: "",
   });
+  
+  function handleChange(e) {
+      setSelection({ ...selection, [e.target.name]: e.target.value });
+  }
 
   const { categoryName } = useParams();
 
@@ -28,10 +32,10 @@ export default function CategoryPage() {
       }
     }
     getItems();
-  }, [categoryName]); // Reload when category name changes
+  }, [categoryName]);
 
   useEffect(() => {
-    applyFilters(items); // Apply filters whenever items or selection changes
+    applyFilters(items); 
   }, [items, selection]);
 
   function applyFilters(itemsToFilter) {
@@ -44,13 +48,11 @@ export default function CategoryPage() {
         if (min && parseInt(item.wholesalePrice) < parseInt(min)) return false;
         if (max && parseInt(item.wholesalePrice) > parseInt(max)) return false;
       }
+      if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
+      if (item.wholesalePrice > parseInt(selection.maxPrice)) return false;
       return true;
     });
     setDisplayedItems(filteredItems);
-  }
-
-  function handleChange(e) {
-    setSelection({ ...selection, [e.target.name]: e.target.value });
   }
 
   return (
