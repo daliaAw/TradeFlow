@@ -1,0 +1,12 @@
+.item-filter{
+    width: 25vw;
+    padding-left: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.delivery-filter{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

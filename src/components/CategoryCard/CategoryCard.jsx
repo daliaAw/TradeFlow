@@ -1,9 +1,10 @@
 import React from "react";
+import "./CategoryCard.css"
 
 function CategoryCard({ name }) {
   return (
-    <div className="p-4">
-      <h3 className="card">{name}</h3>
+    <div className="category-card-container">
+      <h3 className="category-card">{name}</h3>
     </div>
   );
 }

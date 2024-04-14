@@ -3,6 +3,8 @@ import CategoryItemCard from "../../components/CategoryItemCard/CategoryItemCard
 import { display } from "../../utilities/items-api";
 import { useState, useEffect } from "react";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
+import "./CategoryPage.css";
+import "../App/App.css";
 
 export default function CategoryPage() {
   const [items, setItems] = useState([]);
@@ -70,15 +72,22 @@ export default function CategoryPage() {
       return true;
     });
     setDisplayedItems(filteredItems);
-  }
+}
 
   return (
     <>
+    <div className="cat-page-container">
+    <ItemFilter
+    handleChange={handleChange}
+    selection={selection}
+    setSelection={setSelection}
+    />
+    <div className="cat-item-container">
       <h1>{categoryName}</h1>
       {displayedItems.length ? (
-        <ul>
+          <div className="cat-items">
           {displayedItems.map((p, idx) => (
-            <CategoryItemCard
+              <CategoryItemCard
               title={p.title}
               description={p.description}
               category={p.category}
@@ -90,17 +99,14 @@ export default function CategoryPage() {
               id={p._id}
               key={idx}
               index={idx}
-            />
-          ))}
-        </ul>
+              />
+              ))}
+        </div>
       ) : (
-        <div>No Results</div>
-      )}
-      <ItemFilter
-        handleChange={handleChange}
-        selection={selection}
-        setSelection={setSelection}
-      />
+          <div>No Results</div>
+          )}
+          </div>
+          </div>
     </>
   );
 }

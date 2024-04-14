@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import CategoryItemCard from "../../components/CategoryItemCard/CategoryItemCard"
+import "./ItemFilter.css"
 
 function ItemFilter({items, handleChange, selection, setSelection, handlePriceFilter}) {
 
@@ -28,7 +27,7 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <div className="min-max-price">
         <input type="text" name="minPrice" placeholder="min" />
         <input type="text" name="maxPrice" placeholder="max"  />
-        <button onClick={handlePriceFilter}>Filter</button>
+        <button onClick={handlePriceFilter}>Reset Filter</button>
       </div>
       <br />
       <div className="rating-filter">
