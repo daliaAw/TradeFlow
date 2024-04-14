@@ -45,22 +45,24 @@ export default function CategoryPage() {
         return false;
       if (selection.wholesalePrice) {
         if (selection.wholesalePrice === "<25"){
+            selection.minPrice = 0
             selection.maxPrice = 25
         }
         if (selection.wholesalePrice === "25-50"){
-        selection.minPrice = 25;
-        selection.maxPrice = 50;
+            selection.minPrice = 25;
+            selection.maxPrice = 50;
         }
         if (selection.wholesalePrice === "50-100"){
-        selection.minPrice = 50;
-        selection.maxPrice = 100;
+            selection.minPrice = 50;
+            selection.maxPrice = 100;
         }
         if (selection.wholesalePrice === "100-200"){
-        selection.minPrice = 100;
-        selection.maxPrice = 200;
+            selection.minPrice = 100;
+            selection.maxPrice = 200;
         }
         if (selection.wholesalePrice === "200+"){
-        selection.minPrice = 200;
+            selection.minPrice = 200;
+            selection.maxPrice = 999999;
         }
       }
       if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
