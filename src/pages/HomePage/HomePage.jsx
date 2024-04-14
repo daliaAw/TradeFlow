@@ -22,9 +22,8 @@ export default function HomePage() {
     }, []);
 
     return (
-        <div>
-            <Link to="/categories">See All Categories</Link>
-            {/* {console.log(categoryItems)} */}
+        <div className="home-page-container">
+            <Link to="/categories" className="see-all">See All Categories</Link>
             <div className="cat-preview-container">
 
             {categoryItems.map((category) => (
@@ -32,7 +31,7 @@ export default function HomePage() {
                 <div className="cat-preview" key={category.category}>
                     <h2>{category.category}</h2>
                     <div className="itemsInCat">
-                        {category.items.map((item) => (
+                        {category.items.slice(0, 3).map((item) => (
                             <ItemCard key={item._id} item={item} />
                             ))}
                     </div>

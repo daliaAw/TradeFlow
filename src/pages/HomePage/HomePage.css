@@ -1,3 +1,7 @@
+home-page-container{
+    padding-top: 10px;
+}
+
 .cat-preview-container{
     display: flex;
     flex-direction: column;
@@ -10,8 +14,12 @@
 }
 
 .itemsInCat{
-    width: 80vw;
+    width: 90vw;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.see-all{
+    padding-top: 20px;
 }
