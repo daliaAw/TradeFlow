@@ -15,6 +15,8 @@ export default function CategoryPage() {
     rating: "",
   });
 
+  const { categoryName } = useParams();
+
   useEffect(() => {
     async function getItems() {
       try {
@@ -26,22 +28,17 @@ export default function CategoryPage() {
       }
     }
     getItems();
-  }, []);
+  }, [categoryName]); // Reload when category name changes
 
   useEffect(() => {
-    applyFilters(items);
-  }, [selection]);
-
-  const { categoryName } = useParams();
+    applyFilters(items); // Apply filters whenever items or selection changes
+  }, [items, selection]);
 
   function applyFilters(itemsToFilter) {
     let filteredItems = itemsToFilter.filter((item) => {
-      // Filter by category
       if (item.category !== categoryName) return false;
-      // Filter by delivery
       if (selection.delivery && item.delivery !== selection.delivery)
         return false;
-      // Filter by price range
       if (selection.wholesalePrice) {
         const [min, max] = selection.wholesalePrice.split("-");
         if (min && parseInt(item.wholesalePrice) < parseInt(min)) return false;
