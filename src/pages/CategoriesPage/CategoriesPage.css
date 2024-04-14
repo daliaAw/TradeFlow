@@ -1,6 +1,6 @@
 .categoriesPage{
     display: flex;
     flex-direction: row;
-    height: 50vh;
+    height: 60vh;
     padding: 10px;
 }

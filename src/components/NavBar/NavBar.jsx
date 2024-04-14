@@ -61,7 +61,7 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
                   ) : (
                     <>&nbsp;</>
                     )}
-              &nbsp; | &nbsp;   <Link to="/cart"><img src={cart_icon} alt="" /></Link>&nbsp; |
+              &nbsp; | &nbsp;   <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
 
             </span>
             &nbsp;  &nbsp; 

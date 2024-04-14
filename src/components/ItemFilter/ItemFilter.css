@@ -1,6 +1,8 @@
 .item-filter{
     width: 25vw;
-    padding-left: 5px;
+    height: 70vh;
+    padding-left: 10px;
+    padding-top: 50px;
     justify-content: center;
     align-items: center;
 }

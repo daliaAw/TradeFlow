@@ -27,7 +27,7 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <div className="min-max-price">
         <input type="text" name="minPrice" placeholder="min" />
         <input type="text" name="maxPrice" placeholder="max"  />
-        <button onClick={handlePriceFilter}>Reset Filter</button>
+        {/* <button onClick={handlePriceFilter}>Reset Filter</button> */}
       </div>
       <br />
       <div className="rating-filter">
@@ -36,7 +36,7 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <input type="radio" name="rating" value={"3"} /> ⭐⭐⭐☆☆ & Up<br />
       <input type="radio" name="rating" value={"2"} /> ⭐⭐☆☆☆ & Up <br />
       <input type="radio" name="rating" value={"1"} /> ⭐☆☆☆☆ & Up <br />
-      <button type="submit">Go</button> 
+      {/* <button type="submit">Go</button>  */}
       <br />
       <button onClick={setSelection}>Clear Filters</button>
       </div>
