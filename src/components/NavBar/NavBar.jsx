@@ -22,8 +22,6 @@ export default function NavBar({ user, setUser, setBusinessUser, products, setSe
   // const location = useLocation();
   // const isRootPath = location.pathname === "/";
   
-  // let history = useHistory()
-
     const navigate = useNavigate()
     const [newSearch, setNewSearch] = useState("")
 

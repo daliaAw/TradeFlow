@@ -3,24 +3,31 @@ import { Link, useLocation } from "react-router-dom";
 export default function SearchResultsPage({ products }){
 
     const location = useLocation();
-    const searchTerm = JSON.stringify(location.state)
-    // const resultsArr = products.filter(product => product.tile.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    // product.description.toLowerCase().includes(searchTerm.toLowerCase()))
+    const searchTerm = location.state
+    // if (searchTerm === null) {
+    //     searchTerm = " ";
+    //     return searchTerm;
+    //  }
+     
+    const resultsArr = products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchTerm.toLowerCase()))
 
     return(
-        <>
-        <h1>Search Results</h1>
-        <p>{location.state}</p>
-        <p>{searchTerm}</p>
-        {products.map((product) => (
-        <Link to={`/item/${product.category}/${product._id}`}>
-        <div className="item-card">
-            <p>{product.title}</p>
-            <p>${product.wholesalePrice}</p>
-        </div>
-        </Link>
-            ))}
-        </>
+    <>
+    <h1>Search Results</h1>
+    {resultsArr.length === 0 ? (
+        <p>No Results Found</p>
+    ) : (
+        resultsArr.map((product) => (
+            <Link to={`/item/${product.category}/${product._id}`} key={product._id}>
+                <div className="item-card">
+                    <p>{product.title}</p>
+                    <p>${product.wholesalePrice}</p>
+                </div>
+            </Link>
+        ))
+    )}
+    </>
     )
 }
 
