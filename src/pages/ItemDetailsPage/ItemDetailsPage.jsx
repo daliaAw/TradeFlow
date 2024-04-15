@@ -35,7 +35,6 @@ export default function ItemDetailsPage() {
     <div>
       <ProductDeets item={item} />
       <ProductReviews item={item} />
-      <WriteReviewForm />
     </div>
   );
 }
