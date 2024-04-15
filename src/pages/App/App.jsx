@@ -79,7 +79,7 @@ export default function App() {
                     <ProfilePage user={user} businessUser={businessUser} />
                   }
                 ></Route>
-                <Route path="/create" element={<CreateItemPage />} />
+                <Route path="/create" element={<CreateItemPage user={user._id}/>} />
                 <Route path="/cart" element={<NewOrderPage  products={products}/>} />
                 <Route path="/orders" element={<OrderHistoryPage  products={products}/>} />
               </Routes>
