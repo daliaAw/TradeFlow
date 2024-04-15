@@ -5,17 +5,14 @@ export default function SearchResultsPage({ products }){
 
     const location = useLocation();
     const searchTerm = location.state
-    // if (searchTerm === null) {
-    //     searchTerm = " ";
-    //     return searchTerm;
-    //  }
-     
+
     const resultsArr = products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.description.toLowerCase().includes(searchTerm.toLowerCase()))
 
     return(
     <>
     <h1>Search Results</h1>
+
     <div className="search-items-containter">
     {resultsArr.length === 0 ? (
         <p>No Results Found</p>
@@ -25,6 +22,7 @@ export default function SearchResultsPage({ products }){
                 <div className="search-item">
             <Link to={`/item/${product.category}/${product._id}`} key={product._id}>
                 <div className="search-item-card">
+
                     <p>{product.title}</p>
                     <p>${product.wholesalePrice}</p>
                 </div>
@@ -34,6 +32,7 @@ export default function SearchResultsPage({ products }){
         ))
         )}
         </div>
+
     </>
     )
 }
