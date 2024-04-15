@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
+import cart_icon from "./cart_48.png"
 //import AuthPage from "../../pages/AuthPage/AuthPage";
 
-export default function NavBar({ user, setUser, setBusinessUser, products, setSearchResults }) {
+export default function NavBar({ user, setUser, businessUser, setBusinessUser, products, setSearchResults }) {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
@@ -22,8 +23,6 @@ export default function NavBar({ user, setUser, setBusinessUser, products, setSe
   // const location = useLocation();
   // const isRootPath = location.pathname === "/";
   
-  // let history = useHistory()
-
     const navigate = useNavigate()
     const [newSearch, setNewSearch] = useState("")
 
@@ -57,8 +56,12 @@ export default function NavBar({ user, setUser, setBusinessUser, products, setSe
             <span>
               Welcome, &nbsp;
               <Link to="/profile">{user.name}</Link>
-              &nbsp; | &nbsp; <Link to="/create">New Product</Link>
-              &nbsp; | &nbsp;   <Link to="/cart">Cart</Link>
+                {user && user.isBusiness ? (
+                  <>&nbsp; | &nbsp;<Link to="/create">New Product</Link></>
+                  ) : (
+                    <>&nbsp;</>
+                    )}
+              &nbsp; | &nbsp;   <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
 
             </span>
             &nbsp;  &nbsp; 

@@ -1,99 +1,7 @@
 import React from "react";
-import { useState } from "react";
-import CategoryItemCard from "../../components/CategoryItemCard/CategoryItemCard"
+import "./ItemFilter.css"
 
-function ItemFilter({items}) {
-  const [selection, setSelection] = useState({
-    delivery: '',
-    wholesalePrice: '',
-    minPrice: '',
-    maxPrice: '',
-    rating: '',
-  })
-
-  function filterDelivery() {
-    items.filter(items => items.delivery === selection.delivery).map((p, idx) => (
-      <CategoryItemCard 
-        title={p.title} 
-        description={p.description} 
-        category={p.category} 
-        wholesalePrice={p.wholesalePrice}  
-        retailPrice={p.retailPrice}  
-        qtyAvailable={p.qtyAvailable}  
-        minQuantity={p.minQuantity}  
-        delivery={p.delivery}
-        id={p._id}  
-        key={idx} 
-        index={idx}
-      />
-    ));;
-  }
-
-  function filterPriceRange() {
-    items.filter(items => {
-        let minPrice, maxPrice;
-        switch (selection.wholesalePrice) {
-          case "<25":
-            maxPrice = 25;
-            return items.wholesalePrice <= maxPrice;
-          case "25-50":
-            minPrice = 25;
-            maxPrice = 50;
-            return items.wholesalePrice >= minPrice && items.wholesalePrice <= maxPrice;
-          case "50-100":
-            minPrice = 50;
-            maxPrice = 100;
-            return items.wholesalePrice >= minPrice && items.wholesalePrice <= maxPrice;
-          case "100-200":
-            minPrice = 100;
-            maxPrice = 200;
-            return items.wholesalePrice >= minPrice && items.wholesalePrice <= maxPrice;
-          case "200+":
-            minPrice = 200;
-            return items.wholesalePrice >= minPrice;
-        }
-      }).map((p, idx) => (
-        <CategoryItemCard 
-          title={p.title} 
-          description={p.description} 
-          category={p.category} 
-          wholesalePrice={p.wholesalePrice}  
-          retailPrice={p.retailPrice}  
-          qtyAvailable={p.qtyAvailable}  
-          minQuantity={p.minQuantity}  
-          delivery={p.delivery}
-          id={p._id}  
-          key={idx} 
-          index={idx}
-        />
-      ));
-  }
-
-  function handleChange(e){
-    setSelection({...selection, [e.target.name]: e.target.value})
-    filterDelivery();
-    filterPriceRange();
-  }
-
-  function filterMinPrice(){
-    const minPrice = parseInt(selection.minPrice)
-    if (items.wholesalePrice >= minPrice){
-      return true
-    }
-  }
-  
-  function filterMaxPrice(){
-    const maxPrice = parseInt(selection.maxPrice)
-    if (items.wholesalePrice <= maxPrice){
-      return true
-    }
-  }
-  
-  function handlePriceFilter(){
-    filterMinPrice();
-    filterMaxPrice();
-  }
-
+function ItemFilter({items, handleChange, selection, setSelection, handlePriceFilter}) {
 
   return (
   <>
@@ -119,7 +27,7 @@ function ItemFilter({items}) {
       <div className="min-max-price">
         <input type="text" name="minPrice" placeholder="min" />
         <input type="text" name="maxPrice" placeholder="max"  />
-        <button onClick={handlePriceFilter}>Filter</button>
+        {/* <button onClick={handlePriceFilter}>Reset Filter</button> */}
       </div>
       <br />
       <div className="rating-filter">
@@ -128,7 +36,7 @@ function ItemFilter({items}) {
       <input type="radio" name="rating" value={"3"} /> ⭐⭐⭐☆☆ & Up<br />
       <input type="radio" name="rating" value={"2"} /> ⭐⭐☆☆☆ & Up <br />
       <input type="radio" name="rating" value={"1"} /> ⭐☆☆☆☆ & Up <br />
-      <button type="submit">Go</button> 
+      {/* <button type="submit">Go</button>  */}
       <br />
       <button onClick={setSelection}>Clear Filters</button>
       </div>

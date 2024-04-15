@@ -1,23 +1,23 @@
 import React from "react";
 // import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./ItemCard.css"
 
 export default function ItemCard({item, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
 
     return (
         <>
-        <div className="item-card-container">
-            
-                <Link to={`/item/${item.category}/${item._id}`}>
+            <Link to={`/item/${item.category}/${item._id}`}>
+                <div className="item-card-container">
                     <div className="item-card">
                         {/* {console.log(item)} */}
-                        <h3>{item.title}</h3>
-                        <h3>${item.wholesalePrice}</h3> 
+                        <h5>{item.title}</h5>
+                        <h5>${item.wholesalePrice}</h5> 
 
                     </div>
-                </Link>
+                </div>
+            </Link>
             
-        </div>
         </>
     )
 }

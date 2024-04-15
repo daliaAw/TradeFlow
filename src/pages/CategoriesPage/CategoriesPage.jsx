@@ -1,6 +1,7 @@
 import React from "react";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import { Link } from "react-router-dom";
+import "./CategoriesPage.css"
 
 const categories = [
     { name: 'Consumer Goods'
