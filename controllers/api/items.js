@@ -5,7 +5,9 @@ module.exports = {
     getItems,
     getHomePageItems,
     create,
-    getItemDetails
+    getItemDetails,
+    itemDelete,
+    itemUpdate
 }
 
 
@@ -17,6 +19,26 @@ async function create(req, res){
     }
     catch (error) {
         console.log(error)
+    }
+}
+
+async function itemDelete(req, res){
+    try {
+        const deleteItem = await Item.findByIdAndDelete(req.params.id)
+        res.json(deleteItem)
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+async function itemUpdate(req, res){
+   try{ 
+        const updateItem = await Item.findById(req.params.id)
+        await Item.findByIdAndUpdate(updateItem, req.body)
+    }
+    catch(err){
+        console.log(err)
     }
 }
 

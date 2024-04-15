@@ -12,6 +12,7 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
+import EditItemPage from "../EditItemPage/EditItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import Footer from "../../components/Footer/Footer";
@@ -65,19 +66,28 @@ export default function App() {
               <Route path="/" element={<HomePage  products={products}/>} />
               <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/cat/:categoryName" setCategories={setCategories} categoryName={categories.name}  
-              element={<CategoryPage key={categories.name} products={products} categoryName={categories.name}/>} />
-              {/* <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} /> */}
+                  element={<CategoryPage key={categories.name} products={products} categoryName={categories.name}/>} />
               <Route exact path="/item/:category/:id" element={<ItemDetailsPage />} />
               <Route path="/search" element={<SearchResultsPage products={products}/>} />
           </Routes>
+
+          {businessUser ? (
+            <>
+            <Routes>
+              <Route path="/edit/:id"  element={<EditItemPage products={products} />}/>
+            </Routes>
+            </>
+          ) : (
+            <>
+            </>
+          )}
 
           {user ? (
             <>
             <Routes>
                 <Route
-                  path="/profile"
-                  element={
-                    <ProfilePage user={user} businessUser={businessUser} />
+                  path="/profile" element={
+                    <ProfilePage user={user} businessUser={businessUser} products={products} />
                   }
                 ></Route>
                 <Route path="/create" element={<CreateItemPage user={user._id}/>} />
@@ -89,7 +99,7 @@ export default function App() {
             <>
             <>
             <Routes>
-              <Route path="/auth" element={<AuthPage/>}/>
+              <Route path="/auth" element={<AuthPage user={user} setUser={setUser} setBusinessUser={setBusinessUser}/>}/>
             </Routes>
               {isRootPath && (
                 <AuthPage
