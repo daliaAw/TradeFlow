@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import { index } from "../../utilities/items-api"
+import "./HomePage.css"
     
 export default function HomePage() {
     const [categoryItems, setCategoryItems] = useState([]);
@@ -21,21 +22,22 @@ export default function HomePage() {
     }, []);
 
     return (
-        <div>
-            <h1>Home Page</h1>
-            <Link to="/categories">See All Categories</Link>
-            {/* {console.log(categoryItems)} */}
+        <div className="home-page-container">
+            <Link to="/categories" className="see-all">See All Categories</Link>
+            <div className="cat-preview-container">
 
             {categoryItems.map((category) => (
-                <div key={category.category}>
+               
+                <div className="cat-preview" key={category.category}>
                     <h2>{category.category}</h2>
                     <div className="itemsInCat">
-                        {category.items.map((item) => (
+                        {category.items.slice(0, 3).map((item) => (
                             <ItemCard key={item._id} item={item} />
-                        ))}
+                            ))}
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     );
 }

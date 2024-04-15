@@ -35,73 +35,67 @@ const StarRating = ({ rating, onRatingChange }) => {
   );
 };
 
-const WriteReviewForm = ({ createReview, setReviews, reviews }) => {
-  // const [description, setDescription] = useState("");
-  const WriteReviewForm = ({ onSubmit }) => {
-    const [description, setDescription] = useState("");
-    const [rating, setRating] = useState(0);
-    const [newReview, setNewReview] = useState();
-    const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
+const WriteReviewForm = ({ createReview, setReviews, reviews, onSubmit }) => {
+  const [description, setDescription] = useState("");
+  const [rating, setRating] = useState(0);
+  const [newReview, setNewReview] = useState();
+  const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
 
-    const handleRatingChange = (evt) => {
-      setRating(evt);
-    };
-
-    const handleDescriptionChange = (evt) => {
-      // setDescription(evt.target.value);
-      setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
-    };
-
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const review = await createReview(newReview);
-        setNewReview({
-          text: "",
-        });
-        setReviews([...reviews, review]);
-      } catch (err) {
-        console.log(err);
-      }
-      // You can do something with the description and rating here
-      // console.log("Description:", description);
-      console.log("Rating:", rating);
-      // Pass the review data to the parent component for further processing
-      onSubmit({ description, rating });
-      // Reset form fields
-      // setDescription("");
-      setRating(0);
-      // Update state to indicate that the form has been submitted
-      setSubmitted(true);
-    };
-
-    return (
-      <div>
-        {submitted ? (
-          <p>Thank you for your review!</p>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <textarea
-                className="write-review-description"
-                id="description"
-                value={description}
-                required
-                onChange={handleDescriptionChange}
-                placeholder="Write your review here..."
-              />
-            </div>
-            <div className="ml-4">
-              <label>Rating:</label>
-              <StarRating rating={rating} onRatingChange={handleRatingChange} />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        )}
-      </div>
-    );
+  const handleRatingChange = (evt) => {
+    setRating(evt);
   };
+
+  const handleDescriptionChange = (evt) => {
+    setDescription(evt.target.value);
+    // setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const review = await createReview(newReview);
+      setNewReview({
+        text: "",
+      });
+      setReviews([...reviews, review]);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("Rating:", rating);
+    onSubmit({ description, rating });
+    // Reset form fields
+    setDescription("");
+    setRating(0);
+    // Update state to indicate that the form has been submitted
+    setSubmitted(true);
+  };
+
+  return (
+    <div>
+      {submitted ? (
+        <p>Thank you for your review!</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              className="write-review-description"
+              id="description"
+              value={description}
+              required
+              onChange={handleDescriptionChange}
+              placeholder="Write your review here..."
+            />
+          </div>
+          <div className="ml-4">
+            <label>Rating:</label>
+            <StarRating rating={rating} onRatingChange={handleRatingChange} />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
 };
 
 export default WriteReviewForm;

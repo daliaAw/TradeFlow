@@ -11,3 +11,8 @@
 ul {
   list-style-type: none;
 }
+
+.cart-icon{
+  height: 25px;
+  width: 25px;
+}
