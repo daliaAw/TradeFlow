@@ -6,6 +6,7 @@
     align-items: center;
     padding: 10px;
     margin: 10px;
+    width: 20vw;
 }
 
 .cat-item-card{
@@ -13,7 +14,50 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 20vw;
+    width: 10vw;
     height: 10vh;
-    border: 1px lightgray solid;    
+    border: 1px lightgray solid; 
+    background-color: lightgray;   
+}
+
+.cat-card-top-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.cat-card-top-row img{
+    align-items: end;
+    justify-content: end;
+    margin-left: 25px;
+}
+
+.card-heart-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.card-heart-container img{
+    width: 25px;
+    height: 25px;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.card-details-title{
+    display: flex;
+    align-items: flex-start;
+    width: 80%;
+    text-wrap: wrap;
+}
+
+.cat-card-description{
+    text-wrap: wrap;
 }

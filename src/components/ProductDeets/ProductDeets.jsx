@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from "react";
 import './ProductDeets.css';
+import blank_heart from "./blank_heart_icon.png"
+import heart from "./heart_icon.png"
 
 function ProductDeets({ item }) {
   const [quantity, setQuantity] = useState(item.minQuantity); // Initialize quantity state with item's available quantity
   const [errorMessage, setErrorMessage] = useState(''); // Initialize error message state
+  const [favorite, setFavorite] = useState(false)
 
   const incrementQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1); // Increment quantity by 1
@@ -56,7 +59,7 @@ function ProductDeets({ item }) {
 
         {/* First row */}
         <div className="row">
-          <img className="col-md-4" src="https://picsum.photos/200/200" alt="Card image cap" />
+          <img className="col-md-4" src="https://picsum.photos/200/200" alt="Card cap" />
           <div className='ProductDeets-title col-md-5'>
             <h2><span>Name: </span>{item.title}</h2>
             <p><span>Category:</span> {item.category}</p>
@@ -66,7 +69,14 @@ function ProductDeets({ item }) {
           <div className='info-card col-md-3'>
             <div className="d-flex justify-content-between align-items-start">
               <p className="m-0"><span>Retail Price: </span>${item.retailPrice}</p>
-              <i className="fas fa-heart"></i>
+              <div onClick={() => setFavorite(!favorite)}>
+              {favorite ? (
+                <img className="deets-hearts" src={heart} alt="" />
+                ) : (
+                  <img className="deets-hearts" src={blank_heart} alt="" />
+                  )
+                }
+                </div>
             </div>
             <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
             <p><span>Delivery:</span> {item.delivery}</p>
