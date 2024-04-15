@@ -38,7 +38,6 @@ async function getHomePageItems(req, res) {
             const items = await Item.find({ category: category });
             categoryItems.push({category:category, items:[...items]})
         }
-        console.log(categoryItems);
         res.json(categoryItems);
     } catch (err) {
         console.log(err)
