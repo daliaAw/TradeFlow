@@ -53,16 +53,13 @@ const WriteReviewForm = ({ createReview, setReviews, reviews, onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const review = await createReview(newReview);
-      setNewReview({
-        text: "",
-      });
+      const review = await createReview({ description, rating });
       setReviews([...reviews, review]);
     } catch (err) {
       console.log(err);
     }
     console.log("Rating:", rating);
-    onSubmit({ description, rating });
+    // onSubmit({ description, rating });
     // Reset form fields
     setDescription("");
     setRating(0);
