@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddProductForm = ({addProduct}) => {
+const AddProductForm = ({addProduct, user}) => {
   const [newItem, setNewItem] = useState({
     category: '',
     delivery: '',
@@ -10,6 +10,7 @@ const AddProductForm = ({addProduct}) => {
     qtyAvailable: '',
     minQuantity: '',
     description: '',
+    createdBy: user,
   })
   function handleChange(e){
     setNewItem({...newItem, [e.target.name]: e.target.value})
@@ -27,12 +28,13 @@ const AddProductForm = ({addProduct}) => {
       qtyAvailable: '',
       minQuantity: '',
       description: '',
+      createdBy: user,
     })
     
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} user={user}>
       <div>
         <label>Select category for your product:</label>
         <select name='category' value={newItem.category} onChange={handleChange}>
@@ -44,6 +46,7 @@ const AddProductForm = ({addProduct}) => {
           <option value={"Health and Wellness"}>Health and Wellness</option>
         </select>
       </div>
+      <br />
       <div>
         <label>Delivery:</label>
         <select name='delivery' value={newItem.delivery} onChange={handleChange}>
@@ -54,29 +57,35 @@ const AddProductForm = ({addProduct}) => {
           <option value={"more"}>More than 7 days</option>
         </select>
       </div>
+      <br />
       <div>
         <label>Retail Price:</label>
         <input type="number" name='retailPrice' value={newItem.retailPrice} onChange={handleChange} />
       </div>
+      <br />
       <div>
         <label>Wholesale Price:</label>
         <input type="number" name='wholesalePrice' value={newItem.wholesalePrice} onChange={handleChange} />
       </div>
+      <br />
       <div>
         <label>Title:</label>
         <input type="text" name='title' value={newItem.title} onChange={handleChange} />
       </div>
+      <br />
       <div>
         <label>Quantity:</label>
         <input type="number" name='qtyAvailable' value={newItem.qtyAvailable} onChange={handleChange} />
       </div>
+      <br />
       <div>
         <label>Minimum Order Quantity:</label>
         <input type="number" name='minQuantity' value={newItem.minQuantity} onChange={handleChange} />
       </div>
+      <br />
       <div>
         <label>Description:</label>
-        <textarea name='description' value={newItem.description} onChange={handleChange} />
+        <textarea rows='3' cols='30' name='description' value={newItem.description} onChange={handleChange} />
       </div>
       <button type="submit">Create Product</button>
     </form>

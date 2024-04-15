@@ -2,7 +2,7 @@ import AddProductForm from '../../components/AddProductForm/AddProductForm';
 import { createItem } from "../../utilities/items-api"
 
 
-export default function CreateItemPage() {
+export default function CreateItemPage({user}) {
     async function addProduct(product){
         await createItem(product)
     };
@@ -10,7 +10,7 @@ export default function CreateItemPage() {
     return (
         <>
         <h1>Add Product</h1>
-        <AddProductForm addProduct={addProduct}/>
+        <AddProductForm user={user} addProduct={addProduct}/>
         </>
     );
 }
