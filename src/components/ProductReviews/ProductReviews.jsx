@@ -2,28 +2,29 @@ import React, { useState } from "react";
 import StarRating from "../StarRating";
 import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm"; // Import the WriteReviewForm component
+import { createReview } from "../../utilities/items-api";
 
 function ProductReviews({ item }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
 
   const handleWriteReview = () => {
-    console.log("btn clicked");
     setShowReviewForm(true);
   };
 
   const handleSubmitReview = (reviewText) => {
+    // Perform any necessary actions with the review text (e.g., submit to backend)
+    // For now, let's just log the review text
     console.log("Submitted review:", reviewText);
+    // Update state to indicate that the review has been submitted
     setReviewSubmitted(true);
-    console.log("before showreview form");
+    // Hide the review form
     setShowReviewForm(false);
-    console.log("after showreview form");
   };
 
   return (
     <div className="reviews container">
       <h2>Customer reviews</h2>
-      <WriteReviewForm />
       {item.reviews.length > 0 ? (
         <ul>
           {item.reviews.map((review) => (
@@ -43,10 +44,21 @@ function ProductReviews({ item }) {
           ))}
         </ul>
       ) : (
-        <>
-          <p>No reviews yet.</p>
-        </>
+        <p>No reviews yet.</p>
       )}
+      {!showReviewForm && !reviewSubmitted && (
+        <button className="write-review-btn" onClick={handleWriteReview}>
+          Write a customer review
+        </button>
+      )}
+      {showReviewForm && !reviewSubmitted && (
+        <WriteReviewForm
+          onSubmit={() => handleSubmitReview(item._id)}
+          createReview={createReview}
+          item={item}
+        />
+      )}
+      {reviewSubmitted && <p>Thank you for your review!</p>}
     </div>
   );
 }

@@ -14,8 +14,8 @@ export async function createItem(item) {
   return sendRequest(`${BASE_URL}/new`, "POST", item);
 }
 
-export async function createReview(review) {
-  return sendRequest(`${BASE_URL}/create-review`, "POST", review);
+export async function createReview(review, itemId) {
+  return sendRequest(`${BASE_URL}/createReview/${itemId}`, "POST", review);
 }
 
 export async function getReviews() {

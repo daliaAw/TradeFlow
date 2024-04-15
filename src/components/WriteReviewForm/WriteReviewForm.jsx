@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../ProductReviews/ProductReviews.css";
+
 const StarRating = ({ rating, onRatingChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
@@ -35,10 +36,18 @@ const StarRating = ({ rating, onRatingChange }) => {
   );
 };
 
-const WriteReviewForm = ({ createReview, setReviews, reviews, onSubmit }) => {
-  const [description, setDescription] = useState("");
+const WriteReviewForm = ({
+  item,
+  createReview,
+  setReviews,
+  reviews,
+  onSubmit,
+}) => {
+  const [comment, setComment] = useState({
+    text: "",
+  });
   const [rating, setRating] = useState(0);
-  const [newReview, setNewReview] = useState();
+  // const [newReview, setNewReview] = useState();
   const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
 
   const handleRatingChange = (evt) => {
@@ -46,22 +55,24 @@ const WriteReviewForm = ({ createReview, setReviews, reviews, onSubmit }) => {
   };
 
   const handleDescriptionChange = (evt) => {
-    setDescription(evt.target.value);
+    // setDescription({ ...description, [evt.target.name]: evt.target.value });
+    setComment(evt.target.value);
     // setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const review = await createReview({ description, rating });
+      const review = await createReview({ comment, rating }, item._id);
       setReviews([...reviews, review]);
     } catch (err) {
       console.log(err);
     }
-    console.log("Rating:", rating);
+    // console.log("Rating:", rating);
+    // console.log("Description: ", description);
     // onSubmit({ description, rating });
     // Reset form fields
-    setDescription("");
+    setComment("");
     setRating(0);
     // Update state to indicate that the form has been submitted
     setSubmitted(true);
@@ -77,8 +88,8 @@ const WriteReviewForm = ({ createReview, setReviews, reviews, onSubmit }) => {
             <label htmlFor="description">Description:</label>
             <textarea
               className="write-review-description"
-              id="description"
-              value={description}
+              id="comment"
+              value={comment}
               required
               onChange={handleDescriptionChange}
               placeholder="Write your review here..."

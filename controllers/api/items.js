@@ -1,5 +1,4 @@
 const Item = require("../../models/item");
-const Review = require("../../models/item");
 
 module.exports = {
   getItems,
@@ -54,7 +53,20 @@ async function getItemDetails(req, res) {
 
 async function createReview(req, res) {
   try {
-    const review = await Review.create({ ...req.body, user: req.user });
+    console.log("req.param.id: ", req.params.id);
+    const item = await Item.findById(req.params.id);
+    console.log("2req.param.id: ", req.params.id);
+
+    console.log("item: ", item);
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+    const review = {
+      rating: req.body.rating,
+      comment: req.body.comment,
+    };
+    item.reviews.push(review);
+    await item.save();
     res.json(review);
   } catch (err) {
     console.log(err);
