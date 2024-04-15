@@ -74,7 +74,7 @@ export default function App() {
           {businessUser ? (
             <>
             <Routes>
-              <Route path="/edit/:id"  element={<EditItemPage products={products} />}/>
+              <Route path="/edit/:id"  element={<EditItemPage products={products} user={user}/>}/>
             </Routes>
             </>
           ) : (

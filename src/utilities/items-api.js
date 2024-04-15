@@ -15,11 +15,10 @@ export async function createItem(item){
 }
 
 export async function deleteItem(productId){
-    console.log(productId, "api")
     return sendRequest(`${BASE_URL}/${productId}`, 'DELETE')
-    // return sendRequest(`${BASE_URL}/delete`, 'DELETE')
 }
 
-export async function updateItem(){
-    return sendRequest(`${BASE_URL}/update`, 'UPDATE')
+export async function updateItem(item){
+    console.log(item, "api")
+    return sendRequest(`${BASE_URL}/${item.id}`, 'PUT', item)
 }

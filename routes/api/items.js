@@ -25,22 +25,7 @@ router.get('/:id', async (req, res) => {
     }
   });
 
-
-
-
-
-
-
-// -------------------------
 router.delete('/:id', itemsCtrl.itemDelete, ensureLoggedIn)
-// router.delete('/delete', itemsCtrl.itemDelete, ensureLoggedIn)
-// -------------------------
-
-
-
-
-
-
 
 router.put('/:id', itemsCtrl.itemUpdate, ensureLoggedIn)
 

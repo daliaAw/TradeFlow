@@ -1,33 +1,49 @@
 import EditProductForm from '../../components/EditProductForm/EditProductForm';
-// import { useParams } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { updateItem } from "../../utilities/items-api"
 
-export default function EditItemPage({product, products}){
-    // const [product, setProduct] = useState(null);
-    // const { id } = useParams();
+export default function EditItemPage({ user }){
+    const { id } = useParams();
+    const [item, setItem] = useState(null);
+  
+    useEffect(() => {
+      const fetchItem = async () => {
+        try {
+          const response = await fetch(`/api/items/${id}`); 
+          const data = await response.json();
+          setItem(data); 
+        } catch (error) {
+          console.error('Error fetching item data:', error);
+        }
+      };
+  
+      fetchItem();
+    }, [id]);
 
-    // useEffect(() => {
-    //     const foundProduct = products.find(product => product._id === id);
-    //     // setProduct(foundProduct);
-    // }, [id, products]); 
-
-    // console.log(product)
-
-    function editProduct(){}
+    async function editProduct(editItem){
+        console.log(editItem, "page component")
+        await updateItem(editItem)
+    }
     
     return (
         <>
-        <h1>Edit Item</h1>
-        <EditProductForm product={product} editProduct={editProduct} />
-        <h5>Current Details</h5>
-        {/* <p>Title : {product.title}</p>
-        <p>Category : {product.category}</p>
-        <p>Delivery : {product.delivery}</p>
-        <p>Retail Price : {product.retailPrice}</p>
-        <p>Wholesale Price : {product.wholesalePrice}</p>
-        <p>Available Quantity : {product.qtyAvailable}</p>
-        <p>Minimum Order Quantity : {product.minQuantity}</p>
-        <p>Description : {product.description}</p> */}
+          <h1>Edit Item</h1>
+          <EditProductForm item={item} user={user} editProduct={editProduct} />
+          {item && (
+            <>
+            <br />
+              <h3>Current Details</h3>
+              <p>Category : {item.category}</p>
+              <p>Delivery : {item.delivery}</p>
+              <p>Retail Price : {item.retailPrice}</p>
+              <p>Wholesale Price : {item.wholesalePrice}</p>
+              <p>Title : {item.title}</p>
+              <p>Available Quantity : {item.qtyAvailable}</p>
+              <p>Minimum Order Quantity : {item.minQuantity}</p>
+              <p>Description : {item.description}</p>
+            </>
+          )}
         </>
-    )
+      );
 } 

@@ -32,10 +32,11 @@ async function itemDelete(req, res){
     }
 }
 
+
 async function itemUpdate(req, res){
-   try{ 
-        const updateItem = await Item.findById(req.params.id)
-        await Item.findByIdAndUpdate(updateItem, req.body)
+    try{ 
+        const updateItem = await Item.findByIdAndUpdate(req.params.id, req.body)
+        res.json(updateItem)
     }
     catch(err){
         console.log(err)

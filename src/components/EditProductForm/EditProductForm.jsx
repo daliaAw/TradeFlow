@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const EditProductForm = ({editProduct, user, products, product}) => {
+const EditProductForm = ({editProduct, user, item}) => {
+
   const [editItem, setEditItem] = useState({
     category: '',
     delivery: '',
@@ -18,22 +19,23 @@ const EditProductForm = ({editProduct, user, products, product}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // addProduct(edit)
-    // setEditItem({
-    //   category: '',
-    //   delivery: '',
-    //   retailPrice: '',
-    //   wholesalePrice: '',
-    //   title: '',
-    //   qtyAvailable: '',
-    //   minQuantity: '',
-    //   description: '',
-    //   createdBy: user,
-    // })
+    console.log(item._id)
+    editProduct({...editItem, id: item._id})
+    setEditItem({
+      category: '',
+      delivery: '',
+      retailPrice: '',
+      wholesalePrice: '',
+      title: '',
+      qtyAvailable: '',
+      minQuantity: '',
+      description: '',
+      createdBy: user,
+    })
   };
 
   return (
-    <form onSubmit={handleSubmit} user={user}>
+    <form className="edit-form" onSubmit={handleSubmit} user={user}>
       <div>
         <label>Select category for your product:</label>
         <select name='category' value={editItem.category} onChange={handleChange}>

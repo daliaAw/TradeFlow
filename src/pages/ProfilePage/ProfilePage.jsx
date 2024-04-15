@@ -1,22 +1,31 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
 import OrderHistory from "../../components/OrderHistory/OrderHistory";
 import { deleteItem } from "../../utilities/items-api"
 import EditItemPage from "../EditItemPage/EditItemPage";
 import "../App/App.css";
 
-function ProfilePage({ user, businessUser, products }) {
+
+function ProfilePage({ user, businessUser, products, setProducts }) {
+  // [allProducts, setAllProducts] = useState([]);
+
   async function handleDelete(productId){
-    console.log(productId)
     try {
-      const deletedItem = await deleteItem(productId)
-      console.log(deletedItem, "component")
+      await deleteItem(productId);
+      const updatedProducts = products.filter(product => product._id !== productId);
     }
     catch (error){
-      console.log(error)
+      console.log(error);
     }
   }
+
+  // const navigate = useNavigate()
+
+  // function handleEdit(e, productId){
+  //   // e.preventDefault();
+  //   navigate(`/edit/${productId}`)
+  // }
 
   return (
     <>
@@ -33,28 +42,25 @@ function ProfilePage({ user, businessUser, products }) {
           <hr />
           <div className="posted-items-array">
             <h3>Products</h3>
-          {products.map(product => {
-          if (product.createdBy === user._id) {
-            return (
-              <>
-              <div className="posted-item" key={product._id} id={product._id} >
-              <hr />
-              <Link to={`/item/${product.category}/${product._id}`}>
-                <p>{product.title}</p>
-                </Link>
-                <Link to={`/edit/${product._id}`} component={<EditItemPage product={product}/>} >
-              <button>Edit</button>
-                </Link>
-                {/* ---------------------------------------------------- */}
-            <button key={product._id} id={product._id} onClick={ ()=>handleDelete(product._id)}>Delete</button>
-                {/* ---------------------------------------------------- */}
-              </div>
-              </>
-            );
-          } else {
-            return null;
-          }
-        })}
+            {products.map(product => {
+              if (product.createdBy === user._id) {
+
+                return (
+                  <div className="posted-item" key={product._id} id={product._id}>
+                    <hr />
+                    <Link to={`/item/${product.category}/${product._id}`}>
+                      <p>{product.title}</p>
+                    </Link>
+                    <Link to={`/edit/${product._id}`} component={<EditItemPage product={product} />} >
+                      <button >Edit</button>
+                    </Link>
+                    <button key={product._id} id={product._id} onClick={() => handleDelete(product._id)}>Delete</button>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
           </div>
         </>
       ) : (
