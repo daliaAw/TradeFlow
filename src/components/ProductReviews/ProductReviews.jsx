@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StarRating from "../StarRating";
 import "./ProductReviews.css";
-import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm"; // Import the WriteReviewForm component
+import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 import { createReview } from "../../utilities/items-api";
 
 function ProductReviews({ item }) {
@@ -13,12 +13,8 @@ function ProductReviews({ item }) {
   };
 
   const handleSubmitReview = (reviewText) => {
-    // Perform any necessary actions with the review text (e.g., submit to backend)
-    // For now, let's just log the review text
     console.log("Submitted review:", reviewText);
-    // Update state to indicate that the review has been submitted
     setReviewSubmitted(true);
-    // Hide the review form
     setShowReviewForm(false);
   };
 
@@ -33,12 +29,10 @@ function ProductReviews({ item }) {
                 <i className="fas fa-user-circle"></i>
               </span>
               {review.user}
-              {/* <p>Rating: {review.rating}</p> */}
               <p>
                 <StarRating rating={review.rating} />
               </p>
               <p className="mt-3">Comment: {review.comment}</p>
-              {/* Display other review details as needed */}
               <hr />
             </li>
           ))}

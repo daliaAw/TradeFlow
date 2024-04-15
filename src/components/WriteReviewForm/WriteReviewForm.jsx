@@ -47,17 +47,14 @@ const WriteReviewForm = ({
     text: "",
   });
   const [rating, setRating] = useState(0);
-  // const [newReview, setNewReview] = useState();
-  const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
+  const [submitted, setSubmitted] = useState(false);
 
   const handleRatingChange = (evt) => {
     setRating(evt);
   };
 
   const handleDescriptionChange = (evt) => {
-    // setDescription({ ...description, [evt.target.name]: evt.target.value });
     setComment(evt.target.value);
-    // setNewReview({ ...newReview, [evt.target.name]: evt.target.value });
   };
 
   const handleSubmit = async (event) => {
@@ -68,13 +65,8 @@ const WriteReviewForm = ({
     } catch (err) {
       console.log(err);
     }
-    // console.log("Rating:", rating);
-    // console.log("Description: ", description);
-    // onSubmit({ description, rating });
-    // Reset form fields
     setComment("");
     setRating(0);
-    // Update state to indicate that the form has been submitted
     setSubmitted(true);
   };
 
