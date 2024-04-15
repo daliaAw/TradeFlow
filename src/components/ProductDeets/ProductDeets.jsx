@@ -9,6 +9,11 @@ function ProductDeets({ item }) {
   const [errorMessage, setErrorMessage] = useState(''); // Initialize error message state
   const [favorite, setFavorite] = useState(false)
 
+  function handleFavorite(){
+    setFavorite(!favorite)
+    // Logic to push into favorites array
+  }
+
   const incrementQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1); // Increment quantity by 1
     setErrorMessage(''); // Clear error message when quantity is incremented
@@ -69,13 +74,16 @@ function ProductDeets({ item }) {
           <div className='info-card col-md-3'>
             <div className="d-flex justify-content-between align-items-start">
               <p className="m-0"><span>Retail Price: </span>${item.retailPrice}</p>
-              <div onClick={() => setFavorite(!favorite)}>
+              <div onClick={handleFavorite}>
+
+                <div className="deets-hearts">
               {favorite ? (
-                <img className="deets-hearts" src={heart} alt="" />
+                <img src={heart} alt="" />
                 ) : (
-                  <img className="deets-hearts" src={blank_heart} alt="" />
+                  <img src={blank_heart} alt="" />
                   )
                 }
+                </div>
                 </div>
             </div>
             <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
