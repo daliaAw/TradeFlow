@@ -11,8 +11,6 @@ export default function HomePage() {
         async function fetchItems() {
             try {
                 const res = await index()
-                // const itemsInCat = await res.json();
-                // console.log(itemsInCat)
                 setCategoryItems(res);
             } catch (err) {
                 console.log(err)

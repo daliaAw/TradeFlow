@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddProductForm = ({addProduct, user}) => {
   const [newItem, setNewItem] = useState({
@@ -16,6 +17,8 @@ const AddProductForm = ({addProduct, user}) => {
     setNewItem({...newItem, [e.target.name]: e.target.value})
   }
 
+  const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addProduct(newItem)
@@ -30,7 +33,7 @@ const AddProductForm = ({addProduct, user}) => {
       description: '',
       createdBy: user,
     })
-    
+    navigate('/')
   };
 
   return (

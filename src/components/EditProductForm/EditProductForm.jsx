@@ -18,7 +18,7 @@ const EditProductForm = ({editProduct, user, item}) => {
     setEditItem({...editItem, [e.target.name]: e.target.value})
   }
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     editProduct({...editItem, id: item._id})

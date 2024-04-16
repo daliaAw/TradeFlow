@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
 import OrderHistory from "../../components/OrderHistory/OrderHistory";
@@ -8,15 +8,20 @@ import "../App/App.css";
 
 
 function ProfilePage({ user, businessUser, products }) {
-  // [allProducts, setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    setAllProducts(products);
+  }, [products]);
   
-    const navigate = useNavigate()
+  
+  const navigate = useNavigate()
 
   async function handleDelete(productId){
     try {
       await deleteItem(productId);
-      // const updatedProducts = products.filter(product => product._id !== productId);
-      navigate("/")
+      setAllProducts(allProducts.filter(product => product._id !== productId));
+      navigate("/profile")
     }
     catch (error){
       console.log(error);
@@ -38,18 +43,22 @@ function ProfilePage({ user, businessUser, products }) {
           <hr />
           <div className="posted-items-array">
             <h3>Products</h3>
-            {products.map(product => {
+
+            {allProducts.map(product => {
               if (product.createdBy === user._id) {
 
                 return (
                   <div className="posted-item" key={product._id} id={product._id}>
                     <hr />
+
                     <Link to={`/item/${product.category}/${product._id}`}>
                       <p>{product.title}</p>
                     </Link>
+
                     <Link to={`/edit/${product._id}`} component={<EditItemPage product={product} />} >
                       <button >Edit</button>
                     </Link>
+
                     <button key={product._id} id={product._id} onClick={() => handleDelete(product._id)}>Delete</button>
                   </div>
                 );
