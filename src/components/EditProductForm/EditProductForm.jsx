@@ -20,9 +20,7 @@ const EditProductForm = ({editProduct, user, item}) => {
 
     const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(item._id)
+  const handleSubmit = () => {
     editProduct({...editItem, id: item._id})
     setEditItem({
       category: '',
