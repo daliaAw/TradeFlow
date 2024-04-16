@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StarRating from "../StarRating";
 import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
@@ -7,6 +7,7 @@ import { createReview } from "../../utilities/items-api";
 function ProductReviews({ item }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [reviews, setReviews] = useState([]);
 
   const handleWriteReview = () => {
     setShowReviewForm(true);
@@ -28,7 +29,7 @@ function ProductReviews({ item }) {
               <span className="reviews-user-icon">
                 <i className="fas fa-user-circle"></i>
               </span>
-              {review.user}
+              {/* {review.user.name} */}
               <p>
                 <StarRating rating={review.rating} />
               </p>
