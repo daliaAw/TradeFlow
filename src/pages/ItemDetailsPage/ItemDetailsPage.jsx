@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProductDeets from '../../components/ProductDeets/ProductDeets';
 import ProductReviews from '../../components/ProductReviews/ProductReviews';
 
-function ItemDetailsPage() {
+function ItemDetailsPage( {user, setUser} ) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
@@ -32,7 +32,7 @@ function ItemDetailsPage() {
 
   return (
     <div>
-      <ProductDeets item={item} />
+      <ProductDeets item={item} user={user} setUser={setUser} />
       <ProductReviews item={item} />
     </div>
   );

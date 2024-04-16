@@ -1,17 +1,58 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './ProductDeets.css';
 import blank_heart from "./blank_heart_icon.png"
 import heart from "./heart_icon.png"
+import { addToFavorites, removeFavorite } from '../../utilities/favorites-api';
+import { getUser } from "../../utilities/users-service";
 
-function ProductDeets({ item }) {
+function ProductDeets({ item, user, setUser }) {
   const [quantity, setQuantity] = useState(item.minQuantity); // Initialize quantity state with item's available quantity
   const [errorMessage, setErrorMessage] = useState(''); // Initialize error message state
   const [favorite, setFavorite] = useState(false)
-
-  function handleFavorite(){
-    setFavorite(!favorite)
-    // Logic to push into favorites array
+  
+  useEffect(() => {
+    async function checkFavorite() {
+      if (user && user.favorites) {
+        setFavorite(user.favorites.some(fav => fav._id === item._id));
+        // setFavorite(user.favorites.includes(item._id));
+        console.log(user.favorites.includes(item._id));
+        console.log(user.favorites);
+        console.log(user);
+      }
+    }
+    checkFavorite();
+  }, [item._id, user]);
+  
+  async function handleFavorite() {
+    try {
+      console.log('Before toggle:', favorite);
+      if (favorite) {
+        await removeFavorite(item._id);
+        setUser({...user, favorites:user.favorites.filter(fav => fav._id !== item._id)})
+        setFavorite(false);
+      } else {
+        await addToFavorites(item._id);
+        setUser({...user, favorites:[...user.favorites, {_id: item._id}]})
+        setFavorite(true);
+      }
+      // //setFavorite(!favorite);
+      console.log('After toggle:', !favorite);
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+    }
+    // try {
+    //   const response = await fetch(`/api/users/favorites/${item._id}`, {
+    //     method: favorite ? 'DELETE' : 'POST',
+    //   });
+    //   if (response.ok) {
+    //     setFavorite(!favorite);
+    //   } else {
+    //     console.error('Error toggling favorite');
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   const incrementQuantity = () => {
@@ -75,14 +116,12 @@ function ProductDeets({ item }) {
             <div className="d-flex justify-content-between align-items-start">
               <p className="m-0"><span>Retail Price: </span>${item.retailPrice}</p>
               <div onClick={handleFavorite}>
-
                 <div className="deets-hearts">
               {favorite ? (
                 <img src={heart} alt="" />
                 ) : (
                   <img src={blank_heart} alt="" />
-                  )
-                }
+                  )}
                 </div>
                 </div>
             </div>
