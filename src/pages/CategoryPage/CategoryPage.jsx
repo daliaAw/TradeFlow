@@ -41,53 +41,58 @@ export default function CategoryPage() {
   }, [items, selection]);
 
   function averageRating(items) {
-    let ratings = items.reviews.map(review => review.rating);
-    if (ratings.length === 0) {
-      return 0; 
-    }
-    let sum = ratings.reduce((accumulator, currentValue) => accumulator + currentValue); 
-    return sum / ratings.length; 
-  }
+    items.forEach(item => {
+        let totalRating = 0;
+        let reviewCount = 0;
+        
+        item.reviews.forEach(review => {
+            totalRating += review.rating;
+            reviewCount++;
+        });
+        
+        const avgRating = reviewCount === 0 ? 0 : totalRating / reviewCount;
+        item.avgRating = avgRating;
+    });
 
-  function applyFilters(itemsToFilter) {
-    let filteredItems = itemsToFilter.filter((item) => {
-      if (item.category !== categoryName) return false;
-      
-      if (selection.delivery) {
-        if (item.delivery !== selection.delivery)
-        return false;
-      }
+    return items;
+}
 
-      if (selection.wholesalePrice) {
-
-        if (selection.wholesalePrice === "<25"){
-            selection.minPrice = 0
-            selection.maxPrice = 25
-        }
-        if (selection.wholesalePrice === "25-50"){
-            selection.minPrice = 25;
-            selection.maxPrice = 50;
-        }
-        if (selection.wholesalePrice === "50-100"){
-            selection.minPrice = 50;
-            selection.maxPrice = 100;
-        }
-        if (selection.wholesalePrice === "100-200"){
-            selection.minPrice = 100;
-            selection.maxPrice = 200;
-        }
-        if (selection.wholesalePrice === "200+"){
-            selection.minPrice = 200;
-            selection.maxPrice = 9999999999;
-        }
-      }
-      if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
-      if (item.wholesalePrice > parseInt(selection.maxPrice)) return false;
+function applyFilters(itemsToFilter) {
+    itemsToFilter = averageRating(itemsToFilter);
     
-      // let ratingAvg = averageRating(items.reviews.rating);
-      // if (selection.rating && ratingAvg < parseInt(selection.rating)) return false;
-      
-      return true;
+    let filteredItems = itemsToFilter.filter((item) => {
+        if (item.category !== categoryName) return false;
+
+        if (selection.delivery && item.delivery !== selection.delivery) {
+            return false;
+        }
+
+        if (selection.wholesalePrice) {
+            if (selection.wholesalePrice === "<25") {
+                selection.minPrice = 0;
+                selection.maxPrice = 25;
+            } else if (selection.wholesalePrice === "25-50") {
+                selection.minPrice = 25;
+                selection.maxPrice = 50;
+            } else if (selection.wholesalePrice === "50-100") {
+                selection.minPrice = 50;
+                selection.maxPrice = 100;
+            } else if (selection.wholesalePrice === "100-200") {
+                selection.minPrice = 100;
+                selection.maxPrice = 200;
+            } else if (selection.wholesalePrice === "200+") {
+                selection.minPrice = 200;
+                selection.maxPrice = Infinity; 
+            }
+        }
+        if (item.avgRating < parseInt(selection.rating)) {
+            return false;
+        }
+        if (item.wholesalePrice < parseInt(selection.minPrice) ||
+            item.wholesalePrice > parseInt(selection.maxPrice)) {
+            return false;
+        }
+        return true;
     });
     setDisplayedItems(filteredItems);
 }
