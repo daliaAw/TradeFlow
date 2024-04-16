@@ -38,3 +38,4 @@
 -   Integrate a payment gateway for secure transactions.
 -   Implement a native messaging system to facilitate communication between users without leaving the platform.
 -   Incorporate API from Third Party freight companies to provide buyers with shipping estimates.
+-   Enhance the UI to be more dynamically optimized for viewing on mobile.
