@@ -34,7 +34,7 @@ function ProductReviews({ item, user }) {
               <p>
                 <StarRating rating={review.rating} />
               </p>
-              <p className="mt-3">Comment: {review.comment}</p>
+              <p className="mt-3">{review.comment}</p>
               <hr />
             </li>
           ))}
@@ -54,18 +54,18 @@ function ProductReviews({ item, user }) {
                   Write a customer review
                 </button>
               )}
-              {showReviewForm && !reviewSubmitted && (
+              {showReviewForm && !reviewSubmitted && !user.user && (
                 <WriteReviewForm
                   onSubmit={() => handleSubmitReview(item._id)}
                   createReview={createReview}
                   item={item}
-                  user={user}
+                  user={user.user}
                 />
               )}
               {reviewSubmitted && <p>Thank you for your review!</p>}
             </>
           ) : (
-            <p>Not Logged In</p>
+            <h6>Please Log In to Write a Review</h6>
           )}
         </>
       )}
