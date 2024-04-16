@@ -18,7 +18,7 @@ function ProductDeets({ item, user, setUser }) {
         // setFavorite(user.favorites.includes(item._id));
         console.log(user.favorites.includes(item._id));
         console.log(user.favorites);
-        console.log(user);
+        // console.log(user);
       }
     }
     checkFavorite();

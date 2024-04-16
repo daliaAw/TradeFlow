@@ -5,6 +5,7 @@ import { getFavorites } from "../../utilities/favorites-api";
 
 function ProfilePage({ user, businessUser }) {
   const [favorites, setFavorites] = useState([]);
+  console.log(favorites);
   useEffect(() => {
     async function fetchFavs() {
       try {

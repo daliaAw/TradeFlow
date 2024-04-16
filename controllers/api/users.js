@@ -72,16 +72,15 @@ async function removeFav(req, res) {
 async function getFavorites(req, res) {
   try {
   const user = await User.findById(req.user._id).populate('favorites');
-  const favorites = []
-  user.favorites.forEach((favorite) => {
-    console.log(favorite._id.toString());
-    const item = Item.findById(favorite._id.toString())
-    favorites.push(item);
-  })
+  // user.favorites.forEach((favorite) => {
+  //   // console.log(favorite._id.toString());
+  //   const item = Item.findById(favorite._id.toString())
+  //   favorites.push(item);
+  // })
 
-  console.log('favorites', favorites);
+  console.log('user favorites', user.favorites);
   
-  // res.json(user.favorites.populate('item'));
+  res.json(user.favorites);
   } catch (err) {
     console.log(err);
   }
