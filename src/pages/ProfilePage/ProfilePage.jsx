@@ -7,25 +7,21 @@ import EditItemPage from "../EditItemPage/EditItemPage";
 import "../App/App.css";
 
 
-function ProfilePage({ user, businessUser, products, setProducts }) {
+function ProfilePage({ user, businessUser, products }) {
   // [allProducts, setAllProducts] = useState([]);
+  
+    const navigate = useNavigate()
 
   async function handleDelete(productId){
     try {
       await deleteItem(productId);
-      const updatedProducts = products.filter(product => product._id !== productId);
+      // const updatedProducts = products.filter(product => product._id !== productId);
+      navigate("/")
     }
     catch (error){
       console.log(error);
     }
   }
-
-  // const navigate = useNavigate()
-
-  // function handleEdit(e, productId){
-  //   // e.preventDefault();
-  //   navigate(`/edit/${productId}`)
-  // }
 
   return (
     <>

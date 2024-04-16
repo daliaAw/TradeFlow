@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const EditProductForm = ({editProduct, user, item}) => {
 
@@ -17,6 +18,8 @@ const EditProductForm = ({editProduct, user, item}) => {
     setEditItem({...editItem, [e.target.name]: e.target.value})
   }
 
+    const navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(item._id)
@@ -32,6 +35,7 @@ const EditProductForm = ({editProduct, user, item}) => {
       description: '',
       createdBy: user,
     })
+    navigate('/profile')
   };
 
   return (
