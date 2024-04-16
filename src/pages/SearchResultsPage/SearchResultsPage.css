@@ -1,12 +1,14 @@
 .search-items-containter{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    height: 60vh;
+    min-height: 60vh;
 }
 
 .search-item {
     border: lightgray 1px solid;
     width: 20vw;
+    height: 250px;
     justify-content: center;
     align-items: center;
     margin: 10px;

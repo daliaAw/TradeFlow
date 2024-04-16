@@ -1,12 +1,13 @@
 .cat-page-container{
-    display: flex;   
+    display: flex;  
 }
 
 .cat-item-container {
     display: flex;
     flex-direction: column;
     text-align: center;
-    /* width: 75vw; */
+    align-items: center;
+    width: 75vw;
 }
 
 .cat-items{

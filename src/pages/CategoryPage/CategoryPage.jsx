@@ -44,11 +44,9 @@ export default function CategoryPage() {
 function applyFilters(itemsToFilter) {
     let filteredItems = itemsToFilter.filter((item) => {
         if (item.category !== categoryName) return false;
-
         if (selection.delivery && item.delivery !== selection.delivery) {
             return false;
         }
-
         if (selection.wholesalePrice) {
             if (selection.wholesalePrice === "<25") {
                 selection.minPrice = 0;
