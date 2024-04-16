@@ -3,17 +3,18 @@
     flex-wrap: wrap;
     flex-direction: column;
     border: 1px lightgray solid;
+    border-radius: 15px;
     align-items: center;
     padding: 10px;
     margin: 10px;
     max-width: 17vw;
-    height: 350px;
+    height: 300px;
     font-size: .8em;
 }
 
 .card-button{
     position: absolute;
-    margin-top: 275px;
+    margin-top: 225px;
 }
 
 .cat-item-card{
@@ -32,6 +33,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5px;
+    max-width: 17vw;
+
 }
 
 .cat-card-top-row img{
