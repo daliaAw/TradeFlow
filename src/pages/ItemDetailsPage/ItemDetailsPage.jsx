@@ -4,7 +4,9 @@ import ProductDeets from "../../components/ProductDeets/ProductDeets";
 import ProductReviews from "../../components/ProductReviews/ProductReviews";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 
-export default function ItemDetailsPage(user) {
+
+function ItemDetailsPage( {user, setUser} ) {
+
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
@@ -31,8 +33,10 @@ export default function ItemDetailsPage(user) {
 
   return (
     <div>
-      <ProductDeets item={item} user={user} />
-      <ProductReviews item={item} user={user} />
+
+      <ProductDeets item={item} user={user} setUser={setUser} />
+      <ProductReviews item={item} />
+
     </div>
   );
 }

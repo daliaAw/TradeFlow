@@ -68,6 +68,7 @@ export default function App() {
             products={products}
           />
           <Routes>
+
             <Route path="/" element={<HomePage products={products} />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route
@@ -82,17 +83,12 @@ export default function App() {
                 />
               }
             />
-            <Route
-              exact
-              path="/item/:category/:id"
-              element={<ItemDetailsPage user={user}/>}
-            />
+<Route exact path="/item/:category/:id" element={<ItemDetailsPage user={user} setUser={setUser} />} />
             <Route
               path="/search"
               element={<SearchResultsPage products={products} />}
             />
 
-            {/* <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} /> */}
           </Routes>
 
           {businessUser ? (

@@ -11,6 +11,11 @@ router.post("/", usersCtrl.create);
 router.post("/login", usersCtrl.login);
 // GET /api/users/check-token
 router.get("/check-token", usersCtrl.checkToken);
+// POST /favorites/add
+router.post("/favorites/add/:itemId", ensureLoggedIn, usersCtrl.addToFavs);
+// POST /favorites/remove
+router.delete("/favorites/remove/:itemId", ensureLoggedIn, usersCtrl.removeFav);
+router.get("/favorites/index", usersCtrl.getFavorites);
 
 
 module.exports = router;

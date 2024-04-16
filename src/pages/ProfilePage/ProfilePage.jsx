@@ -5,9 +5,24 @@ import OrderHistory from "../../components/OrderHistory/OrderHistory";
 import { deleteItem } from "../../utilities/items-api"
 import EditItemPage from "../EditItemPage/EditItemPage";
 import "../App/App.css";
-
+import { getFavorites } from "../../utilities/favorites-api";
 
 function ProfilePage({ user, businessUser, products }) {
+  const [favorites, setFavorites] = useState([]);
+  console.log(favorites);
+  useEffect(() => {
+    async function fetchFavs() {
+      try {
+        const favs = await getFavorites();
+        setFavorites(favs);
+        console.log(favs);
+      } catch (err) {
+        console.error('Error fetching favorites:', err);
+      }
+    }
+    fetchFavs();
+  }, []);
+
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
@@ -73,9 +88,7 @@ function ProfilePage({ user, businessUser, products }) {
           <div className="profilePage">
             <p>The is NOT a business page</p>
             <p className="userEmail">{user && user.email}</p>
-            <div className="profileFavs">
-              <FavoritesList />
-            </div>
+            <FavoritesList favorites={favorites} />
             <div className="profileOrderHistory">
               <OrderHistory />
             </div>
