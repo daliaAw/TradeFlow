@@ -3,11 +3,26 @@ import StarRating from "../StarRating";
 import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 import { createReview } from "../../utilities/items-api";
+import { getUser } from "../../utilities/users-service";
 
-function ProductReviews({ item }) {
+function ProductReviews({ item, user }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
-  const [reviews, setReviews] = useState([]);
+  const [review, setReview] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch("/api/items");
+        const data = await response.json();
+        setReview(data);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const handleWriteReview = () => {
     setShowReviewForm(true);
@@ -33,7 +48,7 @@ function ProductReviews({ item }) {
               <p>
                 <StarRating rating={review.rating} />
               </p>
-              <p className="mt-3">Comment: {review.comment}</p>
+              <p className="mt-3"> {review.comment}</p>
               <hr />
             </li>
           ))}
@@ -41,6 +56,8 @@ function ProductReviews({ item }) {
       ) : (
         <p>No reviews yet.</p>
       )}
+
+      
       {!showReviewForm && !reviewSubmitted && (
         <button className="write-review-btn" onClick={handleWriteReview}>
           Write a customer review
@@ -51,6 +68,7 @@ function ProductReviews({ item }) {
           onSubmit={() => handleSubmitReview(item._id)}
           createReview={createReview}
           item={item}
+          user={user}
         />
       )}
       {reviewSubmitted && <p>Thank you for your review!</p>}

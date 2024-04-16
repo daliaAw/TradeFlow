@@ -1,47 +1,40 @@
 const Item = require("../../models/item");
 
 module.exports = {
+  getItems,
+  getHomePageItems,
+  create,
+  itemDelete,
+  itemUpdate,
+  createReview,
+  getReviews,
+};
 
-    getItems,
-    getHomePageItems,
-    create,
-    getItemDetails,
-    itemDelete,
-    itemUpdate,
-    createReview,
-    getReviewsByUser,
+async function create(req, res) {
+  try {
+    const createItem = await Item.create({ ...req.body, user: req.user._id });
+    res.json(createItem);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
-async function create(req, res){
-    try {
-        const createItem = await Item.create({...req.body, user: req.user._id})
-        res.json(createItem)
-    }
-    catch (error) {
-        console.log(error)
-    }
+async function itemDelete(req, res) {
+  try {
+    const deleteItem = await Item.findByIdAndDelete(req.params.id);
+    res.json(deleteItem);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-async function itemDelete(req, res){
-    try {
-        const deleteItem = await Item.findByIdAndDelete(req.params.id)
-        res.json(deleteItem)
-    }
-    catch (error) {
-        console.log(error)
-    }
-}
-
-
-async function itemUpdate(req, res){
-    try{ 
-        const updateItem = await Item.findByIdAndUpdate(req.params.id, req.body)
-        res.json(updateItem)
-    }
-    catch(err){
-        console.log(err)
-    }
+async function itemUpdate(req, res) {
+  try {
+    const updateItem = await Item.findByIdAndUpdate(req.params.id, req.body);
+    res.json(updateItem);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function getItems(req, res, next) {
@@ -71,39 +64,33 @@ async function getHomePageItems(req, res) {
     console.log(err);
   }
 }
-async function getItemDetails(req, res) {
-  const getItems = await Item.find();
-  res.json(getItems);
-}
 
 async function createReview(req, res) {
   try {
-    console.log("req.param.id: ", req.params.id);
-    const item = await Item.findById(req.params.id);
-    console.log("2req.param.id: ", req.params.id);
+    const itemId = req.params.itemId;
+    const userId = req.body.userId;
+    const item = await Item.findById(itemId);
 
-    console.log("item: ", item);
-    if (!item) {
-      return res.status(404).json({ message: "Item not found" });
-    }
-    const review = {
+    const reviewData = {
       rating: req.body.rating,
       comment: req.body.comment,
+      user: userId,
     };
+    const review = await Item.create(reviewData);
     item.reviews.push(review);
     await item.save();
-    res.json(review);
+    json(review);
   } catch (err) {
-    console.log(err);
+    console.log("Error creating review:", err);
   }
 }
 
-async function getReviewsByUser(req, res) {
+async function getReviews(req, res) {
   try {
-    const reviews = await Review.find({ user: req.user });
-    res.json(reviews);
+    const itemsWithReviews = await Item.find().populate("reviews.user", "name");
+    console.log(itemsWithReviews);
+    res.json(itemsWithReviews.map((item) => item.reviews));
   } catch (err) {
-    console.log(err);
+    console.log("getReviews Error: ", err);
   }
 }
-

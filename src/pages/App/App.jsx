@@ -85,36 +85,14 @@ export default function App() {
             <Route
               exact
               path="/item/:category/:id"
-              element={<ItemDetailsPage />}
+              element={<ItemDetailsPage user={user}/>}
             />
             <Route
               path="/search"
               element={<SearchResultsPage products={products} />}
             />
-            <Route path="/" element={<HomePage products={products} />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route
-              path="/cat/:categoryName"
-              setCategories={setCategories}
-              categoryName={categories.name}
-              element={
-                <CategoryPage
-                  key={categories.name}
-                  products={products}
-                  categoryName={categories.name}
-                />
-              }
-            />
+
             {/* <Route path="/:categoryName/:itemId" element={<ItemDetailsPage  products={products}/>} /> */}
-            <Route
-              exact
-              path="/item/:category/:id"
-              element={<ItemDetailsPage />}
-            />
-            <Route
-              path="/search"
-              element={<SearchResultsPage products={products} />}
-            />
           </Routes>
 
           {businessUser ? (

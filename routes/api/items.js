@@ -11,7 +11,8 @@ router.get("/items", itemsCtrl.getItems, ensureLoggedIn);
 
 router.post("/new", itemsCtrl.create, ensureLoggedIn);
 
-router.get("/reviews", reviewsCtrl.getReviewsByUser);
+router.get("/reviews", reviewsCtrl.getReviews);
+
 router.post("/createReview/:id", reviewsCtrl.createReview, ensureLoggedIn);
 
 router.delete('/:id', itemsCtrl.itemDelete, ensureLoggedIn)
