@@ -11,10 +11,6 @@ router.get("/items", itemsCtrl.getItems, ensureLoggedIn);
 
 router.post("/new", itemsCtrl.create, ensureLoggedIn);
 
-router.get("/items", itemsCtrl.getItems, ensureLoggedIn);
-
-router.post("/new", itemsCtrl.create, ensureLoggedIn);
-
 router.get("/reviews", reviewsCtrl.getReviewsByUser);
 router.post("/createReview/:id", reviewsCtrl.createReview, ensureLoggedIn);
 
