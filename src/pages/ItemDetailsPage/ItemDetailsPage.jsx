@@ -4,11 +4,12 @@ import ProductDeets from "../../components/ProductDeets/ProductDeets";
 import ProductReviews from "../../components/ProductReviews/ProductReviews";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 
-export default function ItemDetailsPage() {
+export default function ItemDetailsPage(user) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
   useEffect(() => {
+    console.log(user);
     const fetchItem = async () => {
       try {
         const response = await fetch(`/api/items/${id}`);
@@ -32,7 +33,7 @@ export default function ItemDetailsPage() {
   return (
     <div>
       <ProductDeets item={item} />
-      <ProductReviews item={item} />
+      <ProductReviews item={item} user={user} />
     </div>
   );
 }

@@ -25,7 +25,6 @@ export default function App() {
     async function logBusinessUser() {
       const businessUser = await getBusinessUser(user?._id);
       setBusinessUser(businessUser);
-      console.log(businessUser);
     }
     logBusinessUser();
   }, []);
@@ -85,7 +84,7 @@ export default function App() {
             <Route
               exact
               path="/item/:category/:id"
-              element={<ItemDetailsPage />}
+              element={<ItemDetailsPage user={user} />}
             />
             <Route
               path="/search"

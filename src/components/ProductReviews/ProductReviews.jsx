@@ -4,7 +4,7 @@ import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 import { createReview } from "../../utilities/items-api";
 
-function ProductReviews({ item }) {
+function ProductReviews({ item, user }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const [reviews, setReviews] = useState([]);
@@ -15,6 +15,7 @@ function ProductReviews({ item }) {
 
   const handleSubmitReview = (reviewText) => {
     console.log("Submitted review:", reviewText);
+    console.log("User: ", user);
     setReviewSubmitted(true);
     setShowReviewForm(false);
   };
@@ -39,21 +40,34 @@ function ProductReviews({ item }) {
           ))}
         </ul>
       ) : (
-        <p>No reviews yet.</p>
+        <>
+          <p>No reviews yet.</p>
+
+          {user.user ? (
+            <>
+              <p>User: {user.user.name}</p>
+              {!showReviewForm && !reviewSubmitted && (
+                <button
+                  className="write-review-btn"
+                  onClick={handleWriteReview}
+                >
+                  Write a customer review
+                </button>
+              )}
+              {showReviewForm && !reviewSubmitted && (
+                <WriteReviewForm
+                  onSubmit={() => handleSubmitReview(item._id)}
+                  createReview={createReview}
+                  item={item}
+                />
+              )}
+              {reviewSubmitted && <p>Thank you for your review!</p>}
+            </>
+          ) : (
+            <p>Not Logged In</p>
+          )}
+        </>
       )}
-      {!showReviewForm && !reviewSubmitted && (
-        <button className="write-review-btn" onClick={handleWriteReview}>
-          Write a customer review
-        </button>
-      )}
-      {showReviewForm && !reviewSubmitted && (
-        <WriteReviewForm
-          onSubmit={() => handleSubmitReview(item._id)}
-          createReview={createReview}
-          item={item}
-        />
-      )}
-      {reviewSubmitted && <p>Thank you for your review!</p>}
     </div>
   );
 }

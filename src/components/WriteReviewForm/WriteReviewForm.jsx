@@ -59,6 +59,7 @@ const WriteReviewForm = ({
     event.preventDefault();
     try {
       const review = await createReview({ comment, rating }, item._id);
+      console.log(reviews);
       setReviews([...reviews, review]);
     } catch (err) {
       console.log(err);
