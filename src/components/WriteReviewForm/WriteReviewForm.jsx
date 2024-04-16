@@ -43,9 +43,7 @@ const WriteReviewForm = ({
   reviews,
   onSubmit,
 }) => {
-  const [comment, setComment] = useState({
-    text: "",
-  });
+  const [comment, setComment] = useState();
   const [rating, setRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 

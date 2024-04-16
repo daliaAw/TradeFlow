@@ -12,7 +12,6 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
-import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import EditItemPage from "../EditItemPage/EditItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
