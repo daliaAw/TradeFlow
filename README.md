@@ -30,7 +30,7 @@
 [Click to View Project Planning](https://trello.com/b/g3jNTNqx/closeout-clothes-out)
 <br>
 <br>
-[Click to Launch TradeFlow!]()
+[Click to Launch TradeFlow!](https://tradeflow-1b93f1bb83d0.herokuapp.com/cat/Technology%20and%20Electronics)
 
 ## Next Steps
 
