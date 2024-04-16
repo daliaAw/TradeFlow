@@ -32,12 +32,13 @@ export default function CategoryItemCard({ title, category, description, wholesa
 
             <Link to={`/item/${category}/${id}`}>
                 <div className="card-details">
-                    <h5>{title}</h5>
-                    <p> ${wholesalePrice}</p>
+                <h5>{title.length <= 24 ? title : title.substring(0, 24) + '...'}</h5>
+                
+                    <p>${wholesalePrice.toFixed(2)}</p>
                 </div>
                 <hr/>
                 <div className="cat-card-description">
-                <p><small>{description}</small></p>
+                <p><small>{description.length <= 60 ? description : description.substring(0, 60) + '...'}</small></p>
                 </div>
             </Link>
 
