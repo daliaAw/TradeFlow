@@ -30,7 +30,7 @@ function ProductReviews({ item, user }) {
               <span className="reviews-user-icon">
                 <i className="fas fa-user-circle"></i>
               </span>
-              {/* {review.user.name} */}
+              {review.name}
               <p>
                 <StarRating rating={review.rating} />
               </p>
@@ -59,6 +59,7 @@ function ProductReviews({ item, user }) {
                   onSubmit={() => handleSubmitReview(item._id)}
                   createReview={createReview}
                   item={item}
+                  user={user}
                 />
               )}
               {reviewSubmitted && <p>Thank you for your review!</p>}
