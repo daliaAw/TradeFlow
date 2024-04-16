@@ -1,7 +1,7 @@
 import React from "react";
 import "./ItemFilter.css"
 
-function ItemFilter({items, handleChange, selection, setSelection, handlePriceFilter}) {
+function ItemFilter({ handleChange, setSelection }) {
 
   return (
   <>
@@ -10,8 +10,8 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <div className="delivery-filter">
       <label htmlFor="">Delivery</label>
       <input type="radio" name="delivery" value={"1 day"} /> 1 Day <br />
-      <input type="radio" name="delivery" value={"3 day"} /> 3 Days <br />
-      <input type="radio" name="delivery" value={"7 day"}  /> 7 Days <br />
+      <input type="radio" name="delivery" value={"3 days"} /> 3 Days <br />
+      <input type="radio" name="delivery" value={"7 days"}  /> 7 Days <br />
       <input type="radio" name="delivery" value={"more"} /> 7 Days + <br />
       </div>
        <br />
@@ -27,7 +27,6 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <div className="min-max-price">
         <input type="text" name="minPrice" placeholder="min" />
         <input type="text" name="maxPrice" placeholder="max"  />
-        {/* <button onClick={handlePriceFilter}>Reset Filter</button> */}
       </div>
       <br />
       <div className="rating-filter">
@@ -36,7 +35,6 @@ function ItemFilter({items, handleChange, selection, setSelection, handlePriceFi
       <input type="radio" name="rating" value={"3"} /> ⭐⭐⭐☆☆ & Up<br />
       <input type="radio" name="rating" value={"2"} /> ⭐⭐☆☆☆ & Up <br />
       <input type="radio" name="rating" value={"1"} /> ⭐☆☆☆☆ & Up <br />
-      {/* <button type="submit">Go</button>  */}
       <br />
       <button onClick={setSelection}>Clear Filters</button>
       </div>

@@ -40,12 +40,26 @@ export default function CategoryPage() {
     applyFilters(items); 
   }, [items, selection]);
 
+  function averageRating(items) {
+    let ratings = items.reviews.map(review => review.rating);
+    if (ratings.length === 0) {
+      return 0; 
+    }
+    let sum = ratings.reduce((accumulator, currentValue) => accumulator + currentValue); 
+    return sum / ratings.length; 
+  }
+
   function applyFilters(itemsToFilter) {
     let filteredItems = itemsToFilter.filter((item) => {
       if (item.category !== categoryName) return false;
-      if (selection.delivery && item.delivery !== selection.delivery)
+      
+      if (selection.delivery) {
+        if (item.delivery !== selection.delivery)
         return false;
+      }
+
       if (selection.wholesalePrice) {
+
         if (selection.wholesalePrice === "<25"){
             selection.minPrice = 0
             selection.maxPrice = 25
@@ -69,6 +83,10 @@ export default function CategoryPage() {
       }
       if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
       if (item.wholesalePrice > parseInt(selection.maxPrice)) return false;
+    
+      // let ratingAvg = averageRating(items.reviews.rating);
+      // if (selection.rating && ratingAvg < parseInt(selection.rating)) return false;
+      
       return true;
     });
     setDisplayedItems(filteredItems);
