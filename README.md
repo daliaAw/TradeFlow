@@ -1,4 +1,4 @@
-# TradeFlow
+<h1 style="text-align: center;">TradeFlow</h1>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to TradeFlow, the ultimate solution for businesses looking to liquidate excess inventory at wholesale prices. In today's fast-paced market, managing surplus stock can be a daunting task. That's where TradeFlow steps in, offering a seamless marketplace where sellers can effortlessly connect with buyers seeking quality products at unbeatable prices.
 
