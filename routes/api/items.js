@@ -14,6 +14,10 @@ router.post("/new", itemsCtrl.create, ensureLoggedIn);
 router.get("/reviews", reviewsCtrl.getReviewsByUser);
 router.post("/createReview/:id", reviewsCtrl.createReview, ensureLoggedIn);
 
+router.delete('/:id', itemsCtrl.itemDelete, ensureLoggedIn)
+
+router.put('/:id', itemsCtrl.itemUpdate, ensureLoggedIn)
+
 // GET single item by ID
 router.get("/:id", async (req, res) => {
   try {
@@ -27,5 +31,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
+
 
 module.exports = router;

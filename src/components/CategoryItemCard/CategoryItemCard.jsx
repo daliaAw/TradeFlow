@@ -29,22 +29,18 @@ export default function CategoryItemCard({ title, category, description, wholesa
                         )}
                 </div>
             </div>
+
             <Link to={`/item/${category}/${id}`}>
                 <div className="card-details">
-                    {/* <div className="card-details-title"> */}
                     <h5>{title}</h5>
-                    {/* </div> */}
-
-                    {/* <div className="card-details-price"> */}
                     <p> ${wholesalePrice}</p>
-                    {/* </div> */}
                 </div>
                 <hr/>
                 <div className="cat-card-description">
                 <p><small>{description}</small></p>
                 </div>
- 
             </Link>
+
                 <button className="card-button">Add to Cart</button>
         </div>
         </>

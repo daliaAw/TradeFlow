@@ -29,7 +29,7 @@ export default function HomePage() {
                 <div className="cat-preview" key={category.category}>
                     <h2>{category.category}</h2>
                     <div className="itemsInCat">
-                        {category.items.slice(0, 3).map((item) => (
+                        {category.items.slice(0, 4).map((item) => (
                             <ItemCard key={item._id} item={item} />
                             ))}
                     </div>

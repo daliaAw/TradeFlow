@@ -6,7 +6,7 @@
     align-items: center;
     padding: 10px;
     margin: 10px;
-    width: 20vw;
+    width: 17vw;
     height: 350px;
 }
 
@@ -55,7 +55,7 @@
     flex-direction: row;
     /* align-content: center; */
     justify-content: space-between;
-    width: 15vw;
+    /* width: 15vw; */
 }
 
 /* .card-details h5{
