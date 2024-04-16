@@ -13,3 +13,12 @@ export async function display(){
 export async function createItem(item){
     return sendRequest(`${BASE_URL}/new`, 'POST', item)
 }
+
+export async function deleteItem(productId){
+    return sendRequest(`${BASE_URL}/${productId}`, 'DELETE')
+}
+
+export async function updateItem(item){
+    console.log(item, "api")
+    return sendRequest(`${BASE_URL}/${item.id}`, 'PUT', item)
+}

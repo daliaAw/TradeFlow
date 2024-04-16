@@ -5,18 +5,40 @@ module.exports = {
     getItems,
     getHomePageItems,
     create,
-    getItemDetails
+    getItemDetails,
+    itemDelete,
+    itemUpdate
 }
 
 
 async function create(req, res){
     try {
         const createItem = await Item.create({...req.body, user: req.user._id})
-        console.log(Item)
         res.json(createItem)
     }
     catch (error) {
         console.log(error)
+    }
+}
+
+async function itemDelete(req, res){
+    try {
+        const deleteItem = await Item.findByIdAndDelete(req.params.id)
+        res.json(deleteItem)
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+async function itemUpdate(req, res){
+    try{ 
+        const updateItem = await Item.findByIdAndUpdate(req.params.id, req.body)
+        res.json(updateItem)
+    }
+    catch(err){
+        console.log(err)
     }
 }
 
