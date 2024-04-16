@@ -25,8 +25,9 @@ function ItemFilter({ handleChange, setSelection }) {
       </div>
       <br />
       <div className="min-max-price">
-        <input className="filter-input" type="text" name="minPrice" placeholder="min" />
-        <input className="filter-input" type="text" name="maxPrice" placeholder="max"  />
+        <input className="filter-input-min" type="text" name="minPrice" placeholder="min" />
+      <br />
+        <input className="filter-input-max" type="text" name="maxPrice" placeholder="max"  />
       </div>
       <br />
       <div className="rating-filter">

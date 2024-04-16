@@ -2,7 +2,8 @@
     width: 25vw;
     height: 75vh;
     width: 10vw;
-    padding-left: 10px;
+    padding-left: 35px;
+    padding-top: 25px;
     justify-content: center;
     align-items: center;
 }
@@ -13,7 +14,14 @@
     text-align: center;
 }
 
-.filter-input{
+.filter-input-min{
+    height: 24px;
+    width: 140px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.filter-input-max{
     height: 24px;
     width: 140px;
     text-align: center;
