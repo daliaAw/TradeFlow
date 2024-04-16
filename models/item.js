@@ -67,4 +67,13 @@ const itemSchema = new Schema(
   }
 );
 
+// itemSchema.virtual('avgRating').get(function() {
+//   if (this.reviews.length === 0) {
+//       return 0;
+//   } else {
+//       const totalRating = this.reviews.rating.reduce((sum, review) => sum + review.rating, 0);
+//       return totalRating / this.reviews.length;
+//   }
+// });
+
 module.exports = mongoose.model("Item", itemSchema);
