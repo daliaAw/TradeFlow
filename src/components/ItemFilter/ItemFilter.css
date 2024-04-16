@@ -1,14 +1,28 @@
 .item-filter{
-    width: 25vw;
-    height: 70vh;
-    padding-left: 10px;
-    padding-top: 50px;
+    width: 20vw;
+    height: 80vh;
+    padding-left: 35px;
+    padding-top: 25px;
     justify-content: center;
     align-items: center;
+    font-size: 1em;
 }
 
 .delivery-filter{
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.filter-input-min{
+    height: 24px;
+    width: 160px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.filter-input-max{
+    height: 24px;
+    width: 160px;
     text-align: center;
 }

@@ -1,16 +1,18 @@
 .cat-page-container{
-    display: flex;    
+    display: flex;  
 }
 
 .cat-item-container {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     width: 75vw;
 }
 
 .cat-items{
     display: flex;
+    flex-wrap: wrap; 
     flex-direction: row;
     align-items: center;
     justify-content: center;

@@ -40,36 +40,39 @@ export default function CategoryPage() {
     applyFilters(items); 
   }, [items, selection]);
 
-  function applyFilters(itemsToFilter) {
+  
+function applyFilters(itemsToFilter) {
     let filteredItems = itemsToFilter.filter((item) => {
-      if (item.category !== categoryName) return false;
-      if (selection.delivery && item.delivery !== selection.delivery)
-        return false;
-      if (selection.wholesalePrice) {
-        if (selection.wholesalePrice === "<25"){
-            selection.minPrice = 0
-            selection.maxPrice = 25
+        if (item.category !== categoryName) return false;
+        if (selection.delivery && item.delivery !== selection.delivery) {
+            return false;
         }
-        if (selection.wholesalePrice === "25-50"){
-            selection.minPrice = 25;
-            selection.maxPrice = 50;
+        if (selection.wholesalePrice) {
+            if (selection.wholesalePrice === "<25") {
+                selection.minPrice = 0;
+                selection.maxPrice = 25;
+            } else if (selection.wholesalePrice === "25-50") {
+                selection.minPrice = 25;
+                selection.maxPrice = 50;
+            } else if (selection.wholesalePrice === "50-100") {
+                selection.minPrice = 50;
+                selection.maxPrice = 100;
+            } else if (selection.wholesalePrice === "100-200") {
+                selection.minPrice = 100;
+                selection.maxPrice = 200;
+            } else if (selection.wholesalePrice === "200+") {
+                selection.minPrice = 200;
+                selection.maxPrice = Infinity; 
+            }
         }
-        if (selection.wholesalePrice === "50-100"){
-            selection.minPrice = 50;
-            selection.maxPrice = 100;
+        if (item.avgRating < parseInt(selection.rating)) {
+            return false;
         }
-        if (selection.wholesalePrice === "100-200"){
-            selection.minPrice = 100;
-            selection.maxPrice = 200;
+        if (item.wholesalePrice < parseInt(selection.minPrice) ||
+            item.wholesalePrice > parseInt(selection.maxPrice)) {
+            return false;
         }
-        if (selection.wholesalePrice === "200+"){
-            selection.minPrice = 200;
-            selection.maxPrice = 9999999999;
-        }
-      }
-      if (item.wholesalePrice < parseInt(selection.minPrice)) return false;
-      if (item.wholesalePrice > parseInt(selection.maxPrice)) return false;
-      return true;
+        return true;
     });
     setDisplayedItems(filteredItems);
 }

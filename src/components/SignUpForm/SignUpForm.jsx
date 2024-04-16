@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 import { signUp } from "../../utilities/users-service";
 import {
   getBusinessUser,
@@ -17,6 +18,7 @@ export default class SignUpForm extends Component {
     businessAddress: "",
     error: "",
   };
+
 
   handleChange = (evt) => {
     const { name, value, type, checked } = evt.target;
@@ -58,6 +60,8 @@ export default class SignUpForm extends Component {
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }
+  const navigate = useNavigate()
+  navigate("/", {state: this.state})
   };
 
   renderBusinessFields = () => {

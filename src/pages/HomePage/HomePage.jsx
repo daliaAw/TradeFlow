@@ -11,8 +11,6 @@ export default function HomePage() {
         async function fetchItems() {
             try {
                 const res = await index()
-                // const itemsInCat = await res.json();
-                // console.log(itemsInCat)
                 setCategoryItems(res);
             } catch (err) {
                 console.log(err)
@@ -31,7 +29,7 @@ export default function HomePage() {
                 <div className="cat-preview" key={category.category}>
                     <h2>{category.category}</h2>
                     <div className="itemsInCat">
-                        {category.items.slice(0, 3).map((item) => (
+                        {category.items.slice(0, 4).map((item) => (
                             <ItemCard key={item._id} item={item} />
                             ))}
                     </div>

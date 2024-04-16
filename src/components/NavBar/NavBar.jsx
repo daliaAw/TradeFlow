@@ -73,7 +73,7 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
 
         ) : (
           <>
-            <Link to="" setUser={setUser} setBusinessUser={setBusinessUser}>Login/Sign Up</Link>
+            <Link to="/auth" user={user} setUser={setUser} setBusinessUser={setBusinessUser}>Login/Sign Up</Link>
           </>
         )}
          </nav>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function StarRating({ rating, onHover }) {
   const [hoverRating, setHoverRating] = useState(null);
@@ -18,7 +18,7 @@ function StarRating({ rating, onHover }) {
   };
 
   return (
-    <div style={{ display: 'inline-block' }}>
+    <div style={{ display: "inline-block" }}>
       {[...Array(5)].map((_, index) => {
         const starNumber = index + 1;
         return (
@@ -26,11 +26,13 @@ function StarRating({ rating, onHover }) {
             key={index}
             className="fa fa-star"
             style={{
-              color: hoverRating && hoverRating >= starNumber ? 'gold' : 'light-gray',
-              textShadow: `0 0 0 ${hoverRating && hoverRating >= starNumber ? 'gold' : 'transparent'}`,
-              fontSize: '20px',
-              marginRight: '3px',
-              cursor: 'pointer'
+              color: rating && rating >= starNumber ? "gold" : "light-gray",
+              textShadow: `0 0 0 ${
+                rating && rating >= starNumber ? "gold" : "transparent"
+              }`,
+              fontSize: "20px",
+              marginRight: "3px",
+              cursor: "pointer",
             }}
             onMouseOver={() => handleMouseOver(index)}
             onMouseOut={handleMouseOut}
