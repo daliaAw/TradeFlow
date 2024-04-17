@@ -41,12 +41,12 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
     <>
       <div>
         <>
-        <nav className="top-Navbar navbar navbar-expand-lg navbar-light">
+        <nav className="top-Navbar navbar navbar-expand-lg ">
 
         <Link className="navbar-brand" to="/">TradeFlow</Link>
-        <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0">
+        <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0 position-relativ ">
           <input onChange={(evt) => setNewSearch(evt.target.value)} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={newSearch}/>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button className="search-btn " type="submit"><i class="fas fa-search"></i></button>
         </form>
  
        
@@ -55,17 +55,17 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
             <div>
             <span>
               Welcome, &nbsp;
-              <Link to="/profile">{user.name}</Link>
+              <Link to="/profile" className="nav-name">{user.name}</Link>
                 {user && user.isBusiness ? (
                   <>&nbsp; | &nbsp;<Link to="/create">New Product</Link></>
                   ) : (
                     <>&nbsp;</>
                     )}
-              &nbsp; | &nbsp;   <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
+              &nbsp; | &nbsp;  <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
 
             </span>
             &nbsp;  &nbsp; 
-            <Link to="" onClick={handleLogOut}>
+            <Link to="" onClick={handleLogOut} className="logout-btn">
               Log Out
             </Link>           
             </div>
@@ -81,7 +81,7 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
       </div>
       <nav className="second-Nav navbar navbar-expand-lg ">
       {categories.map((category) => (
-        <span key={category.name}>
+        <span className="nav-title" key={category.name}>
                 <Link to={`/cat/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
             </span>
           ))}

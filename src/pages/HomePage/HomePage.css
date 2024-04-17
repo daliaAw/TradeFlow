@@ -1,25 +1,227 @@
-home-page-container{
-    padding-top: 10px;
+.container{
+    max-width: 88%;
+}
+.btn:hover {
+    background-color: #E74C3C;
+}
+.btn:active {
+    background-color: orange;
+}
+.carousel-item {
+    height: 60vh;
 }
 
-.cat-preview-container{
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* services-section */
+.services-section {
+    width: 70%;
+    margin-top: 3vh;
+    margin-bottom: 75px;
+}
+
+.services-section img {
+    width: 20%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.services-section p {
+    text-align: center;
+}
+
+/* categories-section */
+.categories-section {
+    text-align: left;
+    margin-top: 50px;
+}
+
+.category-row {
+    margin-bottom: 30px;
+}
+
+.item-card {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+
+.item-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.item-card .card-text {
+    color: #666;
+}
+
+.item-card .btn {
+    background-color: #E74C3C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+/* Music-section */
+.Music-section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    margin: 150px auto; /* Center the section horizontally */
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 50px; /* Add padding for better spacing */
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
 }
 
-.cat-preview{
-    border: 1px solid lightgray;
-    margin: 25px;
+.Music-section .btn {
+    border:none;
+    padding: 16px 30px;
+    background-color: #E74C3C;
+    margin-top: 25px;
 }
-
-.itemsInCat{
-    width: 90vw;
+.Music-section .card-img {
+    height: 29vh;
+    width: 13vw;
+    margin-top: -150px;
+}
+/* byCategories-section */
+.byCategories-section{
+    margin: 40px 0 40px 0;
+}
+.byCategories-title{
+    color: black;
+}
+.animated-card{
+    margin: 50px 0 50px 0;
+}
+.circle {
+    width: 220px;
+    height: 220px;
+    background-color:#2C3E50;
+    border-radius: 50%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
+    animation: moveToLeft 5s infinite alternate; /* Animation */
+}
+.circle .card-text{
+    color: white;
+}
+@keyframes moveToLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50px); /* Adjust the distance */
+    }
+}
+.row:hover .circle {
+    cursor: pointer;
+    animation-play-state: paused; /* Pause animation on hover */
 }
 
-.see-all{
-    padding-top: 20px;
+ /* get-started */
+
+.get-started-title{
+    margin: 40px 0 20px 0;
 }
+.get-started-description{
+    padding: 20px;
+    font-size: 23px;
+}
+.get-started-btn{
+    border:none;
+    padding: 16px 30px;
+    background-color: #E74C3C;
+    margin-top: auto;
+
+}
+
+
+/* Media query for tablets */
+@media (min-width: 1200) {
+    .services-section {
+        width: 100%;
+        margin-top: 2vh;
+        margin-bottom: 20px;
+    }
+    
+    .services-section img {
+        width: 20%;
+        height: auto;
+    }
+
+    /* Music-section */
+.Music-section {
+    display: flex;
+    justify-content: center;
+    margin: 100px auto; /* Center the section horizontally */
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 60px; 
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
+}
+
+.Music-section .card-img {
+    height: 29vh;
+    width: 13vw;
+    margin-top: -150px;
+}
+}
+/* Media query for phones */
+@media (max-width: 700px) {
+  /* Music-section */
+  .Music-section {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 20px; /* Add padding for better spacing */
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
+    
+}
+
+.Music-section .card-img {
+    margin-top: 40px;
+    height: 70%;
+    width: 70%;
+}
+}
+

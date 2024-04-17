@@ -1,18 +1,81 @@
 .top-Navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.second-Nav {
-  background-color: darkblue;
-  display: flex;
-  justify-content: space-evenly;
+.nav-search{
+  max-width: 100%;
+  width: 60%;
+} 
+.navbar-brand {
+  color: #E74C3C;
+  font-size: 38px;
+  padding:0 40px ;
+}
+.logout-btn{
+  color: black;
+}
+.nav-name{
+  color: #E74C3C;
+}
+.nav-title a{
+  color: white;
+  font-size: larger;
+
 }
 ul {
-  list-style-type: none;
+list-style-type: none;
+
+}
+.nav-search .form-control {
+  width: 100%;
 }
 
-.cart-icon{
-  height: 25px;
-  width: 25px;
+/* Style the search icon */
+.nav-search .input-group-append .input-group-text {
+  background-color: transparent; 
+  border: none; 
+  padding: 0; 
+  border-radius: 20px; 
 }
+
+/* Position the icon container */
+.nav-search .input-group-append {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40px;
+  z-index: 1;
+}
+.position-relativ{
+  position: relative;
+}
+.search-btn{
+  background-color: transparent;
+  color: #E74C3C;
+  border: none;
+  padding:5px 20px;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%);
+  left: 160px; 
+  z-index: 1; 
+}
+/* Adjust input field styling
+.nav-search .form-control {
+  border-radius: 20px; 
+} */
+
+
+.second-Nav{
+  background-color: #2C3E50;
+  display: flex;
+  justify-content: space-evenly;
+  height: 6vh;
+  
+}
+
+

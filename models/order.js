@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const itemSchema = require('./item');
 
 const lineItemSchema = new Schema({
-    qty: { 
-        type: Number, 
-        default: 1 },
-    item: {
-      type: Schema.Types.ObjectId,
-      ref: "Item"
-    }
-  }, {
+    qty: { type: Number, default: 1 },
+    item: {type: Schema.Types.ObjectId, ref: "Item",
+    },
+  },
+  {
     timestamps: true,
     toJSON: { virtuals: true }
   });
@@ -45,13 +43,20 @@ orderSchema.virtual('orderTotal').get(function() {
     return this.id.slice(-6).toUpperCase();
   });
   
-  orderSchema.statics.getCart = function(userId) {
-    return this.findOneAndUpdate(
+  orderSchema.statics.getCart = async function(userId) {
+    try{
+    const cart = await this.findOneAndUpdate(
       { user: userId, isPaid: false },
       { user: userId },
       { upsert: true, new: true }
     );
-  };
+    console.log('Cart already exists:', cart);
+    return cart
+    
+  } catch (error) {
+    console.error('Error occurred while getting cart:', error);
+  }
+};
   
   orderSchema.methods.addItemToCart = async function (itemId) {
     const cart = this;
@@ -61,9 +66,11 @@ orderSchema.virtual('orderTotal').get(function() {
     } else {
       const Item = mongoose.model('Item');
       const item = await Item.findById(itemId);
+      console.log('itemsAdded', item)
       cart.lineItems.push({ item });
     }
-    return cart.save();
+    await cart.save();
+    return cart
   };
   
   orderSchema.methods.setItemQty = function(itemId, newQty) {
