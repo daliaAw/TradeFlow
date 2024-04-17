@@ -4,6 +4,9 @@
     padding-top: 30px; 
     width: auto;
   }
+  .first-row{
+    height: auto;
+  }
   .ProductDeets-title {
     text-align: left;
   }
@@ -25,7 +28,7 @@
   }
   .info-card span{
     font-weight: bold;
-    color: rgb(46, 46, 237);
+    color: #E74C3C;
   }
   .quantity{
     margin-top: 20px;
@@ -35,11 +38,12 @@
  } 
   .info-card .Add-cart {
     border-radius: 30px;
-    background-color: lightskyblue;
+    background-color: #f9877a;
+    color: white;
   }
   .info-card .Buy-now{
     border-radius: 30px;
-    background-color: blue;
+    background-color: #E74C3C;
     color: white;
   }
   .Item-Details{

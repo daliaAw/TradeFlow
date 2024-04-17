@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductDeets from '../../components/ProductDeets/ProductDeets';
 import ProductReviews from '../../components/ProductReviews/ProductReviews';
+import axios from 'axios';
 
-function ItemDetailsPage() {
+function ItemDetailsPage({cart, setCart}) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
@@ -32,8 +33,9 @@ function ItemDetailsPage() {
 
   return (
     <div>
-      <ProductDeets item={item} />
-      <ProductReviews item={item} />
+        <ProductDeets item={item} cart={cart} setCart={setCart}/>
+       <ProductReviews item={item} />
+       
     </div>
   );
 }

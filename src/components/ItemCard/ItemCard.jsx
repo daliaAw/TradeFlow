@@ -1,4 +1,5 @@
 import React from "react";
+import './ItemCard.css'
 // import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -6,18 +7,16 @@ export default function ItemCard({item, category, wholesalePrice, retailPrice, q
 
     return (
         <>
-        <div className="item-card-container">
-            
-                <Link to={`/item/${item.category}/${item._id}`}>
-                    <div className="item-card">
-                        {/* {console.log(item)} */}
-                        <h3>{item.title}</h3>
-                        <h3>${item.wholesalePrice}</h3> 
-
-                    </div>
-                </Link>
-            
-        </div>
-        </>
-    )
+        <div className="card item-card">
+        <Link to={`/item/${item.category}/${item._id}`} className="card-link">
+        <div className="card-body">
+                <h3 className="card-title">{item.title}</h3>
+                <img src="/img/Mackbook2.jpg" className="card-img-top" alt="Image" />
+                <p>See all details</p>
+                {/* <p className="card-text">${item.wholesalePrice}</p> */}
+            </div>
+        </Link>
+    </div>
+            </>
+        )
 }

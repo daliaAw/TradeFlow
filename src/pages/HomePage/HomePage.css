@@ -1,0 +1,315 @@
+.container{
+    max-width: 88%;
+}
+.btn:hover {
+    background-color: #E74C3C;
+}
+.btn:active {
+    background-color: orange;
+}
+.carousel-item {
+    height: 60vh;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* services-section */
+.services-section {
+    width: 70%;
+    margin-top: 3vh;
+    margin-bottom: 75px;
+}
+
+.services-section img {
+    width: 20%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.services-section p {
+    text-align: center;
+}
+
+/* categories-section */
+.categories-section {
+    text-align: left;
+    margin-top: 50px;
+}
+
+.category-row {
+    margin-bottom: 30px;
+}
+
+.item-card {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+/*
+.item-card .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.item-card .card-body {
+    padding: 20px;
+} */
+
+.item-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.item-card .card-text {
+    color: #666;
+}
+
+.item-card .btn {
+    background-color: #E74C3C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+/* Music-section */
+.Music-section {
+    display: flex;
+    justify-content: center;
+    margin: 150px auto; /* Center the section horizontally */
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 50px; /* Add padding for better spacing */
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
+}
+
+.Music-section .btn {
+    border:none;
+    padding: 16px 30px;
+    background-color: #E74C3C;
+    margin-top: 25px;
+}
+.Music-section .card-img {
+    height: 29vh;
+    width: 13vw;
+    margin-top: -150px;
+}
+/* byCategories-section */
+.byCategories-section{
+    margin: 40px 0 40px 0;
+}
+.byCategories-title{
+    color: black;
+}
+.animated-card{
+    margin: 50px 0 50px 0;
+}
+.circle {
+    width: 220px;
+    height: 220px;
+    background-color:#2C3E50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: moveToLeft 5s infinite alternate; /* Animation */
+}
+.circle .card-text{
+    color: white;
+}
+@keyframes moveToLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50px); /* Adjust the distance */
+    }
+}
+.row:hover .circle {
+    cursor: pointer;
+    animation-play-state: paused; /* Pause animation on hover */
+}
+
+ /* get-started */
+
+.get-started-title{
+    margin: 40px 0 20px 0;
+}
+.get-started-description{
+    padding: 20px;
+    font-size: 23px;
+}
+.get-started-btn{
+    border:none;
+    padding: 16px 30px;
+    background-color: #E74C3C;
+    margin-top: auto;
+
+}
+
+
+/* Media query for tablets */
+@media (min-width: 1200) {
+    .services-section {
+        width: 100%;
+        margin-top: 2vh;
+        margin-bottom: 20px;
+    }
+    
+    .services-section img {
+        width: 20%;
+        height: auto;
+    }
+
+    /* Music-section */
+.Music-section {
+    display: flex;
+    justify-content: center;
+    margin: 100px auto; /* Center the section horizontally */
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 60px; 
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
+}
+
+.Music-section .card-img {
+    height: 29vh;
+    width: 13vw;
+    margin-top: -150px;
+}
+}
+/* Media query for phones */
+@media (max-width: 700px) {
+  /* Music-section */
+  .Music-section {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+.Music-section .row {
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    background-color: rgb(240, 236, 236);
+    padding: 20px; /* Add padding for better spacing */
+}
+.Music-section .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 37px;
+    
+}
+
+.Music-section .card-img {
+    margin-top: 40px;
+    height: 70%;
+    width: 70%;
+}
+}
+
+
+/* .cta-section{
+    margin-top: 100px;
+    padding: 20px;
+}
+ */
+
+/* @media only screen and (min-width: 1000px) {
+    .third-section {
+        margin: 60px;
+        width: 70vw;
+        height: 30vh;
+    }
+    .third-section .row{
+        height: 20vh;
+    }
+
+    .third-section .title {
+        padding: 40px;
+        font-size: 30px;
+    }
+
+    .third-section .btn {
+        padding: 12px 20px;
+    }
+
+    .card-img {
+        width: 60%;
+        height: 60%;
+        margin-top: -80px;
+
+    }
+} */
+/* 
+@media only screen and (max-width: 750px) {
+    .third-section {
+        margin: 60px;
+        width: 70vw;
+        height: 40vh;
+    }
+
+    .third-section .title {
+        padding: 30px;
+        font-size: 30px;
+    }
+
+    .third-section .btn {
+        padding: 12px 20px;
+    }
+
+    .card-img {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .third-section {
+        margin: 20px;
+        width: 90vw;
+        height: auto;
+    }
+
+    .third-section .title {
+        padding: 20px;
+        font-size: 24px;
+    }
+
+    .third-section .btn {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .card-img {
+        height: auto;
+        width: 60%;
+        margin: 0 auto 20px;
+    }
+} */

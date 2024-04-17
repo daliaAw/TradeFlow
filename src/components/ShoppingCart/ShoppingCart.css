@@ -1,0 +1,20 @@
+.shoppingCart{
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;    
+    border-bottom: 1px solid black;
+
+}
+.shoppingCart-card{
+    border-bottom: 1px solid black;
+    margin: 20px;
+}
+.shoppingCart p, span{ 
+    text-align: left;
+    font-size: 20px;
+}
+
+.shoppingCart-info{
+    padding: 20px;
+}

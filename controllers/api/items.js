@@ -5,7 +5,7 @@ module.exports = {
     getItems,
     getHomePageItems,
     create,
-    getItemDetails
+    getItemDetails,
 }
 
 

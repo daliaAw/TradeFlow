@@ -29,12 +29,15 @@ export default function NavBar({ user, setUser }) {
       <div>
         <>
         <nav className="top-Navbar navbar navbar-expand-lg navbar-light">
-
-        <Link className="navbar-brand" to="/">TradeFlow</Link>
-        <form className="form-inline my-2 my-lg-0">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <Link className="navbar-brand" to="/"><span>TradeFlow</span></Link>
+        <div className="nav-search">
+          <div className="input-group">
+              <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
+              <div className="input-group-append">
+                  <span className="input-group-text"><i className="fas fa-search"></i></span>
+              </div>
+          </div>
+      </div>
  
        
         {user ? (
@@ -64,14 +67,12 @@ export default function NavBar({ user, setUser }) {
       </div>
       <nav className="second-Nav navbar navbar-expand-lg ">
       {categories.map((category) => (
-        <span key={category.name}>
+        <span className="nav-title" key={category.name}>
                 <Link to={`/cat/${category.name}`} >{category.name}</Link> &nbsp; &nbsp;
             </span>
           ))}
       </nav>
-      
       </>
-
   );
   
 }

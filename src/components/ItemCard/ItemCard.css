@@ -1,0 +1,40 @@
+.item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* .card-image {
+    position: relative;
+    overflow: hidden;
+} */
+
+/* .card-img-top {
+    width: 100%;
+    height: auto;
+} */
+
+.card-details {
+    padding: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+}
