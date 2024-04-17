@@ -1,0 +1,15 @@
+.profilePage {
+    padding: 20px;
+}
+
+.profilePage p {
+    margin: 0;
+}
+
+.userEmail {
+    font-weight: bold;
+}
+
+.favItems {
+    margin-top: 15px;
+}

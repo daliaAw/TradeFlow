@@ -1,20 +1,62 @@
-.shoppingCart{
-    padding: 80px;
+/* Add these styles to your CSS file */
+.shopping-cart-container{
+    width: 60%;
+}
+.shoppingCart-card {
     display: flex;
-    flex-direction: column;
-    align-items: left;    
-    border-bottom: 1px solid black;
+    border: 4px solid #ddd;
+    border-radius: 5px;
+    padding: 29px 20px;
+    margin-bottom: 20px;
+    position: relative; /* To allow absolute positioning */
+    
+  }
+  
+  .shoppingCart-img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Smooth transition effect */
 
-}
-.shoppingCart-card{
-    border-bottom: 1px solid black;
-    margin: 20px;
-}
-.shoppingCart p, span{ 
+  }
+
+  .shoppingCart-details {
+    padding-left: 25px; /* Reduce the padding */
     text-align: left;
-    font-size: 20px;
+  }
+  
+  .shoppingCart-total {
+    text-align: right;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+  }
+  
+.shoppingCart-btn{
+    background-color: #E74C3C;
+    border: none;
+    font-size: medium;
+    border-radius: 0%;
+    margin-left: 0;
 }
+.checkout-btn{
+    background-color: #E74C3C;
+    border-radius: 0;
 
-.shoppingCart-info{
-    padding: 20px;
 }
+/* Add these styles to your CSS file */
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .quantity-btn {
+    background-color: transparent;
+    color: rgb(50, 49, 49);
+    border: none;
+    cursor: pointer;
+    padding:0 12px;
+  }
+  

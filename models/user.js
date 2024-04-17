@@ -22,7 +22,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    favorites: [favoriteSchema],
+    favorites: [{type: Schema.Types.ObjectId, ref: 'Item'}],
     isBusiness: {
       type: Boolean,
       required: true

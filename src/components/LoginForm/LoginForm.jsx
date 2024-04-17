@@ -1,13 +1,15 @@
 import { useState } from "react";
 import * as usersService from "../../utilities/users-service";
 import { getBusinessUser } from "../../utilities/businessUser-api";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginForm({ setUser, setBusinessUser }) {
+export default function LoginForm({ setUser, setBusinessUser, user }) {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate()
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -27,6 +29,7 @@ export default function LoginForm({ setUser, setBusinessUser }) {
     } catch {
       setError("Log In Failed - Try Again");
     }
+    navigate("/", {state: user})
   }
 
   return (

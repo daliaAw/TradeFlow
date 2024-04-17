@@ -1,0 +1,7 @@
+.category-card-container{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid lightgray;
+    padding: 5px;
+    margin: 5px;
+}

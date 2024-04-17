@@ -18,6 +18,7 @@ export default class SignUpForm extends Component {
     error: "",
   };
 
+
   handleChange = (evt) => {
     const { name, value, type, checked } = evt.target;
     this.setState({
@@ -55,6 +56,7 @@ export default class SignUpForm extends Component {
         const businessUser = await getBusinessUser(user.id);
         this.props.setBusinessUser(businessUser);
       }
+      // useHistory().push("/");
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }

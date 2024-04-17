@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import '../ProductReviews/ProductReviews.css'
+import React, { useState } from "react";
+import "../ProductReviews/ProductReviews.css";
+
 const StarRating = ({ rating, onRatingChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
-  const handleMouseEnter = value => {
+  const handleMouseEnter = (value) => {
     setHoverRating(value);
   };
 
@@ -11,7 +12,7 @@ const StarRating = ({ rating, onRatingChange }) => {
     setHoverRating(0);
   };
 
-  const handleClick = value => {
+  const handleClick = (value) => {
     onRatingChange(value);
   };
 
@@ -22,12 +23,12 @@ const StarRating = ({ rating, onRatingChange }) => {
         return (
           <span
             key={starValue}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onMouseEnter={() => handleMouseEnter(starValue)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleClick(starValue)}
           >
-            {starValue <= (hoverRating || rating) ? '★' : '☆'}
+            {starValue <= (hoverRating || rating) ? "★" : "☆"}
           </span>
         );
       })}
@@ -35,27 +36,35 @@ const StarRating = ({ rating, onRatingChange }) => {
   );
 };
 
-const WriteReviewForm = ({ onSubmit }) => {
-  const [description, setDescription] = useState('');
+const WriteReviewForm = ({
+  item,
+  createReview,
+  setReviews,
+  reviews,
+  onSubmit,
+}) => {
+  const [comment, setComment] = useState();
   const [rating, setRating] = useState(0);
-  const [submitted, setSubmitted] = useState(false); // Track if the form has been submitted
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleRatingChange = value => {
-    setRating(value);
+  const handleRatingChange = (evt) => {
+    setRating(evt);
   };
 
-  const handleDescriptionChange = event => {
-    setDescription(event.target.value);
+  const handleDescriptionChange = (evt) => {
+    setComment(evt.target.value);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Pass the review data to the parent component for further processing
-    onSubmit({ description, rating });
-    // Reset form fields
-    setDescription('');
+    try {
+      const review = await createReview({ comment, rating }, item._id);
+      setReviews([...reviews, review]);
+    } catch (err) {
+      console.log(err);
+    }
+    setComment("");
     setRating(0);
-    // Update state to indicate that the form has been submitted
     setSubmitted(true);
   };
 
@@ -67,15 +76,16 @@ const WriteReviewForm = ({ onSubmit }) => {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="description">Description:</label>
-            <textarea className='write-review-description'
-              id="description"
-              value={description}
+            <textarea
+              className="write-review-description"
+              id="comment"
+              value={comment}
               required
               onChange={handleDescriptionChange}
               placeholder="Write your review here..."
             />
           </div>
-          <div className='ml-4'>
+          <div className="ml-4">
             <label>Rating:</label>
             <StarRating rating={rating} onRatingChange={handleRatingChange} />
           </div>

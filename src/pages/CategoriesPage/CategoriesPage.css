@@ -1,8 +1,6 @@
-/* .categoriesPage{
-    color: pink;
-    background-color: yellow;
+.categoriesPage{
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+    padding: 10px;
 }
-
-.categories-section{
-    background-color: pink;
-} */

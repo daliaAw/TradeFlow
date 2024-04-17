@@ -1,13 +1,12 @@
-import React from 'react'
-import ShoppingCart from '../../components/ShoppingCart/ShoppingCart'
+import React from 'react';
 
-function CartPage({ cart, updateQuantity, quantity }) {
+function CartPage() {
   return (
     <div>
-            <ShoppingCart cartItems={cart} updateQuantity={updateQuantity} quantity={quantity}/>
-  
+      <h2>Cart Page</h2>
+      {/* Add cart items display and checkout options here */}
     </div>
-  )
+  );
 }
 
-export default CartPage
+export default CartPage;

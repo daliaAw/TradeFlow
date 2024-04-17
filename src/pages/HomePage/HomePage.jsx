@@ -105,6 +105,7 @@ export default function HomePage({products}) {
                             <div className="card-body">
                                 <h5 className="title">Enhance your Music Experience</h5>
                                 <p className="text"></p>
+                                
                                 <button className="btn btn-primary">Check it out</button>
                             </div>
                         </div>
@@ -123,8 +124,11 @@ export default function HomePage({products}) {
                 <h2 className="byCategories">
                 <Link to="/categories" className="byCategories-title">Shop by categories</Link></h2>           
                 <div className="row justify-content-center">
+               
                   {categoryItems.map((category) => (
+               
                   <div className="col-md-2" key={category.category}>
+
                    <div className="animated-card">
                    <div className="circle">
                    <div className="card-text">{category.category}</div>

@@ -1,43 +1,53 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
+import cart_icon from "./cart_48.png"
 //import AuthPage from "../../pages/AuthPage/AuthPage";
 
-export default function NavBar({ user, setUser }) {
+export default function NavBar({ user, setUser, businessUser, setBusinessUser, products, setSearchResults }) {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
   }
-
+  
   const categories = [
-    { name: "Consumer Goods", path: "categories/consumergoods" },
-    { name: "Technology and Electronics", path: "categories/technologyelectronics",},
-    { name: "Fashion and Apparel", path: "categories/fashionapparel" },
-    { name: "Home and Garden", path: "categories/homegarden" },
-    { name: "Health and Wellness", path: "categories/healthwellness" },
+    { name: "Consumer Goods"},
+    { name: "Technology and Electronics"},
+    { name: "Fashion and Apparel"},
+    { name: "Home and Garden"},
+    { name: "Health and Wellness"},
   ];
-
+  
   // const location = useLocation();
   // const isRootPath = location.pathname === "/";
+  
+    const navigate = useNavigate()
+    const [newSearch, setNewSearch] = useState("")
 
-  const location = useLocation();
-  const isRootPath = location.pathname === "/";
+    function handleSearch(e){
+      e.preventDefault()
+      if (newSearch.length > 0){
+        navigate("/search", {state: newSearch})
+        setNewSearch("")
+      }
+      else {
+        alert("Search bar empty")
+      }
+    }
 
   return (
     <>
       <div>
         <>
-        <nav className="top-Navbar navbar navbar-expand-lg navbar-light">
-        <Link className="navbar-brand" to="/"><span>TradeFlow</span></Link>
-        <div className="nav-search">
-          <div className="input-group">
-              <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-              <div className="input-group-append">
-                  <span className="input-group-text"><i className="fas fa-search"></i></span>
-              </div>
-          </div>
-      </div>
+        <nav className="top-Navbar navbar navbar-expand-lg ">
+
+        <Link className="navbar-brand" to="/">TradeFlow</Link>
+        <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0 position-relativ ">
+          <input onChange={(evt) => setNewSearch(evt.target.value)} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={newSearch}/>
+          <button className="search-btn " type="submit"><i class="fas fa-search"></i></button>
+        </form>
  
        
         {user ? (
@@ -45,13 +55,17 @@ export default function NavBar({ user, setUser }) {
             <div>
             <span>
               Welcome, &nbsp;
-              <Link to="/profile">{user.name}</Link>
-              &nbsp; | &nbsp; <Link to="/create">New Product</Link>
-              &nbsp; | &nbsp;   <Link to="/cart">Cart</Link>
+              <Link to="/profile" className="nav-name">{user.name}</Link>
+                {user && user.isBusiness ? (
+                  <>&nbsp; | &nbsp;<Link to="/create">New Product</Link></>
+                  ) : (
+                    <>&nbsp;</>
+                    )}
+              &nbsp; | &nbsp;  <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
 
             </span>
             &nbsp;  &nbsp; 
-            <Link to="" onClick={handleLogOut}>
+            <Link to="" onClick={handleLogOut} className="logout-btn">
               Log Out
             </Link>           
             </div>
@@ -59,7 +73,7 @@ export default function NavBar({ user, setUser }) {
 
         ) : (
           <>
-            <Link to="">Login/Sign Up</Link>
+            <Link to="/auth" user={user} setUser={setUser} setBusinessUser={setBusinessUser}>Login/Sign Up</Link>
           </>
         )}
          </nav>
@@ -72,7 +86,9 @@ export default function NavBar({ user, setUser }) {
             </span>
           ))}
       </nav>
+      
       </>
+
   );
   
 }

@@ -8,10 +8,16 @@
   max-width: 100%;
   width: 60%;
 } 
-.navbar-brand span{
+.navbar-brand {
   color: #E74C3C;
   font-size: 38px;
   padding:0 40px ;
+}
+.logout-btn{
+  color: black;
+}
+.nav-name{
+  color: #E74C3C;
 }
 .nav-title a{
   color: white;
@@ -44,7 +50,20 @@ list-style-type: none;
   width: 40px;
   z-index: 1;
 }
-
+.position-relativ{
+  position: relative;
+}
+.search-btn{
+  background-color: transparent;
+  color: #E74C3C;
+  border: none;
+  padding:5px 20px;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%);
+  left: 160px; 
+  z-index: 1; 
+}
 /* Adjust input field styling
 .nav-search .form-control {
   border-radius: 20px; 

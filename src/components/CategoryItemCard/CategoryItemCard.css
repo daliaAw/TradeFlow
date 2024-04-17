@@ -1,0 +1,81 @@
+.cat-item-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px lightgray solid;
+    border-radius: 15px;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    max-width: 17vw;
+    height: 300px;
+    font-size: .8em;
+}
+
+.card-button{
+    position: absolute;
+    margin-top: 225px;
+}
+
+.cat-item-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 10vh;
+    border: 1px lightgray solid; 
+    background-color: lightgray;   
+}
+
+.cat-card-top-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    max-width: 17vw;
+
+}
+
+.cat-card-top-row img{
+    align-items: end;
+    justify-content: end;
+    margin-left: 25px;
+}
+
+.card-heart-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+.card-heart-container img{
+    width: 25px;
+    height: 25px;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: row;
+    font-size: .8em;
+    align-content: center;
+    justify-content: space-between;
+    width: 15vw;
+}
+
+.card-details-title{
+    display: flex;
+    align-items: flex-end;
+    width: 80%;
+    /* text-wrap: wrap; */
+}
+
+.card-details-price{
+    position: absolute;
+}
+
+.cat-card-description{
+    width: 100%;
+    text-wrap: wrap;
+}

@@ -4,7 +4,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import { display } from "../../utilities/items-api"
 import { getCart } from "../../utilities/orders-api"
-
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HomePage from "../HomePage/HomePage";
@@ -15,7 +14,9 @@ import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
 import CreateItemPage from "../CreateItemPage/CreateItemPage";
+import EditItemPage from "../EditItemPage/EditItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
 import Footer from "../../components/Footer/Footer";
 import { getBusinessUser } from "../../utilities/businessUser-api";
 import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
@@ -24,9 +25,7 @@ import CartPage from "../CartPage/CartPage";
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [businessUser, setBusinessUser] = useState({});
-  const [show, setShow] = useState(true);
   const [cart, setCart] = useState({});
-  const [warning, setWarning] = useState(false)
 
   useEffect(() => {
     async function logBusinessUser() {
@@ -48,6 +47,7 @@ export default function App() {
     { name: "Health and Wellness", path: "categories/healthwellness" },
   ]);
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
       async function getProducts() {
           try {
@@ -78,56 +78,100 @@ export default function App() {
 
 
 
-
-
   return (
     <>
       <>
         <main className="App">
-          <NavBar user={user} setUser={setUser} />
+          <NavBar 
+            user={user} 
+            setUser={setUser} 
+            businessUser={businessUser}
+            setBusinessUser={setBusinessUser}
+            products={products}
+            />
           <Routes>
               <Route path="/" element={<HomePage  products={products}/>} />
               <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/categories" element={<CategoriesPage />} />
-              <Route path="/cat/:categoryName" setCategories={setCategories} categoryName={categories.name}  
-              element={<CategoryPage key={categories.name} products={products} categoryName={categories.name}/>} />
-              <Route path="/:categoryName/:itemId" element={ <ItemDetailsPage cart={cart} setCart={setCart} products={products}/>} />
-              <Route exact path="/item/:category/:id" element={<ItemDetailsPage cart={cart} setCart={setCart} />} />
-              <Route path="/shoppingcart" element={<ShoppingCart cart={cart} />} />
+              <Route
+                path="/cat/:categoryName" 
+                setCategories={setCategories} 
+                categoryName={categories.name}  
+                element={
+                <CategoryPage 
+                key={categories.name}
+                products={products} 
+                categoryName={categories.name}/>} />
 
+              <Route exact path="/item/:category/:id" element={<ItemDetailsPage cart={cart} setCart={setCart} user={user} setUser={setUser}/>} />
+              <Route
+                path="/search"
+                element={<SearchResultsPage products={products} />} />
+      
           </Routes>
+          {businessUser ? (
+            <>
+              <Routes>
+                <Route
+                  path="/edit/:id"
+                  element={<EditItemPage products={products} user={user} />}
+                />
+              </Routes>
+            </>
+          ) : (
+            <></>
+          )}
 
           {user ? (
             <>
             <Routes>
-                {/* Route components in here */}
                 <Route path="/profile"
-                  element={<ProfilePage user={user} businessUser={businessUser} />}></Route>
-                <Route path="/create" element={<CreateItemPage />} />
-                <Route path="/shoppingcart/add" element={<CartPage />} />
-                <Route path="/new-order" element={<NewOrderPage />} />
-                
-                <Route path="/orders" element={<OrderHistoryPage />} />
-                <Route path="/cart" element={<ShoppingCart cartItems={cart} />} />
-
+                  element={<ProfilePage 
+                  user={user} 
+                  businessUser={businessUser}
+                  products={products}
+                  />}>
+                </Route>
+                <Route
+                  path="/create"
+                  element={<CreateItemPage user={user._id} />}
+                />
+                <Route path="/cart" 
+                element={<ShoppingCart 
+                cartItems={cart}
+                />} 
+                />                
+                <Route path="/orders" 
+                element={<OrderHistoryPage />} />
 
               </Routes>
             </>
           ) : (
             <>
             <>
-              {isRootPath && (
-                <AuthPage
-                  setUser={setUser}
-                  setBusinessUser={setBusinessUser}
-                />
-              )}
+             <Routes>
+                  <Route
+                    path="/auth"
+                    element={
+                      <AuthPage
+                        user={user}
+                        setUser={setUser}
+                        setBusinessUser={setBusinessUser}
+                      />
+                    }
+                  />
+                </Routes>
+                {isRootPath && (
+                  <AuthPage
+                    setUser={setUser}
+                    setBusinessUser={setBusinessUser}
+                  />
+                )}
+              </>
             </>
-          </>
-        )}
-      </main>
-      <Footer />
+          )}
+        </main>
+        <Footer />
+      </>
     </>
-  </>
-);
+  );
 }

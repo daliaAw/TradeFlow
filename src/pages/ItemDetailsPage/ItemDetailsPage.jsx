@@ -4,7 +4,7 @@ import ProductDeets from '../../components/ProductDeets/ProductDeets';
 import ProductReviews from '../../components/ProductReviews/ProductReviews';
 import axios from 'axios';
 
-function ItemDetailsPage({cart, setCart}) {
+function ItemDetailsPage({cart, setCart, user, setUser}) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
@@ -13,12 +13,12 @@ function ItemDetailsPage({cart, setCart}) {
     const fetchItem = async () => {
       try {
         // Replace this fetch call with your actual API call to fetch item data
-        const response = await fetch(`/api/items/${id}`); // Adjust API endpoint as per your backend
+        const response = await fetch(`/api/items/${id}`); 
         if (!response.ok) {
           throw new Error('Failed to fetch item data');
         }
         const data = await response.json();
-        setItem(data); // Set item data received from the API response
+        setItem(data); 
       } catch (error) {
         console.error('Error fetching item data:', error);
       }
@@ -33,8 +33,8 @@ function ItemDetailsPage({cart, setCart}) {
 
   return (
     <div>
-        <ProductDeets item={item} cart={cart} setCart={setCart}/>
-       <ProductReviews item={item} />
+        <ProductDeets   item={item} cart={cart} setCart={setCart} user={user} setUser={setUser}/>
+        <ProductReviews item={item} user={user}/>
        
     </div>
   );
