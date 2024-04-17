@@ -111,11 +111,12 @@ function ProductDeets({ item, user, setUser }) {
             <p><span>Category:</span> {item.category}</p>
             {/* Display average rating stars */}
             <p><span>Average Rating: </span>
-                {item.avgRating !== 0 && item.avgRating !== undefined ? (item.avgRating) : ("Not yet rated")}</p>   
+                {item.avgRating !== 0 && item.avgRating !== undefined ? (item.avgRating.toFixed(1)+" / 5") : ("Not yet rated")}
+                </p>   
           </div>
           <div className='info-card col-md-3'>
             <div className="d-flex justify-content-between align-items-start">
-              <p className="m-0"><span>Retail Price: </span>${item.retailPrice}</p>
+              <p className="m-0"><span>Retail Price: </span>${item.retailPrice.toFixed(2)}</p>
               <div onClick={handleFavorite}>
                 <div className="deets-hearts">
               {favorite ? (
@@ -126,7 +127,7 @@ function ProductDeets({ item, user, setUser }) {
                 </div>
                 </div>
             </div>
-            <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
+            <p><span>Wholesale Price:</span> ${item.wholesalePrice.toFixed(2)}</p>
             <p><span>Delivery:</span> {item.delivery}</p>
 
              {/* Quantity buttons */}
