@@ -3,7 +3,7 @@ import StarRating from "../StarRating";
 import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 import { createReview } from "../../utilities/items-api";
-import { getUser } from "../../utilities/users-service";
+// import { getUser } from "../../utilities/users-service";
 
 function ProductReviews({ item, user }) {
   const [showReviewForm, setShowReviewForm] = useState(false);

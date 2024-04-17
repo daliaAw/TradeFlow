@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductDeets from "../../components/ProductDeets/ProductDeets";
 import ProductReviews from "../../components/ProductReviews/ProductReviews";
-import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 
 
 export default function ItemDetailsPage( {user, setUser} ) {

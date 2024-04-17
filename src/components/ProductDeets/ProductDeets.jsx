@@ -4,7 +4,7 @@ import './ProductDeets.css';
 import blank_heart from "./blank_heart_icon.png"
 import heart from "./heart_icon.png"
 import { addToFavorites, removeFavorite } from '../../utilities/favorites-api';
-import { getUser } from "../../utilities/users-service";
+// import { getUser } from "../../utilities/users-service";
 
 function ProductDeets({ item, user, setUser }) {
   const [quantity, setQuantity] = useState(item.minQuantity); // Initialize quantity state with item's available quantity
@@ -80,24 +80,24 @@ function ProductDeets({ item, user, setUser }) {
   };
 
   // Calculate the average rating as stars
-  const averageRatingStars = () => {
-    const averageRating = item.averageRating; // Assuming item.averageRating is the average rating value
-    const filledStars = Math.round(averageRating); // Round the average rating to the nearest integer
-    const emptyStars = 5 - filledStars; // Calculate the number of empty stars
+  // const averageRatingStars = () => {
+  //   const averageRating = item.averageRating; // Assuming item.averageRating is the average rating value
+  //   const filledStars = Math.round(averageRating); // Round the average rating to the nearest integer
+  //   const emptyStars = 5 - filledStars; // Calculate the number of empty stars
 
-    let stars = '';
-    // Generate filled stars
-    for (let i = 0; i < filledStars; i++) {
-      stars += '★';
+  //   let stars = '';
+  //   // Generate filled stars
+  //   for (let i = 0; i < filledStars; i++) {
+  //     stars += '★';
       
-    }
-    // Generate empty stars
-    for (let i = 0; i < emptyStars; i++) {
-      stars += '☆';
-    }
+  //   }
+  //   // Generate empty stars
+  //   for (let i = 0; i < emptyStars; i++) {
+  //     stars += '☆';
+  //   }
 
-    return stars;
-  };
+  //   return stars;
+  // };
 
   return (
     <div className="ProductDeets container">
@@ -111,11 +111,12 @@ function ProductDeets({ item, user, setUser }) {
             <p><span>Category:</span> {item.category}</p>
             {/* Display average rating stars */}
             <p><span>Average Rating: </span>
-                {item.avgRating !== 0 && item.avgRating !== undefined ? (item.avgRating) : ("Not yet rated")}</p>   
+                {item.avgRating !== 0 && item.avgRating !== undefined ? (item.avgRating.toFixed(1)+" / 5") : ("Not yet rated")}
+                </p>   
           </div>
           <div className='info-card col-md-3'>
             <div className="d-flex justify-content-between align-items-start">
-              <p className="m-0"><span>Retail Price: </span>${item.retailPrice}</p>
+              <p className="m-0"><span>Retail Price: </span>${item.retailPrice.toFixed(2)}</p>
               <div onClick={handleFavorite}>
                 <div className="deets-hearts">
               {favorite ? (
@@ -126,7 +127,7 @@ function ProductDeets({ item, user, setUser }) {
                 </div>
                 </div>
             </div>
-            <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
+            <p><span>Wholesale Price:</span> ${item.wholesalePrice.toFixed(2)}</p>
             <p><span>Delivery:</span> {item.delivery}</p>
 
              {/* Quantity buttons */}
