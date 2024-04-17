@@ -133,6 +133,19 @@ export default function App() {
             <></>
           )}
 
+          {businessUser ? (
+            <>
+              <Routes>
+                <Route
+                  path="/edit/:id"
+                  element={<EditItemPage products={products} user={user} />}
+                />
+              </Routes>
+            </>
+          ) : (
+            <></>
+          )}
+
           {user ? (
             <>
               <Routes>
@@ -162,8 +175,8 @@ export default function App() {
             </>
           ) : (
             <>
-            <>
-             <Routes>
+              <>
+                <Routes>
                   <Route
                     path="/auth"
                     element={
