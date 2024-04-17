@@ -5,7 +5,7 @@ import ProductReviews from "../../components/ProductReviews/ProductReviews";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 
 
-function ItemDetailsPage( {user, setUser} ) {
+export default function ItemDetailsPage( {user, setUser} ) {
 
   const { id } = useParams();
   const [item, setItem] = useState(null);
@@ -35,7 +35,7 @@ function ItemDetailsPage( {user, setUser} ) {
     <div>
 
       <ProductDeets item={item} user={user} setUser={setUser} />
-      <ProductReviews item={item} />
+      <ProductReviews item={item} user={user}/>
 
     </div>
   );

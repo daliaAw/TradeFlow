@@ -11,7 +11,7 @@ export default function ItemCard({item, category, wholesalePrice, retailPrice, q
                 <div className="item-card-container">
                     <div className="item-card">
                         {/* {console.log(item)} */}
-                        <h5>{item.title}</h5>
+                        <h5>{item.title.length <= 24 ? item.title : item.title.substring(0, 24) + '...'}</h5>
                         <h5>${item.wholesalePrice}</h5> 
 
                     </div>

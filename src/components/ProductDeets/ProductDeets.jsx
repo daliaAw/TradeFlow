@@ -110,7 +110,8 @@ function ProductDeets({ item, user, setUser }) {
             <h2><span>Name: </span>{item.title}</h2>
             <p><span>Category:</span> {item.category}</p>
             {/* Display average rating stars */}
-            <p><span>Average Rating:</span> {averageRatingStars()}</p>
+            <p><span>Average Rating: </span>
+                {item.avgRating !== 0 && item.avgRating !== undefined ? (item.avgRating) : ("Not yet rated")}</p>   
           </div>
           <div className='info-card col-md-3'>
             <div className="d-flex justify-content-between align-items-start">

@@ -88,7 +88,9 @@ function ProfilePage({ user, businessUser, products }) {
           <div className="profilePage">
             <p>The is NOT a business page</p>
             <p className="userEmail">{user && user.email}</p>
-            <FavoritesList favorites={favorites} />
+            <div className="profileFavs">
+              <FavoritesList favorites={favorites}/>
+            </div>
             <div className="profileOrderHistory">
               <OrderHistory />
             </div>

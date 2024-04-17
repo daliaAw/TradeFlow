@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
 import { signUp } from "../../utilities/users-service";
 import {
   getBusinessUser,
@@ -57,11 +56,10 @@ export default class SignUpForm extends Component {
         const businessUser = await getBusinessUser(user.id);
         this.props.setBusinessUser(businessUser);
       }
+      // useHistory().push("/");
     } catch {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }
-  const navigate = useNavigate()
-  navigate("/", {state: this.state})
   };
 
   renderBusinessFields = () => {
