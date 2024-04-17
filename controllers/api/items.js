@@ -9,6 +9,7 @@ module.exports = {
   itemUpdate,
   createReview,
   getReviewsByUser,
+
 };
 
 async function create(req, res) {
@@ -65,13 +66,10 @@ async function getHomePageItems(req, res) {
     console.log(err);
   }
 }
-async function getItemDetails(req, res) {
-  const getItems = await Item.find();
-  res.json(getItems);
-}
 
 async function createReview(req, res) {
   try {
+
     const item = await Item.findById(req.params.id);
     if (!item) {
       return res.status(404).json({ message: "Item not found" });
@@ -83,19 +81,22 @@ async function createReview(req, res) {
       name: req.user.name,
     };
     console.log("USER REVIEW: ", review);
+
     item.reviews.push(review);
     await item.save();
-    res.json(review);
+    json(review);
   } catch (err) {
-    console.log(err);
+    console.log("Error creating review:", err);
   }
 }
 
-async function getReviewsByUser(req, res) {
+async function getReviews(req, res) {
   try {
-    const reviews = await Review.find({ user: req.user });
-    res.json(reviews);
+    const itemsWithReviews = await Item.find().populate("reviews.user", "name");
+    console.log(itemsWithReviews);
+    res.json(itemsWithReviews.map((item) => item.reviews));
   } catch (err) {
-    console.log(err);
+    console.log("getReviews Error: ", err);
   }
 }
+

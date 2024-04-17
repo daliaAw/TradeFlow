@@ -1,8 +1,9 @@
 .write-review-btn{
-    background-color: rgb(67, 67, 246);
+    margin-right: 30px;
+    background-color: #E74C3C ;
 }
 .write-review-btn:hover{
-    background-color: lightskyblue;
+    background-color: #f16b5c;
 }
 .reviews-user-icon{
     padding-right: 9px;

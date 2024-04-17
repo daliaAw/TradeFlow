@@ -3,11 +3,26 @@ import StarRating from "../StarRating";
 import "./ProductReviews.css";
 import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
 import { createReview } from "../../utilities/items-api";
+// import { getUser } from "../../utilities/users-service";
 
 function ProductReviews({ item, user }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
-  const [reviews, setReviews] = useState([]);
+  const [review, setReview] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch("/api/items");
+        const data = await response.json();
+        setReview(data);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const handleWriteReview = () => {
     setShowReviewForm(true);
@@ -35,6 +50,7 @@ function ProductReviews({ item, user }) {
                 <StarRating rating={review.rating} />
               </p>
               <p className="mt-3">{review.comment}</p>
+
               <hr />
             </li>
           ))}
@@ -68,6 +84,7 @@ function ProductReviews({ item, user }) {
             <h6>Please Log In to Write a Review</h6>
           )}
         </>
+
       )}
     </div>
   );

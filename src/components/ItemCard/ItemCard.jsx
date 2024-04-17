@@ -1,4 +1,5 @@
 import React from "react";
+import './ItemCard.css'
 // import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./ItemCard.css"
@@ -7,17 +8,22 @@ export default function ItemCard({item, category, wholesalePrice, retailPrice, q
 
     return (
         <>
-            <Link to={`/item/${item.category}/${item._id}`}>
-                <div className="item-card-container">
-                    <div className="item-card">
-                        {/* {console.log(item)} */}
-                        <h5>{item.title}</h5>
-                        <h5>${item.wholesalePrice}</h5> 
+            <div className="card item-card">
+        <Link to={`/item/${item.category}/${item._id}`} className="card-link">
+            <div className="card-body">
+            <div className="card-content">
+                <h5 className="card-title">{item.title.length <= 24 ? item.title : item.title.substring(0, 24) + '...'}</h5>
+                <p className="card-text">See all details</p>
+            </div>
+            <div className="card-image-container">
+                <img src="https://picsum.photos/200/200" className="card-img-top" alt="Image" />
+                <div className="overlay"></div>
+            </div>
+            </div>
+        </Link>
+        </div>
 
-                    </div>
-                </div>
-            </Link>
-            
-        </>
-    )
+
+            </>
+        )
 }

@@ -1,4 +1,4 @@
-# TradeFlow
+<h1 style="text-align: center;">TradeFlow</h1>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to TradeFlow, the ultimate solution for businesses looking to liquidate excess inventory at wholesale prices. In today's fast-paced market, managing surplus stock can be a daunting task. That's where TradeFlow steps in, offering a seamless marketplace where sellers can effortlessly connect with buyers seeking quality products at unbeatable prices.
 
@@ -38,3 +38,4 @@
 -   Integrate a payment gateway for secure transactions.
 -   Implement a native messaging system to facilitate communication between users without leaving the platform.
 -   Incorporate API from Third Party freight companies to provide buyers with shipping estimates.
+-   Enhance the UI to be more dynamically optimized for viewing on mobile.

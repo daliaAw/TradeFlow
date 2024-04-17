@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "add": "^2.0.6",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -15,6 +16,7 @@
     "express": "^4.19.2",
     "favicon": "^0.0.2",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^6.12.8",
     "morgan": "^1.10.0",
     "react": "^18.2.0",
@@ -22,10 +24,13 @@
     "react-rating": "^2.0.5",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
-    "serve-favicon": "^2.5.0"
+    "react-use-cart": "^1.13.0",
+    "serve-favicon": "^2.5.0",
+    "yarn": "^1.22.22"
   },
   "scripts": {
-    "start": "node server",
+    "start": "react-scripts start",
+
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,6 +53,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.4",

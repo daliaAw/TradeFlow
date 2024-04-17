@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ProductDeets from "../../components/ProductDeets/ProductDeets";
-import ProductReviews from "../../components/ProductReviews/ProductReviews";
-import WriteReviewForm from "../../components/WriteReviewForm/WriteReviewForm";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import ProductDeets from '../../components/ProductDeets/ProductDeets';
+import ProductReviews from '../../components/ProductReviews/ProductReviews';
+import axios from 'axios';
 
-export default function ItemDetailsPage(user) {
+
+function ItemDetailsPage({cart, setCart, user, setUser}) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
@@ -12,12 +13,13 @@ export default function ItemDetailsPage(user) {
     console.log(user);
     const fetchItem = async () => {
       try {
-        const response = await fetch(`/api/items/${id}`);
+        // Replace this fetch call with your actual API call to fetch item data
+        const response = await fetch(`/api/items/${id}`); 
         if (!response.ok) {
           throw new Error("Failed to fetch item data");
         }
         const data = await response.json();
-        setItem(data);
+        setItem(data); 
       } catch (error) {
         console.error("Error fetching item data:", error);
       }
@@ -32,8 +34,10 @@ export default function ItemDetailsPage(user) {
 
   return (
     <div>
-      <ProductDeets item={item} />
-      <ProductReviews item={item} user={user} />
+
+        <ProductDeets   item={item} cart={cart} setCart={setCart} user={user} setUser={setUser}/>
+        <ProductReviews item={item} user={user}/>
+       
     </div>
   );
 }
