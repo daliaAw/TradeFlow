@@ -54,7 +54,7 @@ function ProductReviews({ item, user }) {
                   Write a customer review
                 </button>
               )}
-              {showReviewForm && !reviewSubmitted && !user.user && (
+              {showReviewForm && !reviewSubmitted && (
                 <WriteReviewForm
                   onSubmit={() => handleSubmitReview(item._id)}
                   createReview={createReview}
