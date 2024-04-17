@@ -11,7 +11,7 @@ export default function HomePage({products}) {
     useEffect(() => {
         async function fetchItems() {
             try {
-                const res = await index();
+                const res = await index()
                 setCategoryItems(res);
             } catch (err) {
                 console.log(err);
@@ -155,60 +155,6 @@ export default function HomePage({products}) {
              </div>
 
 
-               {/* <div className="card special-offer-card">
-                <div className="row no-gutters">
-                    <div className="col-md-6">
-                    <div className="card-body">
-                        <h5 className="card-title">Essential for Every Home</h5>
-                        <p className="card-text">10% off select TVs from Samsung, LG, Sony, and more.</p>
-                        <button className="btn btn-primary">Button</button>
-                    </div>
-                    </div>
-                    <div className="col-md-6">
-                    <img src="https://picsum.photos/50/50" className="card-img" alt="Image" />
-                    </div>
-                </div>
-            </div> */}
-
-
-{/* 
-                <div className="row justify-content-center">
-                <div className="col-md-2">
-                    <div className="animated-card">
-                        <div className="circle">
-                        <div className="card-text">Card 1 Text</div>
-                    </div>
-                    </div>
-                </div>
-                <div className="col-md-2">
-                    <div className="animated-card">
-                        <div className="circle">
-                        <div className="card-text">Card 2 Text</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2">
-                    <div className="animated-card">
-                        <div className="circle">
-                        <div className="card-text">Card 3 Text</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2">
-                    <div className="animated-card">
-                        <div className="circle">
-                        <div className="card-text">Card 4 Text</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-2">
-                    <div className="animated-card">
-                        <div className="circle">
-                        <div className="card-text">Card 5 Text</div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             </div>
 
     );

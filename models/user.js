@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 6;
 
-const favoriteSchema = new Schema({
-  item: {type: Schema.Types.ObjectId, ref: 'Item'}
-})
+// const favoriteSchema = new Schema({
+//   item: {type: Schema.Types.ObjectId, ref: 'Item'}
+// })
 
 const userSchema = new Schema(
   {

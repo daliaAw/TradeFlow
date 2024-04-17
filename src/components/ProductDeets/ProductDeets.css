@@ -1,75 +1,75 @@
 /* Custom CSS for ProductDeets component */
 .ProductDeets {
-    display: flex;
-    padding-top: 30px; 
-    width: auto;
-  }
-  .first-row{
-    height: auto;
-  }
-  .ProductDeets-title {
-    text-align: left;
-  }
-  .ProductDeets-title span{
-    font-weight: bold;
-    text-align: left;
-  }
-  p {
-    margin-bottom: 5px; 
-  }
-  .info-card{
-    border: 1px black solid;
-    text-align: left;
-    height: 50vh;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .info-card span{
-    font-weight: bold;
-    color: #E74C3C;
-  }
-  .quantity{
-    margin-top: 20px;
-  }
- .quantity-btn{
-  margin: 0;
- } 
-  .info-card .Add-cart {
-    border-radius: 30px;
-    background-color: #f9877a;
-    color: white;
-  }
-  .info-card .Buy-now{
-    border-radius: 30px;
-    background-color: #E74C3C;
-    color: white;
-  }
-  .Item-Details{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: left;
-    border-top: 1px solid #000;
-    margin-top: 50px;
-    padding: 40px;
-  }
-  .Item-Details span{
-    font-weight: bold;
-  }
-  .reviews{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: left;
-    border-top: 1px solid #000;
-    margin-top: 50px;
-    padding: 40px;
-  }
-  .reviews ul{
-    list-style: none;
-  }
-  .deets-hearts img{
-    height: 25px;
-  }
+  display: flex;
+  padding-top: 30px; 
+  width: auto;
+}
+.first-row{
+  height: auto;
+}
+.ProductDeets-title {
+  text-align: left;
+}
+.ProductDeets-title span{
+  font-weight: bold;
+  text-align: left;
+}
+p {
+  margin-bottom: 5px; 
+}
+.info-card{
+  border: 1px black solid;
+  text-align: left;
+  height: 50vh;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.info-card span{
+  font-weight: bold;
+  color: #E74C3C;
+}
+.quantity{
+  margin-top: 20px;
+}
+.quantity-btn{
+margin: 0;
+} 
+.info-card .Add-cart {
+  border-radius: 30px;
+  background-color: #f9877a;
+  color: white;
+}
+.info-card .Buy-now{
+  border-radius: 30px;
+  background-color: #E74C3C;
+  color: white;
+}
+.Item-Details{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  border-top: 1px solid #000;
+  margin-top: 50px;
+  padding: 40px;
+}
+.Item-Details span{
+  font-weight: bold;
+}
+.reviews{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  border-top: 1px solid #000;
+  margin-top: 50px;
+  padding: 40px;
+}
+.reviews ul{
+  list-style: none;
+}
+.deets-hearts img{
+  height: 25px;
+}

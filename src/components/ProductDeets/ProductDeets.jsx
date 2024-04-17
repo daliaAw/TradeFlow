@@ -76,18 +76,7 @@ function ProductDeets({ item, cart, setCart, user, setUser }) {
     } catch (err) {
       console.error('Error toggling favorite:', err);
     }
-    // try {
-    //   const response = await fetch(`/api/users/favorites/${item._id}`, {
-    //     method: favorite ? 'DELETE' : 'POST',
-    //   });
-    //   if (response.ok) {
-    //     setFavorite(!favorite);
-    //   } else {
-    //     console.error('Error toggling favorite');
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+
   }
   
   const incrementQuantity = () => {
@@ -104,22 +93,6 @@ function ProductDeets({ item, cart, setCart, user, setUser }) {
     }
 };
 
-//   const handleClick = (item) => {
-//     console.log(item);
-//     let isPresent = false;
-//     cart.forEach((product) => {
-//       if (item.id === product.id) {
-//         isPresent = true;
-//       }
-//     });
-//     if (isPresent) {
-//       setWarning(true); // Show warning
-//       return;
-//     }
-//     setCart([...cart, item]); // Add item to cart
-    
-// };
-
   const addToCart = async (itemId) => {
 
     try {
@@ -133,7 +106,7 @@ function ProductDeets({ item, cart, setCart, user, setUser }) {
       let isPresent = false;
   
       if (isPresent) {
-        setWarning(true); // Show warning
+        setWarning(true);
         return;
       }
 
@@ -165,26 +138,6 @@ const updateQuantity = (itemId, newQuantity) => {
     console.log(`Buy Now: ${quantity} ${item.title}`);
 };
 
-  // Calculate the average rating as stars
-//   const averageRatingStars = () => {
-//     const averageRating = item.averageRating; // Assuming item.averageRating is the average rating value
-//     const filledStars = Math.round(averageRating); // Round the average rating to the nearest integer
-//     const emptyStars = 5 - filledStars; // Calculate the number of empty stars
-
-//     let stars = '';
-//     // Generate filled stars
-//     for (let i = 0; i < filledStars; i++) {
-//       stars += '★';
-//     }
-//     // Generate empty stars
-//     for (let i = 0; i < emptyStars; i++) {
-//       stars += '☆';
-//     }
-
-//     return stars;
-// };
-
-
 
   return (
     <div className="ProductDeets container">
@@ -213,9 +166,8 @@ const updateQuantity = (itemId, newQuantity) => {
                   )}
                 </div>
                 </div>
-
             </div>
-            <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
+            <p><span>Wholesale Price:</span> ${item.wholesalePrice.toFixed(2)}</p>
             <p><span>Delivery:</span> {item.delivery}</p>
 
             {/* Quantity buttons */}
@@ -252,7 +204,6 @@ const updateQuantity = (itemId, newQuantity) => {
           <p><span>Wholesale Price:</span> ${item.wholesalePrice}</p>
           <p><span>Delivery:</span> {item.delivery}</p>
         </div>
-        {/* <ShoppingCart cartItems={cart} updateQuantity={updateQuantity} quantity={quantity} handleRemove={handleRemove}/> */}
       </div>
     </div>
   );

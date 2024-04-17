@@ -52,15 +52,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
-/*
-.item-card .card-img-top {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
 
-.item-card .card-body {
-    padding: 20px;
-} */
 
 .item-card .card-title {
     font-size: 1.2rem;
@@ -233,83 +225,3 @@
 }
 }
 
-
-/* .cta-section{
-    margin-top: 100px;
-    padding: 20px;
-}
- */
-
-/* @media only screen and (min-width: 1000px) {
-    .third-section {
-        margin: 60px;
-        width: 70vw;
-        height: 30vh;
-    }
-    .third-section .row{
-        height: 20vh;
-    }
-
-    .third-section .title {
-        padding: 40px;
-        font-size: 30px;
-    }
-
-    .third-section .btn {
-        padding: 12px 20px;
-    }
-
-    .card-img {
-        width: 60%;
-        height: 60%;
-        margin-top: -80px;
-
-    }
-} */
-/* 
-@media only screen and (max-width: 750px) {
-    .third-section {
-        margin: 60px;
-        width: 70vw;
-        height: 40vh;
-    }
-
-    .third-section .title {
-        padding: 30px;
-        font-size: 30px;
-    }
-
-    .third-section .btn {
-        padding: 12px 20px;
-    }
-
-    .card-img {
-        width: 50%;
-    }
-}
-
-@media only screen and (max-width: 440px) {
-    .third-section {
-        margin: 20px;
-        width: 90vw;
-        height: auto;
-    }
-
-    .third-section .title {
-        padding: 20px;
-        font-size: 24px;
-    }
-
-    .third-section .btn {
-        display: block;
-        margin: 20px auto;
-        padding: 12px 24px;
-        font-size: 16px;
-    }
-
-    .card-img {
-        height: auto;
-        width: 60%;
-        margin: 0 auto 20px;
-    }
-} */

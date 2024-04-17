@@ -9,22 +9,21 @@ function ItemDetailsPage({cart, setCart, user, setUser}) {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    // Function to fetch item data from the database
     const fetchItem = async () => {
       try {
         // Replace this fetch call with your actual API call to fetch item data
         const response = await fetch(`/api/items/${id}`); 
         if (!response.ok) {
-          throw new Error('Failed to fetch item data');
+          throw new Error("Failed to fetch item data");
         }
         const data = await response.json();
         setItem(data); 
       } catch (error) {
-        console.error('Error fetching item data:', error);
+        console.error("Error fetching item data:", error);
       }
     };
 
-    fetchItem(); // Call the fetchItem function when the component mounts
+    fetchItem();
   }, [id]);
 
   if (!item) {
@@ -39,5 +38,3 @@ function ItemDetailsPage({cart, setCart, user, setUser}) {
     </div>
   );
 }
-
-export default ItemDetailsPage;

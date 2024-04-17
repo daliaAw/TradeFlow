@@ -2,6 +2,7 @@ import React from "react";
 import './ItemCard.css'
 // import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./ItemCard.css"
 
 export default function ItemCard({item, category, wholesalePrice, retailPrice, qtyAvailable, minQuantity, delivery, id, index}){
 
