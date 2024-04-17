@@ -4,11 +4,13 @@ import ProductDeets from '../../components/ProductDeets/ProductDeets';
 import ProductReviews from '../../components/ProductReviews/ProductReviews';
 import axios from 'axios';
 
+
 function ItemDetailsPage({cart, setCart, user, setUser}) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
 
   useEffect(() => {
+    console.log(user);
     const fetchItem = async () => {
       try {
         // Replace this fetch call with your actual API call to fetch item data
@@ -32,6 +34,7 @@ function ItemDetailsPage({cart, setCart, user, setUser}) {
 
   return (
     <div>
+
         <ProductDeets   item={item} cart={cart} setCart={setCart} user={user} setUser={setUser}/>
         <ProductReviews item={item} user={user}/>
        

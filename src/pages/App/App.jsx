@@ -30,7 +30,6 @@ export default function App() {
     async function logBusinessUser() {
       const businessUser = await getBusinessUser(user?._id);
       setBusinessUser(businessUser);
-      console.log(businessUser);
     }
     logBusinessUser();
   }, []);
@@ -114,18 +113,29 @@ export default function App() {
                   path="/edit/:id"
                   element={<EditItemPage products={products} user={user} />}
                 />
-              </Routes>
-            </>
-          ) : (
-            <></>
-          )}
+              }
+            />
+            <Route
+              exact
+              path="/item/:category/:id"
+              element={<ItemDetailsPage user={user} />}
+            />
+            <Route
+              path="/search"
+              element={<SearchResultsPage products={products} />}
+            />
+            <Route path="/" element={<HomePage products={products} />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route
+              path="/cat/:categoryName"
+              setCategories={setCategories}
+              categoryName={categories.name}
+              element={
+                <CategoryPage
+                  key={categories.name}
+                  products={products}
+                  categoryName={categories.name}
 
-          {businessUser ? (
-            <>
-              <Routes>
-                <Route
-                  path="/edit/:id"
-                  element={<EditItemPage products={products} user={user} />}
                 />
               </Routes>
             </>

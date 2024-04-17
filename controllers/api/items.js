@@ -4,10 +4,12 @@ module.exports = {
   getItems,
   getHomePageItems,
   create,
+  getItemDetails,
   itemDelete,
   itemUpdate,
   createReview,
-  getReviews,
+  getReviewsByUser,
+
 };
 
 async function create(req, res) {
@@ -67,16 +69,19 @@ async function getHomePageItems(req, res) {
 
 async function createReview(req, res) {
   try {
-    const itemId = req.params.itemId;
-    const userId = req.body.userId;
-    const item = await Item.findById(itemId);
 
-    const reviewData = {
+    const item = await Item.findById(req.params.id);
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+    const review = {
       rating: req.body.rating,
       comment: req.body.comment,
-      user: userId,
+      user: req.user._id,
+      name: req.user.name,
     };
-    const review = await Item.create(reviewData);
+    console.log("USER REVIEW: ", review);
+
     item.reviews.push(review);
     await item.save();
     json(review);
@@ -94,3 +99,4 @@ async function getReviews(req, res) {
     console.log("getReviews Error: ", err);
   }
 }
+

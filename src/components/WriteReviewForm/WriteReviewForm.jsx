@@ -38,6 +38,7 @@ const StarRating = ({ rating, onRatingChange }) => {
 
 const WriteReviewForm = ({
   item,
+  user,
   createReview,
   setReviews,
   reviews,
@@ -58,7 +59,12 @@ const WriteReviewForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const review = await createReview({ comment, rating }, item._id);
+      const review = await createReview(
+        { comment, rating },
+        item._id,
+        user.name
+      );
+      console.log(reviews);
       setReviews([...reviews, review]);
     } catch (err) {
       console.log(err);

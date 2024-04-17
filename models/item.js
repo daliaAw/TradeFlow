@@ -15,6 +15,10 @@ const reviewSchema = new Schema(
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -64,15 +68,18 @@ const itemSchema = new Schema(
   },
   {
     timestamps: true,
-    toJSON: { virtuals: true }
+    toJSON: { virtuals: true },
   }
 );
 
-itemSchema.virtual('avgRating').get(function() {
+itemSchema.virtual("avgRating").get(function () {
   if (this.reviews.length === 0) {
     return 0;
   } else {
-    const totalRating = this.reviews.reduce((sum, review) => sum + review.rating, 0);
+    const totalRating = this.reviews.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
     return totalRating / this.reviews.length;
   }
 });

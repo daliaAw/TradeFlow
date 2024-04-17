@@ -30,6 +30,7 @@ function ProductReviews({ item, user }) {
 
   const handleSubmitReview = (reviewText) => {
     console.log("Submitted review:", reviewText);
+    console.log("User: ", user);
     setReviewSubmitted(true);
     setShowReviewForm(false);
   };
@@ -44,34 +45,47 @@ function ProductReviews({ item, user }) {
               <span className="reviews-user-icon">
                 <i className="fas fa-user-circle"></i>
               </span>
-              {/* {review.user.name} */}
+              {review.name}
               <p>
                 <StarRating rating={review.rating} />
               </p>
-              <p className="mt-3"> {review.comment}</p>
+              <p className="mt-3">{review.comment}</p>
+
               <hr />
             </li>
           ))}
         </ul>
       ) : (
-        <p>No reviews yet.</p>
-      )}
+        <>
+          <p>No reviews yet.</p>
 
-      
-      {!showReviewForm && !reviewSubmitted && (
-        <button className="write-review-btn" onClick={handleWriteReview}>
-          Write a customer review
-        </button>
+          {user.user ? (
+            <>
+              <p>User: {user.user.name}</p>
+              {!showReviewForm && !reviewSubmitted && (
+                <button
+                  className="write-review-btn"
+                  onClick={handleWriteReview}
+                >
+                  Write a customer review
+                </button>
+              )}
+              {showReviewForm && !reviewSubmitted && (
+                <WriteReviewForm
+                  onSubmit={() => handleSubmitReview(item._id)}
+                  createReview={createReview}
+                  item={item}
+                  user={user.user}
+                />
+              )}
+              {reviewSubmitted && <p>Thank you for your review!</p>}
+            </>
+          ) : (
+            <h6>Please Log In to Write a Review</h6>
+          )}
+        </>
+
       )}
-      {showReviewForm && !reviewSubmitted && (
-        <WriteReviewForm
-          onSubmit={() => handleSubmitReview(item._id)}
-          createReview={createReview}
-          item={item}
-          user={user}
-        />
-      )}
-      {reviewSubmitted && <p>Thank you for your review!</p>}
     </div>
   );
 }
