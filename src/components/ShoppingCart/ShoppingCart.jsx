@@ -5,7 +5,7 @@ import axios from 'axios';
 import { removeCartItem } from "../../utilities/orders-api"
 
 
-function ShoppingCart({ cartItems, setCartItems,  updateQuantity, handleRemove,  retailPrice}) {
+function ShoppingCart({ cartItems, setCartItems,  updateQuantity,handleRemove,  retailPrice}) {
   console.log('cartItems:', cartItems); 
 
 

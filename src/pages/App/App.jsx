@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import { display } from "../../utilities/items-api"
@@ -11,8 +12,8 @@ import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 import CategoriesPage from "../CategoriesPage/CategoriesPage";
 import CategoryPage from "../CategoryPage/CategoryPage";
-import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import ItemDetailsPage from "../ItemDetailsPage/ItemDetailsPage";
+import CreateItemPage from "../CreateItemPage/CreateItemPage";
 import EditItemPage from "../EditItemPage/EditItemPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import SearchResultsPage from "../SearchResultsPage/SearchResultsPage";
@@ -30,6 +31,7 @@ export default function App() {
     async function logBusinessUser() {
       const businessUser = await getBusinessUser(user?._id);
       setBusinessUser(businessUser);
+      console.log(businessUser);
     }
     logBusinessUser();
   }, []);
@@ -47,15 +49,15 @@ export default function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function getProducts() {
-      try {
-        const products = await display();
-        setProducts(products);
-      } catch (error) {
-        console.log("Error fetching products:", error);
+      async function getProducts() {
+          try {
+              const products = await display();
+              setProducts(products);
+          } catch (error) {
+              console.log("Error fetching products:", error);
+          }
       }
-    }
-    getProducts();
+      getProducts();
   }, []);
   
   useEffect(() => {
@@ -113,43 +115,6 @@ export default function App() {
                   path="/edit/:id"
                   element={<EditItemPage products={products} user={user} />}
                 />
-              }
-            />
-            <Route
-              exact
-              path="/item/:category/:id"
-              element={<ItemDetailsPage user={user} />}
-            />
-            <Route
-              path="/search"
-              element={<SearchResultsPage products={products} />}
-            />
-            <Route path="/" element={<HomePage products={products} />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route
-              path="/cat/:categoryName"
-              setCategories={setCategories}
-              categoryName={categories.name}
-              element={
-                <CategoryPage
-                  key={categories.name}
-                  products={products}
-                  categoryName={categories.name}
-
-                />
-              </Routes>
-            </>
-          ) : (
-            <></>
-          )}
-
-          {businessUser ? (
-            <>
-              <Routes>
-                <Route
-                  path="/edit/:id"
-                  element={<EditItemPage products={products} user={user} />}
-                />
               </Routes>
             </>
           ) : (
@@ -158,35 +123,32 @@ export default function App() {
 
           {user ? (
             <>
-              <Routes>
-                <Route
-                  path="/profile"
-                  element={
-                    <ProfilePage
-                      user={user}
-                      businessUser={businessUser}
-                      products={products}
-                    />
-                  }
-                ></Route>
+            <Routes>
+                <Route path="/profile"
+                  element={<ProfilePage 
+                  user={user} 
+                  businessUser={businessUser}
+                  products={products}
+                  />}>
+                </Route>
                 <Route
                   path="/create"
                   element={<CreateItemPage user={user._id} />}
                 />
-                <Route
-                  path="/cart"
-                  element={<NewOrderPage products={products} />}
-                />
-                <Route
-                  path="/orders"
-                  element={<OrderHistoryPage products={products} />}
-                />
+                <Route path="/cart" 
+                element={<ShoppingCart 
+                cartItems={cart}
+                />} 
+                />                
+                <Route path="/orders" 
+                element={<OrderHistoryPage />} />
+
               </Routes>
             </>
           ) : (
             <>
-              <>
-                <Routes>
+            <>
+             <Routes>
                   <Route
                     path="/auth"
                     element={

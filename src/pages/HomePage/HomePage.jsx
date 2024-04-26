@@ -4,9 +4,16 @@ import ItemCard from "../../components/ItemCard/ItemCard";
 import { index } from "../../utilities/items-api";
 import "./HomePage.css";
 
-export default function HomePage({products}) {
+export default function HomePage({ products }) {
     const [categoryItems, setCategoryItems] = useState([]);
 
+    const categories = [
+        { name: 'Consumer Goods' },
+        { name: 'Technology and Electronics' },
+        { name: 'Fashion and Apparel' },
+        { name: 'Home and Garden' },
+        { name: 'Health and Wellness' }
+    ]
 
     useEffect(() => {
         async function fetchItems() {
@@ -21,8 +28,8 @@ export default function HomePage({products}) {
     }, []);
 
     return (
-            <div className="homepage-container container ">
-                <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <div className="homepage-container container-fluid ">
+            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
                     {categoryItems.map((_, index) => (
                         <li key={index} data-target="#carouselExampleIndicators" data-slide-to={index} className={index === 0 ? 'active' : ''}></li>
@@ -31,7 +38,7 @@ export default function HomePage({products}) {
                 <div className="carousel-inner">
                     {categoryItems.map((category, index) => (
                         <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
-                            <img className="d-block w-100" src="/img/ban1.png" alt={`Slide ${index}`} />
+                            <img className="d-block w-100" src={`/img/banner${index + 1}.png`} alt={`Slide ${index}`} />
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>{category.title}</h5>
                                 <p>{category.description}</p>
@@ -49,7 +56,8 @@ export default function HomePage({products}) {
                 </a>
             </div>
 
-                
+
+
             <div className="services-section mx-auto">
                 <div className="row">
                     <div className="col-md-3">
@@ -71,11 +79,11 @@ export default function HomePage({products}) {
                 </div>
             </div>
 
-            <div className="categories-section">
+            <div className="categories-section container">
                 {categoryItems.map((category, categoryIndex) => (
                     <div className="category-row" key={category.category}>
-                     <div className="">
-                        <div className="row">
+                        <div className="">
+                            <div className="row">
                                 <div className="col">
                                     <div className="d-flex align-items-center">
                                         <h3 className="">{category.category}</h3>
@@ -85,9 +93,9 @@ export default function HomePage({products}) {
                             </div>
                         </div>
                         <div className="row">
-                            {category.items.map((item, index) => (
+                            {category.items.slice(0, 4).map((item, index) => (  // Use slice(0, 4) to display only the first 4 items
                                 <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item._id}>
-                                    <ItemCard item={item} />
+                                    <ItemCard item={item} imageUrl={`/img/cat${categoryIndex + 1}-${index + 1}.png`} />
                                 </div>
                             ))}
                         </div>
@@ -97,65 +105,57 @@ export default function HomePage({products}) {
 
             <hr />
 
-            <div className="Music-section">
-                <div className="container">
-                    <div className="row align-items-center">
-                        {/* Left column */}
-                        <div className="col-md-7">
-                            <div className="card-body">
-                                <h5 className="title">Enhance your Music Experience</h5>
-                                <p className="text"></p>
-                                
-                                <button className="btn btn-primary">Check it out</button>
-                            </div>
-                        </div>
-                        {/* Right column */}
-                        <div className="col-md-5">
-                            <img src="/img/headphone.png" className="card-img img-fluid" alt="Image" />
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <hr />     
-            
-            
-             <div className="byCategories-section">     
+            {/* <div className="byCategories-section">
                 <h2 className="byCategories">
-                <Link to="/categories" className="byCategories-title">Shop by categories</Link></h2>           
+                    <Link to="/categories" className="byCategories-title">Shop by categories</Link></h2>
                 <div className="row justify-content-center">
-               
-                  {categoryItems.map((category) => (
-               
-                  <div className="col-md-2" key={category.category}>
+                    {categoryItems.map((category) => (
 
-                   <div className="animated-card">
-                   <div className="circle">
-                   <div className="card-text">{category.category}</div>
+                        <div className="col-md-3 col-sm-6" key={category.category}>
+                            <div className="animated-card">
+                                <div className="circle">
+                                    <div className="card-text">{category.category}</div>
+                                </div>
+                            </div>
+                        </div>))}
                 </div>
+            </div> */}
+
+            <div className="byCategories-section">
+                <h2><Link to="/categories" className="byCategories-title">Shop by categories</Link></h2>
+                <div className="row categoryList">
+                    {categories.slice(0, 5).map(c => (
+                        <Link to={`/cat/${c.name}`} key={c.id} className="categoryLink">
+                            <div className="col-md-3 col-sm-6">
+                                <div className="animated-card">
+                                    <div className="circle">
+                                        <div className="card-text">{c.name}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-             </div>))}
-             </div>
-             </div>
+            </div>
 
-             <hr />
+            <hr />
 
-             <div className="get-started-section">
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8 text-center">
-                        <h2 className="get-started-title">Get Started</h2>
-                        <p className="get-started-description">
-                            Team up with TradeFlow experts and grow your business! Create your free account to take full advantage of our website features.
-                        </p>
-                        <button className="btn btn-primary get-started-btn">GET STARTED</button>
+            <div className="get-started-section">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-8 text-center">
+                            <h2 className="get-started-title">Get Started</h2>
+                            <p className="get-started-description">
+                                Team up with TradeFlow experts and grow your business! Create your free account to take full advantage of our website features.
+                            </p>
+                            <button className="btn btn-primary get-started-btn">GET STARTED</button>
+                        </div>
                     </div>
                 </div>
             </div>
-             </div>
 
-
-            </div>
+        </div>
 
     );
 }

@@ -3,10 +3,17 @@
   justify-content: space-between;
   width: 100%;
 }
-
-.nav-search{
+.navbar-toggler{
+  border: 1px solid #2C3E50;
+}
+.navbar-collapse{
+  padding-right: 0;
   max-width: 100%;
-  width: 60%;
+  justify-content: space-between;
+}
+.search{
+  max-width: 100%;
+  width: 100%;
 } 
 .navbar-brand {
   color: #E74C3C;
@@ -30,6 +37,13 @@ list-style-type: none;
 }
 .nav-search .form-control {
   width: 100%;
+}
+i{
+  color: #2C3E50;
+}
+i:hover{
+  color: #E74C3C;
+
 }
 
 /* Style the search icon */
@@ -57,25 +71,34 @@ list-style-type: none;
   background-color: transparent;
   color: #E74C3C;
   border: none;
-  padding:5px 20px;
+  padding:0px 25px;
   position: absolute;
   top: 20%;
   transform: translateY(-50%);
-  left: 160px; 
+  right: 0; 
   z-index: 1; 
 }
-/* Adjust input field styling
-.nav-search .form-control {
-  border-radius: 20px; 
-} */
+.search-btn:focus{
+  border: none;
+  outline: none;
+
+}
 
 
 .second-Nav{
   background-color: #2C3E50;
-  display: flex;
-  justify-content: space-evenly;
+  display: block;
   height: 6vh;
-  
+  overflow-x: auto;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  white-space: nowrap;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
 }
-
-
+.second-Nav::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers (e.g., Chrome, Safari) */
+}
+.nav-title {
+  display: inline-block;
+  margin-right: 20px;
+}

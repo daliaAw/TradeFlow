@@ -19,16 +19,18 @@ const categories = [
 export default function CategoriesPage() {
     return (
         <>
-            <h1>All Categories</h1>
-            <div className="categoriesPage">
-                {categories.map(c => (
-                    <Link to={`/cat/${c.name}`} >
-                    <CategoryCard
-                        name={c.name}
-                        />
-                        </Link>
-                ))}
-            </div>
+             <h1 className="pt-5">All Categories</h1>
+    <div className="categoriesPage">
+        <div className="categoryList">
+            {categories.slice(0, 5).map(c => (
+                <Link to={`/cat/${c.name}`} key={c.id} className="categoryLink">
+                    <div className="categoryCard">
+                        <h2 className="categoryName">{c.name}</h2>
+                    </div>
+                </Link>
+            ))}
+        </div>
+    </div>
         
         </>
     );

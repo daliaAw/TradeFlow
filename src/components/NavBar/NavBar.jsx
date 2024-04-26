@@ -44,15 +44,20 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
         <nav className="top-Navbar navbar navbar-expand-lg ">
 
         <Link className="navbar-brand" to="/">TradeFlow</Link>
-        <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0 position-relativ ">
-          <input onChange={(evt) => setNewSearch(evt.target.value)} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={newSearch}/>
-          <button className="search-btn " type="submit"><i class="fas fa-search"></i></button>
-        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+
+          <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0 position-relativ w-50 mx-auto">
+           <input onChange={(evt) => setNewSearch(evt.target.value)} className="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search" value={newSearch}/>
+           <button className="search-btn " type="submit"><i class="fas fa-search"></i></button>
+         </form>
  
-       
         {user ? (
           <>
-            <div>
+            <div className="nav-info">
             <span>
               Welcome, &nbsp;
               <Link to="/profile" className="nav-name">{user.name}</Link>
@@ -61,7 +66,9 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
                   ) : (
                     <>&nbsp;</>
                     )}
-              &nbsp; | &nbsp;  <Link to="/cart"><img className="cart-icon" src={cart_icon} alt="View Cart" /></Link>&nbsp; |
+              &nbsp; | &nbsp;  <Link to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+                </Link>&nbsp; |
 
             </span>
             &nbsp;  &nbsp; 
@@ -76,7 +83,9 @@ export default function NavBar({ user, setUser, businessUser, setBusinessUser, p
             <Link to="/auth" user={user} setUser={setUser} setBusinessUser={setBusinessUser}>Login/Sign Up</Link>
           </>
         )}
+        </div>
          </nav>
+         
         </>
       </div>
       <nav className="second-Nav navbar navbar-expand-lg ">

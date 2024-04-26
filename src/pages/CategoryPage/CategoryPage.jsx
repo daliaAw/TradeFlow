@@ -79,13 +79,16 @@ function applyFilters(itemsToFilter) {
 
   return (
     <>
-    <div className="cat-page-container">
-    <ItemFilter
-    handleChange={handleChange}
-    selection={selection}
-    setSelection={setSelection}
-    />
-    <div className="cat-item-container">
+    <div className="row cat-page-container">
+      <div className="col-3">
+        <ItemFilter
+        handleChange={handleChange}
+        selection={selection}
+        setSelection={setSelection}
+        />
+      </div>
+
+    <div className="col-9 cat-item-container">
       <h1>{categoryName}</h1>
       {displayedItems.length ? (
           <div className="cat-items">

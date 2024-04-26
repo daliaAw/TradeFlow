@@ -1,6 +1,11 @@
 .container{
     max-width: 88%;
 }
+.container-fluid{
+    margin: 0;
+    padding: 0;
+
+}
 .btn:hover {
     background-color: #E74C3C;
 }
@@ -74,9 +79,6 @@
     transition: background-color 0.3s ease;
 }
 
-
-
-
 /* Music-section */
 .Music-section {
     display: flex;
@@ -114,20 +116,25 @@
     color: black;
 }
 .animated-card{
-    margin: 50px 0 50px 0;
+    margin: 50px 0 50px 0px;
 }
 .circle {
-    width: 220px;
-    height: 220px;
+    width: 210px;
+    height: 210px;
+    padding: 2px;
+    font-size: 21px;
     background-color:#2C3E50;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: moveToLeft 5s infinite alternate; /* Animation */
+    animation: moveToLeft 5s infinite alternate; 
 }
 .circle .card-text{
     color: white;
+}
+.circle .card-text:hover{
+    color:#E74C3C;
 }
 @keyframes moveToLeft {
     0% {
@@ -137,6 +144,29 @@
         transform: translateX(-50px); /* Adjust the distance */
     }
 }
+/* .circle {
+    width: 220px;
+    height: 220px;
+    background-color:#2C3E50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: moveCircle 15s infinite linear; 
+}
+@keyframes moveCircle {
+  0% {
+    transform: translateX(100vw); 
+  }
+
+10% {
+  transform: translateX(0);
+} 
+
+  100% {
+    transform: translateX(-100vw); 
+  }
+} */
 .row:hover .circle {
     cursor: pointer;
     animation-play-state: paused; /* Pause animation on hover */

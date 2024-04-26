@@ -4,11 +4,12 @@ module.exports = {
   getItems,
   getHomePageItems,
   create,
-  getItemDetails,
+  // getItemDetails,
   itemDelete,
   itemUpdate,
   createReview,
-  getReviewsByUser,
+  // getReviewsByUser,
+  getReviews
 
 };
 

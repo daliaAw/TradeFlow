@@ -17,7 +17,7 @@
     margin-top: 225px;
 }
 
-.cat-item-card{
+/* .cat-item-card{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +26,7 @@
     height: 10vh;
     border: 1px lightgray solid; 
     background-color: lightgray;   
-}
+} */
 
 .cat-card-top-row{
     display: flex;
